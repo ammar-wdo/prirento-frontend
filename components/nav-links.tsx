@@ -40,14 +40,14 @@ const NavLinks = ({white}: Props) => {
       {links.map(({ label, href, button, icon }) => {
         if (href)
           return (
-            <Link href={href} className="capitalize">
+            <Link key={label} href={href} className="capitalize">
               {label}
             </Link>
           );
         if (button)
           return (
-            <Button
-              className={cn("bg-white hover:bg-white/90 text-main rounded-xl lg:text-base md:block hidden",white && 'bg-main hover:bg-main.90 text-white')}
+            <Button key={label}
+              className={cn("bg-white hover:bg-white/90 text-main rounded-xl lg:text-base md:block hidden",white && 'bg-main hover:bg-main/90 text-white')}
               asChild
             >
               <Link href={"/booking"}>My booking</Link>
@@ -55,7 +55,7 @@ const NavLinks = ({white}: Props) => {
           );
 
         return (
-          <span className="capitalize cursor-pointer flex items-center">
+          <span key={label} className="capitalize cursor-pointer flex items-center">
             {label}
             {icon}
           </span>
