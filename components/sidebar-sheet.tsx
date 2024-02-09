@@ -12,6 +12,7 @@ import NavLinks from "./nav-links"
 import { cn } from "@/lib/utils"
 import { useEffect, useState } from "react"
 import { usePathname } from "next/navigation"
+import MobileNavLinks from "./mobile-navlinks"
 
 type Props = {white?:boolean}
 
@@ -27,9 +28,9 @@ const SidebarSheet = ({white}: Props) => {
   return (
     <Sheet open={open} onOpenChange={setOpen}>
     <SheetTrigger> <Menu className={cn('text-white cursor-pointer',white && 'text-main')} /></SheetTrigger>
-    <SheetContent className="w-full">
+    <SheetContent className="w-full p-0">
         <div className="mt-12">
-        <NavLinks/>
+      <MobileNavLinks/>
         </div>
  
     </SheetContent>

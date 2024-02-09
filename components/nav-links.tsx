@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import NavPopover from "./nav-popoever";
 
 export const links = [
   {
@@ -36,7 +37,7 @@ type Props = {white?:boolean};
 
 const NavLinks = ({white}: Props) => {
   return (
-    <nav className={cn("flex md:items-center lg:gap-12 md:gap-6 md:text-white text-main  text-lg sm:text-xs items-start lg:text-base font-normal md:flex-row flex-col gap-12",white && 'md:text-main')}>
+    <nav className={cn("flex items-center lg:gap-12 text-white text-sm gap-4   lg:text-base font-normal flex-row  ",white && 'text-main')}>
       {links.map(({ label, href, button, icon }) => {
         if (href)
           return (
@@ -55,10 +56,7 @@ const NavLinks = ({white}: Props) => {
           );
 
         return (
-          <span key={label} className="capitalize cursor-pointer flex items-center">
-            {label}
-            {icon}
-          </span>
+         <NavPopover title={label} Icon={icon!}/>
         );
       })}
     </nav>
