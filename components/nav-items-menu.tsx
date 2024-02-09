@@ -11,7 +11,7 @@ type Props = {
 const NavItemsMenu = ({mobile,title,data}: Props) => {
   return (
     <div className='grid grid-cols-4 gap-4 p-4 '>
-{data.map(brand=><BrandNavCard brand={brand}/>)}
+{data.map(brand=><BrandNavCard key={brand.id} brand={brand}/>)}
     </div>
   )
 }

@@ -15,7 +15,7 @@ export const fetcher = async <T>(url: string): Promise<T> => {
  
     const response = await axios.get<T>(url, {
       headers: {
-        'api-Secret': process.env.NEXT_PUBLIC_API_SECRET, 
+        'api-Secret': process.env.API_SECRET, 
       },
     });
     return response.data;
