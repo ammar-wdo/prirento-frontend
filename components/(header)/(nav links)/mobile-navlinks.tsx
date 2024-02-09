@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 
-import { ChevronRight } from "lucide-react";
+import { ArrowLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import NavItemsMenu from "./nav-items-menu";
@@ -49,32 +49,36 @@ const MobileNavLinks = ({brands}:Props) => {
   return (
     <AnimatePresence>
       {showBrands && (
-        <motion.div className="flex flex-col  gap-10"
+        <motion.div className="flex flex-col "
     variants={overlayVariants}
     initial='initial'
     animate='animate'
     exit={'exit'}
         >
           <Button
-            className="mx-4 bg-main hover:bg-main/90"
+            className=" self-start  "
             onClick={() => setShowBrands(false)}
+            variant={'link'}
           >
+            <ArrowLeft className="w-5 h-5"/>
             Back
           </Button>
           <NavItemsMenu aside={true} data={brands} type="brand"  title="Brands" />
         </motion.div>
       )}
       {showTypes && (
-        <motion.div className="flex flex-col  gap-10"
+        <motion.div className="flex flex-col  "
         variants={overlayVariants}
         initial='initial'
         animate='animate'
         exit={'exit'}
         >
           <Button
-            className="mx-4 bg-main hover:bg-main/90"
+            className="  self-start"
             onClick={() => setShowTypes(false)}
+            variant={'link'}
           >
+        <ArrowLeft className="w-5 h-5"/>
             Back
           </Button>
           <NavItemsMenu  type="type" title="Cars type" />
