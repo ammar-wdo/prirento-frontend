@@ -1,6 +1,8 @@
 import { Loader } from "lucide-react";
 
 
+export const revalidate = 0
+
 export default function Home() {
   return (
    <div className="h-screen w-full flex items-center justify-center font-medium capitalize flex-col gap-12">
