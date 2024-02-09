@@ -10,11 +10,11 @@ const TypeNavCard = ({type}: Props) => {
   return (
     <div key={type}>
               {" "}
-              <div className='justify-self-center hover:bg-main/30 cursor-pointer p-4 transition rounded-xl'>
+              <div className='justify-self-center cursor-pointer p-4 transition rounded-xl hover:border-main border border-transparent group hover:scale-110 duration-500'>
                 <div className="relative w-[50px] h-[50px] mx-auto">
-                  <Image className="object-contain" src={carsMapper[type].src} alt="logo" fill />
+                  <Image  className="object-contain transition group-hover:-rotate-[16deg] duration-500" src={carsMapper[type].src} alt="logo" fill />
                 </div>
-                <p className='text-center text-xs md:text-sm capitalize font-medium'>{carsMapper[type].title}</p>
+                <p className='text-center text-xs md:text-sm capitalize font-medium transition'>{carsMapper[type].title}</p>
               </div>
             </div>
   )
