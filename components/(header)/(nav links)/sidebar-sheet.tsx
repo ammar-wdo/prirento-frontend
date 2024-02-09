@@ -28,7 +28,7 @@ const SidebarSheet = ({white,brands}: Props) => {
     },[pathname])
   return (
     <Sheet open={open} onOpenChange={setOpen}>
-    <SheetTrigger> <Menu className={cn('text-white cursor-pointer',white && 'text-main')} /></SheetTrigger>
+    <SheetTrigger> <Menu className={cn('text-white cursor-pointer w-12 h-12',white && 'text-main')} /></SheetTrigger>
     <SheetContent className="w-full p-0">
         <div className="mt-12">
       <MobileNavLinks brands={brands}/>

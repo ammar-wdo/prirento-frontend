@@ -61,7 +61,7 @@ const MobileNavLinks = ({brands}:Props) => {
           >
             Back
           </Button>
-          <NavItemsMenu data={brands} type="brand"  title="Brands" />
+          <NavItemsMenu aside={true} data={brands} type="brand"  title="Brands" />
         </motion.div>
       )}
       {showTypes && (
