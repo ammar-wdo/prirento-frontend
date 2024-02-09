@@ -5,6 +5,7 @@ import { Button } from "./ui/button";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import NavPopover from "./nav-popoever";
+import { BrandType } from "@/types";
 
 export const links = [
   {
@@ -33,9 +34,11 @@ export const links = [
   },
 ];
 
-type Props = {white?:boolean};
+type Props = {white?:boolean,brands:BrandType[]};
 
-const NavLinks = ({white}: Props) => {
+const NavLinks = ({white,brands}: Props) => {
+
+ 
   return (
     <nav className={cn("flex items-center lg:gap-12 text-white text-sm gap-4   lg:text-base font-normal flex-row  ",white && 'text-main')}>
       {links.map(({ label, href, button, icon }) => {
@@ -56,7 +59,7 @@ const NavLinks = ({white}: Props) => {
           );
 
         return (
-         <NavPopover title={label} Icon={icon!}/>
+         <NavPopover key={label} data={brands} title={label} Icon={icon!}/>
         );
       })}
     </nav>

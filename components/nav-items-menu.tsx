@@ -1,19 +1,17 @@
+import { BrandType } from '@/types'
 import React from 'react'
+import BrandNavCard from './brand-nav-card'
 
 type Props = {
     mobile?:boolean,
-    title:string
+    title:string,
+    data:BrandType[]
 }
 
-const NavItemsMenu = ({mobile,title}: Props) => {
+const NavItemsMenu = ({mobile,title,data}: Props) => {
   return (
     <div className='grid grid-cols-4 gap-4 p-4 '>
-<span>1</span>
-<span>2</span>
-<span>3</span>
-<span>4</span>
-<span>5</span>
-<span>6</span>
+{data.map(brand=><BrandNavCard brand={brand}/>)}
     </div>
   )
 }

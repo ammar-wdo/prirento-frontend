@@ -8,6 +8,7 @@ import { useState } from "react";
 import NavItemsMenu from "./nav-items-menu";
 import { Button } from "./ui/button";
 import { AnimatePresence, motion } from "framer-motion";
+import { BrandType } from "@/types";
 
 export const links = [
   {
@@ -34,9 +35,9 @@ export const links = [
   },
 ];
 
-type Props = {};
+type Props = {brands:BrandType[]};
 
-const MobileNavLinks = () => {
+const MobileNavLinks = ({brands}:Props) => {
   const [showBrands, setShowBrands] = useState(false);
   const [showTypes, setShowTypes] = useState(false);
 
@@ -60,7 +61,7 @@ const MobileNavLinks = () => {
           >
             Back
           </Button>
-          <NavItemsMenu title="Brands" />
+          <NavItemsMenu data={brands} title="Brands" />
         </motion.div>
       )}
       {showTypes && (
@@ -76,7 +77,7 @@ const MobileNavLinks = () => {
           >
             Back
           </Button>
-          <NavItemsMenu title="Types" />
+          <NavItemsMenu data={brands} title="Types" />
         </motion.div>
       )}
       {!showBrands && !showTypes && (
@@ -103,6 +104,7 @@ const MobileNavLinks = () => {
 
             return (
               <span
+              key={label}
                 className="capitalize cursor-pointer flex items-center relative z-8  border-b py-10 w-full px-4"
                 onClick={() =>
                   brand ? setShowBrands(true) : setShowTypes(true)
