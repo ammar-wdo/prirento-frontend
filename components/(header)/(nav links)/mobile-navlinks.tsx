@@ -6,7 +6,7 @@ import { ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import NavItemsMenu from "./nav-items-menu";
-import { Button } from "./ui/button";
+import { Button } from "../../ui/button";
 import { AnimatePresence, motion } from "framer-motion";
 import { BrandType } from "@/types";
 
@@ -61,7 +61,7 @@ const MobileNavLinks = ({brands}:Props) => {
           >
             Back
           </Button>
-          <NavItemsMenu data={brands} title="Brands" />
+          <NavItemsMenu data={brands} type="brand"  title="Brands" />
         </motion.div>
       )}
       {showTypes && (
@@ -77,7 +77,7 @@ const MobileNavLinks = ({brands}:Props) => {
           >
             Back
           </Button>
-          <NavItemsMenu data={brands} title="Types" />
+          <NavItemsMenu  type="type" title="Cars type" />
         </motion.div>
       )}
       {!showBrands && !showTypes && (

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Button } from "./ui/button";
+import { Button } from "../../ui/button";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import NavPopover from "./nav-popoever";
@@ -23,10 +23,12 @@ export const links = [
   {
     label: "Rent by brand",
     icon: <ChevronDown className="ml-1 w-3 h-3" />,
+    brand:true
   },
   {
     label: "Rent by type",
     icon: <ChevronDown className="ml-1 w-3 h-3" />,
+    type:true
   },
   {
     label: "My booking",
@@ -41,7 +43,7 @@ const NavLinks = ({white,brands}: Props) => {
  
   return (
     <nav className={cn("flex items-center lg:gap-12 text-white text-sm gap-4   lg:text-base font-normal flex-row  ",white && 'text-main')}>
-      {links.map(({ label, href, button, icon }) => {
+      {links.map(({ label, href, button, icon,type,brand }) => {
         if (href)
           return (
             <Link key={label} href={href} className="capitalize">
@@ -59,7 +61,7 @@ const NavLinks = ({white,brands}: Props) => {
           );
 
         return (
-         <NavPopover key={label} data={brands} title={label} Icon={icon!}/>
+         <NavPopover key={label} data={brands} title={label} Icon={icon!} type={type} brand={brand}/>
         );
       })}
     </nav>

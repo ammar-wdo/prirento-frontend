@@ -1,11 +1,11 @@
 import React from "react";
-import NavLinks from "../nav-links";
+import NavLinks from "./(nav links)/nav-links";
 import Image from "next/image";
 import { Menu, UserRound } from "lucide-react";
 import Link from "next/link";
-import SidebarSheet from "../sidebar-sheet";
+import SidebarSheet from "./(nav links)/sidebar-sheet";
 import { cn, fetcher } from "@/lib/utils";
-import Logo from "../logo";
+import Logo from "./logo";
 import { GET_BRANDS } from "@/links";
 import { BrandType } from "@/types";
 
