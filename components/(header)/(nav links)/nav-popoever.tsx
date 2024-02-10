@@ -27,7 +27,7 @@ const NavPopover = ({ title, Icon, data, type, brand }: Props) => {
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger onMouseOver={() => setOpen(true)}>
         {" "}
-        <span className="capitalize cursor-pointer flex items-center relative z-10">
+        <span className="capitalize cursor-pointer flex items-center relative z-20">
           {title}
           {Icon}
         </span>
@@ -45,7 +45,7 @@ const NavPopover = ({ title, Icon, data, type, brand }: Props) => {
       </PopoverContent>
       <div
         className={cn(
-          "fixed w-screen h-screen top-0 transition left-0  bg-black/60",
+          "fixed w-screen h-screen top-0 transition left-0  bg-black/60 z-10",
           !open && "opacity-0 -z-10  "
         )}
       />

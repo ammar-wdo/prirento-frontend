@@ -46,11 +46,11 @@ const SearchComponent = ({ locations }: Props) => {
   } = useSearchComponent();
 
   return (
-    <div className="space-y-4 p-8 bg-white/90   backdrop-blur-lg rounded-xl drop-shadow-xl">
-      <div className="  flex items-center gap-4">
+    <div className="space-y-4 sm:p-8 p-4 bg-white/90   backdrop-blur-lg rounded-xl drop-shadow-xl xl:w-full w-fit mx-auto relative pb-12 xl:pb-8">
+      <div className="  flex xl:flex-row flex-col items-center gap-4">
 
         {/* pick up location */}
-        <div className="flex-1 flex flex-col gap-1">
+        <div className="flex-1 flex flex-col gap-1 w-full">
           <p>Pick-up location</p>
           <div className="flex-1 flex  p-1 rounded-md border bg-white">
             <LocationPicker
@@ -84,7 +84,7 @@ const SearchComponent = ({ locations }: Props) => {
         </div>
 
         {isDropOff && (
-           <div className="flex-1 flex flex-col gap-1">
+           <div className="flex-1 flex flex-col gap-1 w-full">
           <p>Drop-off location</p>
           <div className="flex-1 flex  p-1 rounded-md border bg-white">
             <LocationPicker
@@ -122,7 +122,7 @@ const SearchComponent = ({ locations }: Props) => {
 
         <Button
           variant={"siteMain"}
-          className="rounded-full py-[28px] px-8 font-medium text-base self-end"
+          className="rounded-full py-[28px] px-8 font-medium text-base self-end xl:flex hidden"
         >
           Find a vehicle <ArrowRight className="w-4 h-4 ml-2 " />
         </Button>
@@ -140,6 +140,12 @@ const SearchComponent = ({ locations }: Props) => {
           Drop car off at different location
         </label>
       </div>
+      <Button
+          variant={"siteMain"}
+          className="rounded-full py-[28px] px-8 font-medium text-base self-end xl:hidden w-[200px] tex-sm mt-20 flex absolute -bottom-8 left-[50%] -translate-x-[50%]"
+        >
+          Find a vehicle <ArrowRight className="w-4 h-4 ml-2 " />
+        </Button>
     </div>
   );
 };

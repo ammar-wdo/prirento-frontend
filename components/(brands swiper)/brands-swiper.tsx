@@ -32,22 +32,17 @@ const [mount, setMount] = useState(false)
      
       modules={[Navigation,Autoplay]}
       spaceBetween={30}
-   
+    
+   className='max-w-[1200px] '
       navigation={{
         nextEl: '.custom-swiper-button-next',
         prevEl: '.custom-swiper-button-prev',
       }}
-    
-     
       loop={true}
-      speed={3000}
-      autoplay={{delay:2500,disableOnInteraction:false}}
-
-   
-    
-     
+    speed={1500}
+      autoplay={{delay:2500,disableOnInteraction:false}}     
       breakpoints={{
-        640: {
+        200: {
           slidesPerView: 2,
           spaceBetween: 20,
         },
@@ -62,7 +57,7 @@ const [mount, setMount] = useState(false)
       }}
     >
     
-    {brands.map(brand=>  <SwiperSlide key={brand.id}><div className='w-[100px] aspect-square relative mx-auto'><Image fill alt='brand' src={brand.logo} className='object-contain'/></div></SwiperSlide>)}
+    {brands.map(brand=>  <SwiperSlide className='hover:bg-muted rounded-lg p-1 transition '  key={brand.id}><div className='sm:w-[100px] w-[60px] active:scale-95 aspect-square relative mx-auto my-auto cursor-pointer transition'><Image fill alt='brand' src={brand.logo} className='object-contain'/></div></SwiperSlide>)}
      
     </Swiper>
     <div className='relative container -mt-16 z-10'>

@@ -12,11 +12,11 @@ export default function Home() {
    <div className="">
  <Banner/>
 
- <div className="container -mt-[3rem]">
+ <div className="container xl:-mt-[3rem] -mt-[12rem]">
  <SearchComponentServerWrapper/>
  </div>
 
- <div className="container mt-12">
+ <div className="container mt-16">
   <BrandsSwiperServerWrapeer/>
  </div>
    </div>
