@@ -1,52 +1,45 @@
-
-
 export type BrandType = {
-    id:string,
-    brand:string,
-    logo:string,
-    createdAt:string,
-    updatedAt:string
-
-}
+  id: string;
+  brand: string;
+  logo: string;
+  createdAt: string;
+  updatedAt: string;
+};
 
 export type LocationType = {
-    id:string,
-    name:string
-}
-
+  id: string;
+  name: string;
+};
 
 export type CarCardType = {
-id:string,
-carName:string,
-year:string,
-seats:number,
-kmIncluded:number,
-carType:CarTyps,
-gallary:string[],
-transmition:Transmition,
-oneDayPrice:number,
-companyLogo:string,
+  id: string;
+  carName: string;
+  year: string;
+  seats: number;
+  kmIncluded: number;
+  carType: CarTypes;
+  gallary: string[];
+  transmition: Transmition;
+  oneDayPrice: number;
+  companyLogo: string;
+};
 
-
-}
-
-
-
-
-
-export type CarTyps = typeof carTypes
-export type Transmition = typeof transmition
+export type CarTypes =
+  | "super_cars"
+  | "sports"
+  | "convertable"
+  | "business"
+  | "classics"
+  | "SUV";
+export type Transmition = "auto" | "manual";
 
 export const carTypes = [
-    "super_cars",
-    "sports",
-    "convertable",
-    "business",
-    "classics",
-    "SUV",
-  ] as const;
+  "super_cars",
+  "sports",
+  "convertable",
+  "business",
+  "classics",
+  "SUV",
+] as const;
 
-  export const transmition = ["auto", "manual"] as const;
-
-
-  
+export const transmition = ["auto", "manual"] as const;

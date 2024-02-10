@@ -27,7 +27,7 @@ export default function Home({ searchParams }: Props) {
 
 
 
-      <div className="container mt-16">
+      <div className="container mt-20">
         <BrandsSwiperServerWrapeer />
       </div>
       <div className="mt-24">
@@ -43,7 +43,7 @@ export default function Home({ searchParams }: Props) {
         </p>
         </div>
 
-        <div className="mt-8 overflow-auto">
+        <div className="mt-8 overflow-auto px-4">
           <CarsTypeComponent searchParams={searchParams} />
         </div>
         <Suspense

@@ -1,16 +1,14 @@
 import {
   Card,
   CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
+ 
 } from "@/components/ui/card";
 import { CarCardType } from "@/types";
 import CarCardSwiperComponent from "./car-swiper";
-import { Fuel, Gauge, Info, Settings2, Users } from "lucide-react";
+import {  CarFront, Gauge, Info, Settings2, Users } from "lucide-react";
 import CarFeaturesComponent from "./car-features-component";
 import { Button } from "../ui/button";
+import { carsMapper } from "@/mapper";
 
 type Props = {
   car: CarCardType;
@@ -59,8 +57,8 @@ const CarByTypeCard = ({ car }: Props) => {
             icon={<Users className="w-5 h-5" />}
           />
           <CarFeaturesComponent
-            title={"Fuel"}
-            icon={<Fuel className="w-5 h-5" />}
+            title={carsMapper[car.carType].title }
+            icon={<CarFront className="w-5 h-5" />}
           />
         </section>
         <Button variant={'siteMain'} className="w-full mt-4 rounded-full">Book Now</Button>

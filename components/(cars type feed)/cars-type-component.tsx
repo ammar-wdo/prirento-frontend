@@ -29,7 +29,7 @@ const CarsTypeComponent = ({searchParams}: Props) => {
   };
 
   return (
-    <div className="flex items-center mx-auto  w-fit gap-8  overflow-x-auto pb-8">
+    <div className="flex items-center mx-auto  w-fit md:gap-8 gap-4 overflow-x-auto pb-8">
       {carTypes.map((type) => (
         <Button
           onClick={() => handlePushParam(type)}
