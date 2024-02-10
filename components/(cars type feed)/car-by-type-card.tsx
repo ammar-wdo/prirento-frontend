@@ -21,7 +21,7 @@ const CarByTypeCard = ({ car }: Props) => {
     <Card className="w-full rounded-3xl overflow-hidden border-none p-0">
       <CardContent className="p-0">
         <CarCardSwiperComponent gallary={car.gallary} />
-<div className="p-4">
+<div className="p-4 mt-4">
 <section className="flex justify-between">
           <div className="flex flex-col gap-3">
             <h3 className="text-base capitalize font-medium">{car.carName}</h3>
