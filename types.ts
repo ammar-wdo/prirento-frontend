@@ -9,6 +9,11 @@ export type BrandType = {
 
 }
 
+export type LocationType = {
+    id:string,
+    name:string
+}
+
 
 export const carTypes = [
     "SUV",

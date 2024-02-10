@@ -1,6 +1,8 @@
-import Banner from "@/components/banner";
-import SearchComponent from "@/components/search-component";
-import { Loader } from "lucide-react";
+import Banner from "@/components/(banner)/banner";
+import BrandsSwiperServerWrapeer from "@/components/(brands swiper)/brands-swiper-server-wrapper";
+
+import SearchComponentServerWrapper from "@/components/(search-component)/seatch-component-server-wrapper";
+
 
 
 export const revalidate = 0
@@ -9,11 +11,14 @@ export default function Home() {
   return (
    <div className="">
  <Banner/>
+
  <div className="container -mt-[3rem]">
- <SearchComponent/>
+ <SearchComponentServerWrapper/>
  </div>
- 
-  
+
+ <div className="container mt-12">
+  <BrandsSwiperServerWrapeer/>
+ </div>
    </div>
   );
 }

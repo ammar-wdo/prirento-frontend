@@ -49,8 +49,17 @@ const endTimeSetter = (val:string)=>{
     setLocationOpen(val);
   };
 
+  const locationsSetter = (val:string)=>{
+    setLocation(val)
+    setLocationOpen(false)
+  }
+
   const dropOffOpenSetter = (val: boolean) => {
     setDropOffOpen(val);
+  };
+  const dropOffsetter = (val: string) => {
+    setDropOffLocation(val);
+    setDropOffOpen(false)
   };
   const startDateOpenSetter = (val: boolean) => {
     setStartDateOpen(val);
@@ -75,6 +84,13 @@ const endTimeSetter = (val:string)=>{
     startTimeSetter,
     endTimeSetter,
     locationOpenSetter,
+    location,
+    locationOpen,
+    locationsSetter,
+    dropOffLocation,
+    dropOffOpen,
+    dropOffOpenSetter,
+    dropOffsetter,
     startDateOpenSetter,
     endDateOpenSetter,
     startTimeOpenSetter,

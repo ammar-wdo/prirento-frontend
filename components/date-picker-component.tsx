@@ -36,7 +36,7 @@ const DatepickerComponent = ({open,setOpen,dateString,setDateString,startDateStr
           )}
         >
           <CalendarIcon className="mr-2 h-4 w-4" />
-          {dateString ? format(new Date(dateString), "PPP") : <span>Pick a date</span>}
+          {dateString ? format(new Date(dateString), "dd/MM/yyyy") : <span>Pick a date</span>}
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-auto p-0" align="start">
