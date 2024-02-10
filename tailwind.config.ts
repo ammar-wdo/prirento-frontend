@@ -54,7 +54,8 @@ const config = {
         },
         main:'#052206',
         secondaryGold:"#C6A046",
-        secondaryGreen:"#0C460E"
+        secondaryGreen:"#0C460E",
+        
       },
       borderRadius: {
         lg: "var(--radius)",

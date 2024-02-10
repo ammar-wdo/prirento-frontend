@@ -12,7 +12,7 @@ import 'swiper/css/navigation';
 import { Navigation ,Autoplay} from 'swiper/modules';
 import { BrandType } from '@/types';
 import Image from 'next/image';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 type Props = {
     brands:BrandType[]
@@ -61,8 +61,8 @@ const [mount, setMount] = useState(false)
      
     </Swiper>
     <div className='relative container -mt-16 z-10'>
-    <div className="custom-swiper-button-prev absolute right-1 cursor-pointer flex items-center justify-center w-8 h-8 rounded-full" > <ArrowRight/> </div>
-    <div className="custom-swiper-button-next absolute left-1 cursor-pointer flex items-center justify-center w-8 h-8 rounded-full" > <ArrowLeft/> </div>
+    <button className="custom-swiper-button-prev absolute right-1 cursor-pointer flex items-center justify-center w-8 h-8 rounded-full hover:bg-secondaryGreen hover:text-white transition shadow-md text-secondaryGreen" > <ChevronRight/> </button>
+    <button className="custom-swiper-button-next absolute left-1 cursor-pointer flex items-center justify-center w-8 h-8 rounded-full hover:bg-secondaryGreen hover:text-white transition shadow-md text-secondaryGreen" > <ChevronLeft/> </button>
     </div>
    
     </>

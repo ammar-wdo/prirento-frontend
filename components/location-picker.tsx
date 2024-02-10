@@ -6,6 +6,7 @@ import {
 } from "@/components/ui/popover";
 import { Button } from "./ui/button";
 import { ScrollArea } from "./ui/scroll-area";
+import { MapPin } from "lucide-react";
 
 type Props = {
   open: boolean;
@@ -30,7 +31,7 @@ const LocationPicker = ({
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger className="w-full text-start p-2 hover:bg-muted transition rounded-md">{locationPlaceholder}</PopoverTrigger>
+      <PopoverTrigger className="w-full text-start p-2 hover:bg-muted transition rounded-md flex items-center gap-2 text-sm"><MapPin className="w-4 h-4"/>{locationPlaceholder}</PopoverTrigger>
       <PopoverContent className=" p-2">
         <ScrollArea className="max-h-[350px] "> 
         <div className="flex flex-col gap-1  ">

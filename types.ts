@@ -15,14 +15,38 @@ export type LocationType = {
 }
 
 
+export type CarCardType = {
+id:string,
+carName:string,
+year:string,
+seats:number,
+kmIncluded:number,
+carType:CarTyps,
+gallary:string[],
+transmition:Transmition,
+oneDayPrice:number,
+companyLogo:string,
+
+
+}
+
+
+
+
+
+export type CarTyps = typeof carTypes
+export type Transmition = typeof transmition
+
 export const carTypes = [
-    "SUV",
     "super_cars",
     "sports",
     "convertable",
-    "classics",
     "business",
+    "classics",
+    "SUV",
   ] as const;
+
+  export const transmition = ["auto", "manual"] as const;
 
 
   

@@ -9,8 +9,7 @@ import { BrandType, carTypes } from "@/types";
 
 import { useState } from "react";
 import BrandNavCard from "./brand-nav-card";
-import { carsMapper } from "@/mapper";
-import Image from "next/image";
+
 import TypeNavCard from "./type-nav-card";
 
 type Props = {
