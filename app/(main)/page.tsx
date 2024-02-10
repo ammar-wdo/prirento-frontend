@@ -1,6 +1,7 @@
 import Banner from "@/components/(banner)/banner";
 import BrandsSwiperServerWrapeer from "@/components/(brands swiper)/brands-swiper-server-wrapper";
 import CarTypeFeedSkeleton from "@/components/(cars type feed)/car-type-feed-skeleton";
+import CarsTypeComponent from "@/components/(cars type feed)/cars-type-component";
 
 import CarsTypeFeed from "@/components/(cars type feed)/cars-type-feed";
 
@@ -40,6 +41,10 @@ export default function Home({ searchParams }: Props) {
           selected to provide our <br />
           customers with the ultimate drivin experience.
         </p>
+        </div>
+
+        <div className="mt-8 overflow-auto">
+          <CarsTypeComponent searchParams={searchParams} />
         </div>
         <Suspense
           key={searchParams.carType as string}
