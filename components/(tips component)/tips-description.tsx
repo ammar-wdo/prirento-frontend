@@ -39,11 +39,11 @@ const TipsDescription = (props: Props) => {
 
   const fadeLeft = {
     initial: { x: -20, opacity: 0 },
-    whileInView: { x: 0, opacity: 1, transition: { duration: 0.5,delay:0.5 } },
+    whileInView: { x: 0, opacity: 1, transition: { duration: 0.7,delay:0.6 } },
   };
   const fadeRight = {
     initial: { x: 20, opacity: 0 },
-    whileInView: { x: 0, opacity: 1, transition: { duration: 0.5,delay:0.5 } },
+    whileInView: { x: 0, opacity: 1, transition: { duration: 0.7,delay:0.3 } },
   };
 
   const [index, setIndex] = useState<number | undefined>(undefined);

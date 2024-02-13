@@ -18,8 +18,8 @@ const BenefitsCard = ({benefit,index}: Props) => {
         whileInView:{
             y:0,opacity:100,
             transition:{
-                delay:index * 0.2,
-                duration:0.7
+                delay:index * 0.4,
+                duration:0.9
             }
         }
     }
