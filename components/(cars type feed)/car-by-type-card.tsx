@@ -1,3 +1,4 @@
+'use client'
 import {
   Card,
   CardContent,
@@ -9,14 +10,36 @@ import {  CarFront, Gauge, Info, Settings2, Users } from "lucide-react";
 import CarFeaturesComponent from "./car-features-component";
 import { Button } from "../ui/button";
 import { carsMapper } from "@/mapper";
+import {motion} from 'framer-motion'
 
 type Props = {
   car: CarCardType;
+  index:number
 };
 
-const CarByTypeCard = ({ car }: Props) => {
+
+
+const CarByTypeCard = ({ car,index }: Props) => {
+
+  const fadeIn = {
+    initial:{
+        y:20,opacity:0
+    },
+    whileInView:{
+        y:0,opacity:100,
+        transition:{
+            delay:index * 0.2,
+            duration:0.9
+        }
+    }
+  }
   return (
-    <Card className="w-full rounded-3xl overflow-hidden border-none p-0">
+    <motion.div
+    variants={fadeIn}
+    initial='initial'
+    whileInView='whileInView'
+    >
+<Card className="w-full rounded-3xl overflow-hidden border-none p-0">
       <CardContent className="p-0">
         <CarCardSwiperComponent index={car.id} gallary={car.gallary} />
 <div className="p-4 mt-4">
@@ -66,6 +89,8 @@ const CarByTypeCard = ({ car }: Props) => {
        
       </CardContent>
     </Card>
+    </motion.div>
+    
   );
 };
 
