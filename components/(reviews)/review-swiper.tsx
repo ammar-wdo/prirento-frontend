@@ -5,12 +5,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css"; // Basic Swiper styles
 import "swiper/css/navigation"; // Navigation module styles
 import "swiper/css/pagination"; // Pagination module styles
-import ReactStars from "react-stars";
+
 import { Navigation, Pagination } from "swiper/modules";
 
-import { Card, CardContent, CardHeader } from "../ui/card";
+
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import ReviewSwiperSlide from "./review-swiper-slice";
+import {motion} from 'framer-motion'
 
 type Props = {};
 
@@ -64,7 +65,12 @@ const ReviewSwiper = (props: Props) => {
   }, []);
   if (!mount) return null;
   return (
-    <div className="relative">
+    <motion.div className="relative"
+    initial={{opacity:0,y:20}}
+    whileInView={{opacity:1,y:0,transition:{
+        delay:0.2,duration:0.5
+    }}}
+    >
       <Swiper
         modules={[Navigation, Pagination]}
         style={{ padding: 20 }}
@@ -110,7 +116,7 @@ const ReviewSwiper = (props: Props) => {
           <ChevronRight />{" "}
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
