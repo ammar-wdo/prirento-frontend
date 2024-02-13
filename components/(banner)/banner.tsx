@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+import BannerImage from "./banner-image";
 
 type Props = {};
 
@@ -10,9 +11,7 @@ const Banner = (props: Props) => {
         find, book, and rental car
         <br /> in <span className="text-secondaryGold">easy</span> steps.
       </p>
-      <div className="mt-2 sm:mt-4 mx-auto w-full aspect-[30.1/11] relative max-w-[900px]">
-        <Image src={"/banner.png"} fill alt="banner image" />
-      </div>
+    <BannerImage/>
     </div>
   );
 };
