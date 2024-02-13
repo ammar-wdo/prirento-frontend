@@ -37,21 +37,39 @@ const TipsDescription = (props: Props) => {
     animate: { x: 0, opacity: 1, transition: { duration: 0.5 } },
   };
 
+  const fadeLeft = {
+    initial: { x: -20, opacity: 0 },
+    whileInView: { x: 0, opacity: 1, transition: { duration: 0.5,delay:0.5 } },
+  };
+  const fadeRight = {
+    initial: { x: 20, opacity: 0 },
+    whileInView: { x: 0, opacity: 1, transition: { duration: 0.5,delay:0.5 } },
+  };
+
   const [index, setIndex] = useState<number | undefined>(undefined);
 
   return (
     <div className="flex items-center mt-12 ">
-      <div className="flex flex-col gap-3 flex-1">
+      <motion.div
+      variants={fadeLeft}
+      initial='initial'
+      whileInView='whileInView'
+      className="flex flex-col gap-3 flex-1">
         {tips.map((tip, i) => (
           <TipCard
+          key={i}
             chosenIndex={index}
             index={i}
             setIndex={(indexValue) => setIndex(indexValue)}
             tip={tip}
           />
         ))}
-      </div>
-      <div className="flex-1 hidden lg:flex aspect-[8/6]  bg-muted rounded-xl xl:-ml-24 lg:-ml-8 items-center justify-end xl:pr-14 lg:pr-6  -z-10 ">
+      </motion.div>
+      <motion.div
+        variants={fadeRight}
+        initial='initial'
+        whileInView='whileInView'
+      className="flex-1 hidden lg:flex aspect-[8/6]  bg-muted rounded-xl xl:-ml-24 lg:-ml-8 items-center justify-end xl:pr-14 lg:pr-6  -z-10 ">
         <motion.div
           key={index}
           variants={fadeIn}
@@ -67,7 +85,7 @@ const TipsDescription = (props: Props) => {
             alt="tip-image"
           />
         </motion.div>
-      </div>
+      </motion.div>
     </div>
   );
 };
