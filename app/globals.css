@@ -80,3 +80,7 @@
   color: white;
 
 }
+
+.swiper-pagination {
+  bottom:-0 !important; /* or any value you prefer */
+}

@@ -5,6 +5,7 @@ import CarTypeFeedSkeleton from "@/components/(cars type feed)/car-type-feed-ske
 import CarsTypeComponent from "@/components/(cars type feed)/cars-type-component";
 
 import CarsTypeFeed from "@/components/(cars type feed)/cars-type-feed";
+import ReviewsComponent from "@/components/(reviews)/reviews-component";
 
 import SearchComponentServerWrapper from "@/components/(search-component)/seatch-component-server-wrapper";
 import TipsComponent from "@/components/(tips component)/tips-component";
@@ -58,14 +59,22 @@ export default function Home({ searchParams }: Props) {
         </div>
       </div>
 
+
       {/* Tips component */}
       <div className="mt-12">
         <TipsComponent />
       </div>
 
+
       {/* Benefits component */}
       <div className="mt-12">
         <BenefitsComponent />
+      </div>
+
+
+      {/* Reviews component */}
+      <div className="mt-12">
+        <ReviewsComponent />
       </div>
     </div>
   );
