@@ -5,6 +5,7 @@ import { Button } from "../ui/button";
 import { carsMapper } from "@/mapper";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { cn, pushSearchParams } from "@/lib/utils";
+import Link from "next/link";
 
 type Props = { searchParams:{[ket:string]:string | string[] | undefined}};
 
@@ -33,6 +34,7 @@ const CarsTypeComponent = ({searchParams}: Props) => {
       {carTypes.map((type) => (
         <Button
           onClick={() => handlePushParam(type)}
+          asChild
           key={type}
           variant={"default"}
           className={cn(
@@ -40,7 +42,14 @@ const CarsTypeComponent = ({searchParams}: Props) => {
             isActive(type) && "bg-secondaryGreen  text-white hover:bg-secondaryGreen /20 border-secondaryGreen  "
           )}
         >
-          {carsMapper[type].title}
+          <Link href={pushSearchParams(
+      { carType: type },
+      `${process.env.NEXT_PUBLIC_BASE_URL}/${pathname}`,
+      searchParams
+    )}
+    scroll={false}
+    >  {carsMapper[type].title}</Link>
+        
         </Button>
       ))}
     </div>

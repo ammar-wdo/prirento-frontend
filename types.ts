@@ -24,6 +24,9 @@ export type CarCardType = {
   companyLogo: string;
 };
 
+
+
+
 export type CarTypes =
   | "super_cars"
   | "sports"
@@ -32,6 +35,9 @@ export type CarTypes =
   | "classics"
   | "SUV";
 export type Transmition = "auto" | "manual";
+
+
+
 
 export const carTypes = [
   "super_cars",

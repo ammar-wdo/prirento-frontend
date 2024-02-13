@@ -18,7 +18,7 @@ const CarByTypeCard = ({ car }: Props) => {
   return (
     <Card className="w-full rounded-3xl overflow-hidden border-none p-0">
       <CardContent className="p-0">
-        <CarCardSwiperComponent gallary={car.gallary} />
+        <CarCardSwiperComponent index={car.id} gallary={car.gallary} />
 <div className="p-4 mt-4">
 <section className="flex justify-between">
           <div className="flex flex-col gap-3">

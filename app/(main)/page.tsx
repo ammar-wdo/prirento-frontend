@@ -17,6 +17,7 @@ export default function Home({ searchParams }: Props) {
   if (!searchParams.carType) {
     searchParams.carType = "super_cars";
   }
+
   return (
     <div className="">
       <Banner />

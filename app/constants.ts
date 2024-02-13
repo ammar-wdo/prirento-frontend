@@ -1,0 +1,1 @@
+export const CAR_TYPE_TAKE = 1
