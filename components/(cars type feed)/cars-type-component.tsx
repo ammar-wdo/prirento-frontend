@@ -44,7 +44,7 @@ const CarsTypeComponent = ({searchParams}: Props) => {
         >
           <Link href={pushSearchParams(
       { carType: type },
-      `${process.env.NEXT_PUBLIC_BASE_URL}/${pathname}`,
+      `${process.env.NEXT_PUBLIC_BASE_URL}${pathname}`,
       searchParams
     )}
     scroll={false}

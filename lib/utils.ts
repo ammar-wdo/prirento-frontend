@@ -57,11 +57,7 @@ export const pushSearchParams = (
 
   let currentQuery = {...searchParams}
 
-  console.log("params",params)
-  console.log('current query',currentQuery)
 
-console.log('type',searchParams.carType)
-console.log('page',searchParams.page || 'undefiend')
   
   Object.entries(params).forEach(([key, value]) => {
     if (value !== undefined) {

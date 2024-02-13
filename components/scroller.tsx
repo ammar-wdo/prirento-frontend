@@ -10,7 +10,7 @@ const Scroller = (props: Props) => {
 const searchParams = useSearchParams()
   useEffect(()=>{
     if(searchParams.get('carType')){
-      scrollerRef.current?.scrollIntoView({behavior:'smooth'})
+      scrollerRef.current?.scrollIntoView({behavior:'smooth',block:'center'})
     }
  
   },[])

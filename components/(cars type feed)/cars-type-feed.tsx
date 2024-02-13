@@ -24,11 +24,13 @@ const CarsTypeFeed = async ({ searchParams }: Props) => {
     <div className="container">
       {!cars.length && <NoResult />}
      {!!cars.length && <div className="w-full ">
+     <Scroller/>
      <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 ">
+   
         {cars.map((car) => (
           <CarByTypeCard key={car.id} car={car} />
         ))}
-        <Scroller/>
+      
       </div>
      <Button asChild variant={'siteMain'} className="mt-12 flex w-fit mx-auto rounded-full px-6"><Link href={`${process.env.NEXT_PUBLIC_BASE_URL}/search`}>See more <ArrowRight className="w-4 h-4 ml-1"/></Link></Button>
 
