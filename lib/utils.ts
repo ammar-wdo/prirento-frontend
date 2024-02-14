@@ -41,7 +41,7 @@ export function convertDateToISOString(date: Date | undefined) {
 
 export function generateHourlyTimes() {
   const times = [];
-  for (let hour = 0; hour < 24; hour++) {
+  for (let hour = 0; hour <= 24; hour++) {
     // Pad the hour with a leading zero if it's less than 10
     const formattedHour = hour.toString().padStart(2, "0");
     times.push(`${formattedHour}:00`);
@@ -75,3 +75,55 @@ export const pushSearchParams = (
 
 return returnedUrl
 };
+
+
+
+
+export function setDefaultSearchParams(searchParams:{[key:string]:string | string[] | undefined}) {
+  // Set default location
+  if (!searchParams.location) {
+    searchParams.location = 'dubai';
+  }
+
+  // Set default startDate to today
+  if (!searchParams.startDate) {
+    const date = new Date();
+    const startDate = convertDateToISOString(date);
+    searchParams.startDate = startDate;
+  }
+
+  // Set default endDate to tomorrow
+  if (!searchParams.endDate) {
+    const date = new Date();
+    date.setDate(date.getDate() + 1); // Add one day
+    const endDate = convertDateToISOString(date);
+    searchParams.endDate = endDate;
+  }
+
+  // Set default startTime to the next whole hour
+  if (!searchParams.startTime) {
+    const date = new Date();
+    let hours = date.getHours();
+    const minutes = date.getMinutes();
+
+    if (minutes > 0) {
+      hours += 1;
+    }
+
+    // Handle hour overflow
+    if (hours >= 24) {
+      hours = 0; // Reset to 00 for midnight
+    }
+
+    const formattedHours = hours.toString().padStart(2, '0');
+    searchParams.startTime = `${formattedHours}:00`;
+  }
+
+  // Set default endTime
+  if (!searchParams.endTime) {
+    searchParams.endTime = '23:00';
+  }
+}
+
+
+
