@@ -67,6 +67,7 @@ const TipsDescription = (props: Props) => {
         ))}
       </motion.div>
       <motion.div
+       viewport={{ once: true }}
         variants={fadeRight}
         initial='initial'
         whileInView='whileInView'
