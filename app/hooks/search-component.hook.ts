@@ -36,101 +36,101 @@ export const useSearchComponent = () => {
     !!searchParams.get("dropOffLocation") || false
   );
 
-  // useEffect(() => {
-  //   if (isDropOff === false) {
-  //     setDropOffLocation("");
-  //   }
-  // }, [isDropOff]);
+  useEffect(() => {
+    if (isDropOff === false) {
+      setDropOffLocation("");
+    }
+  }, [isDropOff]);
 
-  // useEffect(() => {
-  //   if (!location) return;
-  //   if (!startDate) {
-  //     setStartDateOpen(true);
-  //   } else if (!startTime) {
-  //     setStartTimeOpen(true);
-  //   } else if (isDropOff && !dropOffLocation) {
-  //     setDropOffOpen(true);
-  //   } else if (!endDate) {
-  //     setEndDateOpen(true);
-  //   } else if (!endTime) {
-  //     setEndTimeOpen(true);
-  //   }
-  // }, [location]);
+  useEffect(() => {
+    if (!location) return;
+    if (!startDate) {
+      setStartDateOpen(true);
+    } else if (!startTime) {
+      setStartTimeOpen(true);
+    } else if (isDropOff && !dropOffLocation) {
+      setDropOffOpen(true);
+    } else if (!endDate) {
+      setEndDateOpen(true);
+    } else if (!endTime) {
+      setEndTimeOpen(true);
+    }
+  }, [location]);
 
-  // useEffect(() => {
-  //   if (!startDate) return;
-  //   if (!location) {
-  //     setLocationOpen(true);
-  //   } else if (!startTime) {
-  //     setStartTimeOpen(true);
-  //   } else if (isDropOff && !dropOffLocation) {
-  //     setDropOffOpen(true);
-  //   } else if (!endDate) {
-  //     setEndDateOpen(true);
-  //   } else if (!endTime) {
-  //     setEndTimeOpen(true);
-  //   }
-  // }, [startDate]);
+  useEffect(() => {
+    if (!startDate) return;
+    if (!location) {
+      setLocationOpen(true);
+    } else if (!startTime) {
+      setStartTimeOpen(true);
+    } else if (isDropOff && !dropOffLocation) {
+      setDropOffOpen(true);
+    } else if (!endDate) {
+      setEndDateOpen(true);
+    } else if (!endTime) {
+      setEndTimeOpen(true);
+    }
+  }, [startDate]);
 
-  // useEffect(() => {
-  //   if (!startTime) return;
-  //   if (!location) {
-  //     setLocationOpen(true);
-  //   } else if (!startDate) {
-  //     setStartDateOpen(true);
-  //   } else if (isDropOff && !dropOffLocation) {
-  //     setDropOffOpen(true);
-  //   } else if (!endDate) {
-  //     setEndDateOpen(true);
-  //   } else if (!endTime) {
-  //     setEndTimeOpen(true);
-  //   }
-  // }, [startTime]);
+  useEffect(() => {
+    if (!startTime) return;
+    if (!location) {
+      setLocationOpen(true);
+    } else if (!startDate) {
+      setStartDateOpen(true);
+    } else if (isDropOff && !dropOffLocation) {
+      setDropOffOpen(true);
+    } else if (!endDate) {
+      setEndDateOpen(true);
+    } else if (!endTime) {
+      setEndTimeOpen(true);
+    }
+  }, [startTime]);
 
-  // useEffect(() => {
-  //   if (!dropOffLocation) return;
-  //   if (!location) {
-  //     setLocationOpen(true);
-  //   } else if (!startDate) {
-  //     setStartDateOpen(true);
-  //   } else if (!startTime) {
-  //     setStartTimeOpen(true);
-  //   } else if (!endDate) {
-  //     setEndDateOpen(true);
-  //   } else if (!endTime) {
-  //     setEndTimeOpen(true);
-  //   }
-  // }, [dropOffLocation]);
+  useEffect(() => {
+    if (!dropOffLocation) return;
+    if (!location) {
+      setLocationOpen(true);
+    } else if (!startDate) {
+      setStartDateOpen(true);
+    } else if (!startTime) {
+      setStartTimeOpen(true);
+    } else if (!endDate) {
+      setEndDateOpen(true);
+    } else if (!endTime) {
+      setEndTimeOpen(true);
+    }
+  }, [dropOffLocation]);
 
-  // useEffect(() => {
-  //   if (!endDate) return;
-  //   if (!location) {
-  //     setLocationOpen(true);
-  //   } else if (!startDate) {
-  //     setStartDateOpen(true);
-  //   } else if (!startTime) {
-  //     setStartTimeOpen(true);
-  //   } else if (isDropOff && !dropOffLocation) {
-  //     setDropOffOpen(true);
-  //   } else if (!endTime) {
-  //     setEndTimeOpen(true);
-  //   }
-  // }, [endDate]);
+  useEffect(() => {
+    if (!endDate) return;
+    if (!location) {
+      setLocationOpen(true);
+    } else if (!startDate) {
+      setStartDateOpen(true);
+    } else if (!startTime) {
+      setStartTimeOpen(true);
+    } else if (isDropOff && !dropOffLocation) {
+      setDropOffOpen(true);
+    } else if (!endTime) {
+      setEndTimeOpen(true);
+    }
+  }, [endDate]);
 
-  // useEffect(() => {
-  //   if (!endTime) return;
-  //   if (!location) {
-  //     setLocationOpen(true);
-  //   } else if (!startDate) {
-  //     setStartDateOpen(true);
-  //   } else if (!startTime) {
-  //     setStartTimeOpen(true);
-  //   } else if (isDropOff && !dropOffLocation) {
-  //     setDropOffOpen(true);
-  //   } else if (!endDate) {
-  //     setEndDateOpen(true);
-  //   }
-  // }, [endTime]);
+  useEffect(() => {
+    if (!endTime) return;
+    if (!location) {
+      setLocationOpen(true);
+    } else if (!startDate) {
+      setStartDateOpen(true);
+    } else if (!startTime) {
+      setStartTimeOpen(true);
+    } else if (isDropOff && !dropOffLocation) {
+      setDropOffOpen(true);
+    } else if (!endDate) {
+      setEndDateOpen(true);
+    }
+  }, [endTime]);
 
   const startDateSetter = (date: Date | undefined) => {
     const dateString = convertDateToISOString(date);
