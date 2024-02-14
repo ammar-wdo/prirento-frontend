@@ -19,7 +19,10 @@ const MainHeader = async({ white }: Props) => {
   return (
     <header className={cn("bg-main", white && "bg-white")}>
       <div className="container h-24 flex items-center justify-between">
-       <Logo white={white}/>
+        <Link href={'/'}>
+        <Logo white={white}/>
+        </Link>
+      
 
         <div className="hidden md:block">
           <NavLinks brands={brands} white={white} />

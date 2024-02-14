@@ -26,7 +26,7 @@ const LocationPicker = ({
   dropOff
 }: Props) => {
   const locationPlaceholder = location
-    ? locations.find((locationElement) => locationElement.id === location)?.name
+    ? locations.find((locationElement) => locationElement.slug === location)?.name
     : dropOff ? "Drop-off location" : "Pick-up location";
 
   return (
@@ -36,7 +36,7 @@ const LocationPicker = ({
         <ScrollArea className="max-h-[350px] "> 
         <div className="flex flex-col gap-1  ">
         {locations.map((element) => (
-          <Button key={element.id} onClick={() => setLocation(element.id)} variant={"ghost"}>
+          <Button key={element.id} onClick={() => setLocation(element.slug)} variant={"ghost"}>
             {element.name}
           </Button>
         ))}

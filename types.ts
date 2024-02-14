@@ -9,6 +9,7 @@ export type BrandType = {
 export type LocationType = {
   id: string;
   name: string;
+  slug:string
 };
 
 export type CarCardType = {

@@ -39,6 +39,7 @@ const SearchComponent = ({ locations }: Props) => {
     endtTimeOpen,
     startTimeSetter,
     endTimeSetter,
+    searchPush,
 
     isDropOff,
 
@@ -121,6 +122,7 @@ const SearchComponent = ({ locations }: Props) => {
         </div>
 
         <Button
+         onClick={searchPush}
           variant={"siteMain"}
           className="rounded-full py-[28px] px-8 font-medium text-base self-end xl:flex hidden"
         >
@@ -141,6 +143,7 @@ const SearchComponent = ({ locations }: Props) => {
         </label>
       </div>
       <Button
+      onClick={searchPush}
           variant={"siteMain"}
           className="rounded-full py-[28px] px-8 font-medium text-base self-end xl:hidden w-[200px] tex-sm mt-20 flex absolute -bottom-8 left-[50%] -translate-x-[50%]"
         >
