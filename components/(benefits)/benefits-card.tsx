@@ -28,6 +28,7 @@ const BenefitsCard = ({benefit,index}: Props) => {
     variants={fadeIn}
     initial='initial'
     whileInView='whileInView'
+    viewport={{ once: true }}
     
     className='p-8 flex items-center flex-col text-white justify-self-center max-w-[350px] gap-4'>
         <span className='w-12 h-12 flex items-center justify-center bg-white  text-black rounded-full'>{benefit.icon}</span>

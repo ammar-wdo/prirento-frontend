@@ -51,6 +51,7 @@ const TipsDescription = (props: Props) => {
   return (
     <div className="flex items-center mt-12 ">
       <motion.div
+       viewport={{ once: true }}
       variants={fadeLeft}
       initial='initial'
       whileInView='whileInView'

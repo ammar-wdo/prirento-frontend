@@ -35,9 +35,11 @@ const CarByTypeCard = ({ car,index }: Props) => {
   }
   return (
     <motion.div
+    viewport={{ once: true }}
     variants={fadeIn}
     initial='initial'
     whileInView='whileInView'
+    viewport={{ once: true }}
     >
 <Card className="w-full rounded-3xl overflow-hidden border-none p-0">
       <CardContent className="p-0">
