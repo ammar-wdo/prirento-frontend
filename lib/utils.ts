@@ -103,11 +103,14 @@ export function setDefaultSearchParams(searchParams:{[key:string]:string | strin
   // Set default startTime to the next whole hour
   if (!searchParams.startTime) {
     const date = new Date();
-    let hours = date.getHours();
+    let hours = date.getHours() + 1;
     const minutes = date.getMinutes();
 
     if (minutes > 0) {
       hours += 1;
+    }
+    if(hours > 24){
+      hours = 24
     }
 
     // Handle hour overflow

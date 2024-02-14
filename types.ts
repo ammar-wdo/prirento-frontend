@@ -38,7 +38,8 @@ export type CarTypes =
 export type Transmition = "auto" | "manual";
 
 
-
+export const doors =['2 doors','4+ doors']
+export const seats =['2 seats','4+ seats']
 
 export const carTypes = [
   "super_cars",
@@ -48,5 +49,15 @@ export const carTypes = [
   "classics",
   "SUV",
 ] as const;
+
+export const carTypesArray = [
+  "super_cars",
+  "sports",
+  "convertable",
+  "business",
+  "classics",
+  "SUV",
+] 
+export const electric = ["fully_electric", "hybrid"] as const;
 
 export const transmition = ["auto", "manual"] as const;

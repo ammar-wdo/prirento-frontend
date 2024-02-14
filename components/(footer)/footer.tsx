@@ -12,7 +12,7 @@ const Footer = (props: Props) => {
       elements: [
         {
           title: "About",
-          href: "/about",
+          href: "/about-us",
         },
         {
           title: "Contact us ",

@@ -53,7 +53,7 @@ const NavLinks = ({white,brands}: Props) => {
         if (button)
           return (
             <Button key={label}
-              className={cn("bg-white hover:bg-white/90 text-main rounded-xl lg:text-base md:block hidden",white && 'bg-main hover:bg-main/90 text-white')}
+              className={cn("bg-white hover:bg-white/90 text-secondaryGreen rounded-xl lg:text-base md:block hidden",white && 'bg-secondaryGreen hover:bg-secondaryGreen/90 text-white')}
               asChild
             >
               <Link href={"/booking"}>My booking</Link>
