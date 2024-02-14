@@ -10,7 +10,7 @@ const page = (props: Props) => {
       <SearchBanner/>
       <section className='min-h-[800px] container'>
         <div className='-mt-16'>
-          <SearchComponentServerWrapper/>
+          {/* <SearchComponentServerWrapper/> */}
         </div>
 
         </section>
