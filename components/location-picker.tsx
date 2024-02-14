@@ -26,7 +26,7 @@ const LocationPicker = ({
   dropOff
 }: Props) => {
   const locationPlaceholder = location
-    ? locations.find((locationElement) => locationElement.id === location)?.name
+    ? locations.find((locationElement) => locationElement.slug === location)?.name || ''
     : dropOff ? "Drop-off location" : "Pick-up location";
 
   return (
