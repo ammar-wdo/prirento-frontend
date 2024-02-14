@@ -11,9 +11,10 @@ import LocationPicker from "../location-picker";
 
 type Props = {
   locations: LocationType[];
+  searchParams?:{[key:string]:string | string[] | undefined}
 };
 
-const SearchComponent = ({ locations }: Props) => {
+const SearchComponent = ({ locations ,searchParams}: Props) => {
   const {
     startDateSetter,
     endDateSetter,
@@ -44,7 +45,7 @@ const SearchComponent = ({ locations }: Props) => {
     isDropOff,
 
     isDropOffToggle,
-  } = useSearchComponent();
+  } = useSearchComponent(searchParams);
 
   return (
     <div className="space-y-4 sm:p-8 p-4 bg-white/90   backdrop-blur-lg rounded-xl drop-shadow-xl xl:w-full w-fit mx-auto relative pb-12 xl:pb-8">

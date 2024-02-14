@@ -2,17 +2,19 @@ import SearchBanner from '@/components/(banner)/search-banner'
 import SearchComponentServerWrapper from '@/components/(search-component)/seatch-component-server-wrapper'
 import React, { Suspense } from 'react'
 
-type Props = {}
+type Props = {
+  searchParams:{[key:string]:string | string[] | undefined}
+}
 
-const page = (props: Props) => {
+const page = ({searchParams}: Props) => {
   return (
     <div>
       <SearchBanner/>
       <section className='min-h-[800px] container'>
         <div className='-mt-16'>
-          <Suspense fallback={null}>
-          <SearchComponentServerWrapper/>
-          </Suspense>
+
+          <SearchComponentServerWrapper searchParams={searchParams}/>
+    
         </div>
 
         </section>

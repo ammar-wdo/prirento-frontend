@@ -4,27 +4,28 @@ import { useEffect, useState } from "react";
 import qs from "query-string";
 import { useRouter, useSearchParams } from "next/navigation";
 
-export const useSearchComponent = () => {
-  const searchParams = useSearchParams();
-  const [location, setLocation] = useState(searchParams.get("location") || "");
+  
+export const useSearchComponent = (searchParams:{[key:string]:string | string[] | undefined} | undefined) => {
+ 
+  const [location, setLocation] = useState(searchParams?.location as string || "");
   const [locationOpen, setLocationOpen] = useState(false);
 
   const [dropOffLocation, setDropOffLocation] = useState(
-    searchParams.get("dropOffLocation") || ""
+    searchParams?.dropOffLocation as string || ""
   );
   const [dropOffOpen, setDropOffOpen] = useState(false);
 
   const [startDate, setStartDate] = useState<string | undefined>(
-    searchParams.get("startDate") || ""
+    searchParams?.startDate as string || ""
   );
   const [endDate, setEndDate] = useState<string | undefined>(
-    searchParams.get("endDate") || ""
+    searchParams?.endDate as string || ""
   );
   const [startTime, setStartTime] = useState<string | undefined>(
-    searchParams.get("startTime") || ""
+    searchParams?.startTime as string || ""
   );
   const [endTime, setEndTime] = useState<string | undefined>(
-    searchParams.get("endTime") || ""
+    searchParams?.endTime as string || ""
   );
 
   const [startDateOpen, setStartDateOpen] = useState(false);
@@ -33,7 +34,7 @@ export const useSearchComponent = () => {
   const [endtTimeOpen, setEndTimeOpen] = useState(false);
 
   const [isDropOff, setisDropOff] = useState(
-    !!searchParams.get("dropOffLocation") || false
+    !!searchParams?.dropOffLocation || false
   );
 
   useEffect(() => {
