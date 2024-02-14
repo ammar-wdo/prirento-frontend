@@ -106,7 +106,7 @@ const Footer = (props: Props) => {
               {link.elements.map((el) => {
                 if ("icon" in el)
                   return (
-                    <div className="flex items-center">
+                    <div key={el.title} className="flex items-center">
                       {el.icon}
                       <p className="text-xs first-letter:capitalize font-light md:text-base">
                         {el.title}
@@ -115,7 +115,7 @@ const Footer = (props: Props) => {
                   );
 
                 return (
-                  <Link
+                  <Link key={el.title}
                     className="text-xs font-extralight   md:text-base hover:underline w-fit"
                     href={el.href}
                   >
