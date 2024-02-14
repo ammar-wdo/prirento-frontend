@@ -70,6 +70,7 @@ const ReviewSwiper = (props: Props) => {
     whileInView={{opacity:1,y:0,transition:{
         delay:0.2,duration:0.5
     }}}
+    viewport={{ once: true }}
     >
       <Swiper
         modules={[Navigation, Pagination]}
