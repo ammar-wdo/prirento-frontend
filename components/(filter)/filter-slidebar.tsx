@@ -7,8 +7,8 @@ import {
 import { Settings2 } from "lucide-react"
 
 
-import { ReactNode, useEffect, useState } from "react"
-import {useSearchParams } from "next/navigation"
+import { ReactNode} from "react"
+
 
 
 
@@ -16,18 +16,14 @@ type Props = {children:ReactNode}
 
 const FilterSlidebar = ({children}: Props) => {
 
-    const [open, setOpen] = useState(false)
 
-    const searcParams = useSearchParams()
 
-    useEffect(()=>{
-        setOpen(false)
-    },[searcParams])
+  
   return (
-    <Sheet   open={open} onOpenChange={setOpen}>
+    <Sheet   >
     <SheetTrigger className="rounded-full flex items-center justify-center w-full lg:hidden border py-4"> <Settings2 className="mr-4"/>Filter</SheetTrigger>
-    <SheetContent  side={'bottom'} className="w-full p-0 rounded-t-3xl max-h-[600px] overflow-y-auto">
-        <div className="mt-12">
+    <SheetContent  side={'bottom'} className="w-full p-0 rounded-t-3xl max-h-[80%] overflow-y-auto">
+        <div className="">
  {children}
         </div>
  

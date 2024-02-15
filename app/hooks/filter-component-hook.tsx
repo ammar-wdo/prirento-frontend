@@ -68,7 +68,7 @@ export const useFilter = (searchParams: {
 
     const url = pushSearchParams(filters,`${process.env.NEXT_PUBLIC_BASE_URL}/search`,searchParams)
 
-    router.push(url)
+    router.push(url,{scroll:false})
   }, [filters]);
 
   const [seeMore, setSeeMore] = useState(false);
