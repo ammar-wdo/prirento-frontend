@@ -4,7 +4,7 @@ import React from "react";
 import { Button } from "../ui/button";
 import { carsMapper } from "@/mapper";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { cn, pushSearchParams } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
 
 type Props = { searchParams:{[ket:string]:string | string[] | undefined}};
@@ -14,14 +14,7 @@ const CarsTypeComponent = ({searchParams}: Props) => {
   const pathname = usePathname();
   const router = useRouter();
 
-  const handlePushParam = (type: string | string[] | undefined) => {
-    const newUrl = pushSearchParams(
-      { carType: type },
-      `${process.env.NEXT_PUBLIC_BASE_URL}/${pathname}`,
-      searchParams
-    );
-    router.push(newUrl);
-  };
+
 
   const isActive = (type: string) => {
     const value = searchParams.carType
@@ -33,7 +26,7 @@ const CarsTypeComponent = ({searchParams}: Props) => {
     <div className="flex items-center mx-auto  w-fit md:gap-8 gap-4 overflow-x-auto pb-8">
       {carTypes.map((type) => (
         <Button
-          onClick={() => handlePushParam(type)}
+       
           asChild
           key={type}
           variant={"default"}
@@ -42,11 +35,7 @@ const CarsTypeComponent = ({searchParams}: Props) => {
             isActive(type) && "bg-secondaryGreen  text-white hover:bg-secondaryGreen /20 border-secondaryGreen  "
           )}
         >
-          <Link href={pushSearchParams(
-      { carType: type },
-      `${process.env.NEXT_PUBLIC_BASE_URL}${pathname}`,
-      searchParams
-    )}
+          <Link href={ `${process.env.NEXT_PUBLIC_BASE_URL}${pathname}?carType=${type}`}
     scroll={false}
     >  {carsMapper[type].title}</Link>
         

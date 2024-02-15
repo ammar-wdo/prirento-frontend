@@ -2,7 +2,7 @@ import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import axios from "axios";
 
-import qs from 'query-string'
+import qs from "query-string";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -51,38 +51,37 @@ export function generateHourlyTimes() {
 
 export const pushSearchParams = (
   params: { [key: string]: string | string[] | undefined },
-  url:string,
-  searchParams: {[ket:string]:string | string[] | undefined}
+  url: string,
+  searchParams: { [ket: string]: string | string[] | undefined }
 ) => {
+  let currentQuery = { ...searchParams };
 
-  let currentQuery = {...searchParams}
-
-
-  
   Object.entries(params).forEach(([key, value]) => {
-    if (value !== undefined) {
-      currentQuery[key] = Array.isArray(value) ? value.join(',') : value;
+    if (Array.isArray(value) ? value.length > 0 : value !== undefined) {
+      currentQuery[key] = Array.isArray(value) ? value.join(",") : value;
     } else {
-      // Here, delete the key only if the new value is explicitly undefined
-      // The check for existence is implicit in the delete operation
       delete currentQuery[key];
     }
-  })
-  const returnedUrl = qs.stringifyUrl({
-    url: url,
-    query: currentQuery
-  }, { skipNull: true });
+  });
 
-return returnedUrl
+  console.log("current query after", currentQuery);
+  const returnedUrl = qs.stringifyUrl(
+    {
+      url: url,
+      query: currentQuery,
+    },
+    { skipNull: true }
+  );
+
+  return returnedUrl;
 };
 
-
-
-
-export function setDefaultSearchParams(searchParams:{[key:string]:string | string[] | undefined}) {
+export function setDefaultSearchParams(searchParams: {
+  [key: string]: string | string[] | undefined;
+}) {
   // Set default location
   if (!searchParams.location) {
-    searchParams.location = 'dubai';
+    searchParams.location = "dubai";
   }
 
   // Set default startDate to today
@@ -109,8 +108,8 @@ export function setDefaultSearchParams(searchParams:{[key:string]:string | strin
     if (minutes > 0) {
       hours += 1;
     }
-    if(hours > 24){
-      hours = 24
+    if (hours > 24) {
+      hours = 24;
     }
 
     // Handle hour overflow
@@ -118,15 +117,12 @@ export function setDefaultSearchParams(searchParams:{[key:string]:string | strin
       hours = 0; // Reset to 00 for midnight
     }
 
-    const formattedHours = hours.toString().padStart(2, '0');
+    const formattedHours = hours.toString().padStart(2, "0");
     searchParams.startTime = `${formattedHours}:00`;
   }
 
   // Set default endTime
   if (!searchParams.endTime) {
-    searchParams.endTime = '23:00';
+    searchParams.endTime = "23:00";
   }
 }
-
-
-

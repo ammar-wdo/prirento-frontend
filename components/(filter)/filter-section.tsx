@@ -2,7 +2,7 @@
 import { BrandType, CarTypes } from "@/types";
 import { Checkbox } from "@/components/ui/checkbox";
 
-import { useFilter } from "@/app/hooks/filter-component-hook";
+import { FilterQuery, Filters, useFilter } from "@/app/hooks/filter-component-hook";
 import SeeMoreButton from "./seemore-button";
 import { carsMapper } from "@/mapper";
 
@@ -10,16 +10,20 @@ type Props = {
   title: string;
   data:
     | { type: "brand"; brands: BrandType[] }
-    | { type: "type"; types: string[] }
+    | { type: "carType"; types: string[] }
     | { type: "seats"; seats: string[] }
     | { type: "doors"; doors: string[] }
     | { type: "electric"; electric: string[] };
 
   searchParams: { [key: string]: string | string[] | undefined };
+  seeMore?:boolean,
+  setSeeMore?:(val:boolean)=>void,
+  filters:Filters,
+  handleFilterChange:(category: FilterQuery, value: string, isChecked: boolean) => void
 };
 
-const FilterSection = ({ title, data, searchParams }: Props) => {
-  const { seeMore, setSeeMore, handleFilterChange } = useFilter(searchParams);
+const FilterSection = ({ title, data,seeMore,setSeeMore,handleFilterChange,filters }: Props) => {
+
   const slicedBrands = data.type === "brand" ? data.brands.slice(0, 4) : [];
 
   return (
@@ -33,11 +37,10 @@ const FilterSection = ({ title, data, searchParams }: Props) => {
             <div className="flex items-center gap-2">
               <Checkbox
                 id={brand.brand}
+                checked={!!filters[data.type]?.includes(brand.brand)}
                 value={brand.brand}
                 className=""
-                onCheckedChange={(e) =>
-                  handleFilterChange(data.type, brand.brand, true)
-                }
+                onCheckedChange={() =>{handleFilterChange(data.type,brand.brand,!!filters[data.type]?.includes(brand.brand))}}
               />
 
               <label
@@ -49,24 +52,23 @@ const FilterSection = ({ title, data, searchParams }: Props) => {
             </div>
           ))}
           <SeeMoreButton
-            seeMore={seeMore}
-            setSeeMore={(val: boolean) => setSeeMore(val)}
+            seeMore={seeMore!}
+            setSeeMore={(val: boolean) => setSeeMore!(val)}
           />
         </div>
       )}
 
-      {data.type === "type" && (
+      {data.type === "carType" && (
         <div className="mt-2 flex flex-col w-full gap-2">
           {" "}
           {(data.types).map((theType) => (
             <div className="flex items-center gap-2">
               <Checkbox
                 id={theType}
+                checked={!!filters[data.type]?.includes(theType)}
                 value={theType}
                 className=""
-                onCheckedChange={(e) =>
-                  handleFilterChange(data.type, theType, true)
-                }
+                onCheckedChange={() =>{handleFilterChange(data.type,theType,!!filters[data.type]?.includes(theType))}}
               />
 
               <label
