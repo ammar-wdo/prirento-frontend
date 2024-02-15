@@ -40,6 +40,7 @@ export type Transmition = "auto" | "manual";
 
 export const doors =['2 doors','4+ doors']
 export const seats =['2 seats','4+ seats']
+export const electricArray = ["fully_electric", "hybrid"]
 
 export const carTypes = [
   "super_cars",

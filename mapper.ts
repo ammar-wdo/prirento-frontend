@@ -19,11 +19,11 @@ export const carsElectric :{[key:string]:string} ={
 
 export const seatsMapper : {[key:string]:number[]} = {
    '2 seats' : [2],
-   '4+ seats' : [4,5,6,7,]
+   '4+ seats' : [4,5,6,7]
 }
 
 
 export const doorsMapper : {[key:string]:number[]} = {
     '2 doors' : [2],
-    '4+ doors' : [4,5,6,7,]
+    '4+ doors' : [4,5,6,7]
  }

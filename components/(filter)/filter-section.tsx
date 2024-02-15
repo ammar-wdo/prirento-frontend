@@ -4,7 +4,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 
 import { FilterQuery, Filters, useFilter } from "@/app/hooks/filter-component-hook";
 import SeeMoreButton from "./seemore-button";
-import { carsMapper } from "@/mapper";
+import { carsElectric, carsMapper } from "@/mapper";
 
 type Props = {
   title: string;
@@ -26,8 +26,10 @@ const FilterSection = ({ title, data,seeMore,setSeeMore,handleFilterChange,filte
 
   const slicedBrands = data.type === "brand" ? data.brands.slice(0, 4) : [];
 
+  
+
   return (
-    <div>
+    <div className="mt-6">
       <h3 className="font-semibold first-letter:capitalize">{title}</h3>
 
       {data.type === "brand" && (
@@ -79,10 +81,81 @@ const FilterSection = ({ title, data,seeMore,setSeeMore,handleFilterChange,filte
               </label>
             </div>
           ))}
-       
-      
         </div>
       )}
+
+      {
+        data.type==='doors' && <div className="mt-2 flex flex-col w-full gap-2">
+        {" "}
+        {(data.doors).map((option) => (
+          <div key={`${option} doors`} className="flex items-center gap-2">
+            <Checkbox
+              id={`${option} doors`}
+              checked={!!filters[data.type]?.includes(option)}
+              value={option}
+              className=""
+              onCheckedChange={() =>{handleFilterChange(data.type,option,!!filters[data.type]?.includes(option))}}
+            />
+
+            <label
+              htmlFor={`${option} doors`}
+              className="text-sm font-medium first-letter:capitalize leading-none peer-disabled:cursor-not-allowed opacity-70 cursor-pointer"
+            >
+              {option}
+            </label>
+          </div>
+        ))}
+      </div>
+    
+      }
+      {
+        data.type==='seats' && <div className="mt-2 flex flex-col w-full gap-2">
+        {" "}
+        {(data.seats).map((option) => (
+          <div key={`${option} seats`} className="flex items-center gap-2">
+            <Checkbox
+              id={`${option} seats`}
+              checked={!!filters[data.type]?.includes(option)}
+              value={option}
+              className=""
+              onCheckedChange={() =>{handleFilterChange(data.type,option,!!filters[data.type]?.includes(option))}}
+            />
+
+            <label
+              htmlFor={`${option} seats`}
+              className="text-sm font-medium first-letter:capitalize leading-none peer-disabled:cursor-not-allowed opacity-70 cursor-pointer"
+            >
+              {option}
+            </label>
+          </div>
+        ))}
+      </div>
+    
+      }
+      {
+        data.type==='electric' && <div className="mt-2 flex flex-col w-full gap-2">
+        {" "}
+        {(data.electric).map((option) => (
+          <div key={`${option} seats`} className="flex items-center gap-2">
+            <Checkbox
+              id={`${option} seats`}
+              checked={!!filters[data.type]?.includes(option)}
+              value={option}
+              className=""
+              onCheckedChange={() =>{handleFilterChange(data.type,option,!!filters[data.type]?.includes(option))}}
+            />
+
+            <label
+              htmlFor={`${option} seats`}
+              className="text-sm font-medium first-letter:capitalize leading-none peer-disabled:cursor-not-allowed opacity-70 cursor-pointer"
+            >
+              {carsElectric[option]}
+            </label>
+          </div>
+        ))}
+      </div>
+    
+      }
     </div>
   );
 };

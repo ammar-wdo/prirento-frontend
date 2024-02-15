@@ -1,5 +1,5 @@
 'use client'
-import { BrandType, carTypesArray } from "@/types";
+import { BrandType, carTypesArray, doors, electric, electricArray, seats } from "@/types";
 import { useFilter } from '@/app/hooks/filter-component-hook';
 import React from 'react'
 import FilterSection from './filter-section';
@@ -29,6 +29,36 @@ const FilterClientWrapper = ({searchParams,brands}: Props) => {
           data={{
             type: "carType",
             types: carTypesArray
+          }}
+          searchParams={searchParams}
+          filters={filters}
+          handleFilterChange={handleFilterChange}
+        />
+        <FilterSection
+          title="Doors"
+          data={{
+            type: "doors",
+            doors: doors
+          }}
+          searchParams={searchParams}
+          filters={filters}
+          handleFilterChange={handleFilterChange}
+        />
+        <FilterSection
+          title="Seats"
+          data={{
+            type: "seats",
+            seats: seats
+          }}
+          searchParams={searchParams}
+          filters={filters}
+          handleFilterChange={handleFilterChange}
+        />
+        <FilterSection
+          title="Car electric"
+          data={{
+            type: "electric",
+            electric: electricArray
           }}
           searchParams={searchParams}
           filters={filters}
