@@ -202,9 +202,12 @@ export const useSearchComponent = (searchParams:{[key:string]:string | string[] 
     } else if (!endTime) {
       setEndTimeOpen(true);
     } else {
+
+
       const url = qs.stringifyUrl({
         url: "/search",
         query: {
+         ... searchParams,
           location,
           startDate,
           startTime,

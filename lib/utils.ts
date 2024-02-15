@@ -17,8 +17,9 @@ export const fetcher = async <T>(url: string): Promise<T> => {
     });
     return response.data;
   } catch (error) {
+
     console.error("Error fetching data:", error);
-    throw new Error("Something wnt wrong");
+    throw new Error("Something went wrong");
   }
 };
 
@@ -58,7 +59,7 @@ export const pushSearchParams = (
 
   Object.entries(params).forEach(([key, value]) => {
     if (Array.isArray(value) ? value.length > 0 : value !== undefined) {
-      currentQuery[key] = Array.isArray(value) ? value.join(",") : value;
+      currentQuery[key] = Array.isArray(value) ? value : value;
     } else {
       delete currentQuery[key];
     }
