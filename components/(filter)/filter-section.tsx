@@ -34,7 +34,7 @@ const FilterSection = ({ title, data,seeMore,setSeeMore,handleFilterChange,filte
         <div className="mt-2 flex flex-col w-full gap-2">
           {" "}
           {(!seeMore ? slicedBrands : data.brands).map((brand) => (
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2" key={brand.id}>
               <Checkbox
                 id={brand.brand}
                 checked={!!filters[data.type]?.includes(brand.brand)}
@@ -62,7 +62,7 @@ const FilterSection = ({ title, data,seeMore,setSeeMore,handleFilterChange,filte
         <div className="mt-2 flex flex-col w-full gap-2">
           {" "}
           {(data.types).map((theType) => (
-            <div className="flex items-center gap-2">
+            <div key={theType} className="flex items-center gap-2">
               <Checkbox
                 id={theType}
                 checked={!!filters[data.type]?.includes(theType)}
