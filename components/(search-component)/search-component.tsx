@@ -48,7 +48,7 @@ const SearchComponent = ({ locations ,searchParams}: Props) => {
   } = useSearchComponent(searchParams);
 
   return (
-    <div className="space-y-4 sm:p-8 p-4 bg-white/90   backdrop-blur-lg rounded-xl drop-shadow-xl xl:w-full w-fit mx-auto relative pb-12 xl:pb-8">
+    <div className="space-y-4 p-8  bg-white/90   backdrop-blur-lg w-auto max-w-[700px] rounded-xl drop-shadow-xl xl:w-full xl:max-w-full  mx-auto relative pb-12 xl:pb-8">
       <div className="  flex xl:flex-row flex-col items-center gap-4">
 
         {/* pick up location */}
@@ -67,7 +67,7 @@ const SearchComponent = ({ locations ,searchParams}: Props) => {
 
         {/* Pick up date */}
 
-        <div className="flex-1 flex flex-col gap-1">
+        <div className="flex-1 flex flex-col gap-1 w-full">
           <p>Pick-up date</p>
           <div className="flex-1 flex  p-1 rounded-md border bg-white">
             <DatepickerComponent
@@ -102,7 +102,7 @@ const SearchComponent = ({ locations ,searchParams}: Props) => {
         )}
 
         {/* Drop off date date */}
-        <div className="flex-1 flex flex-col gap-1">
+        <div className="flex-1 flex flex-col gap-1 w-full">
           <p>Drop-off date</p>
           <div className="flex-1 flex   p-1 rounded-md border bg-white">
             {" "}
