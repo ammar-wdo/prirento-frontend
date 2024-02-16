@@ -48,7 +48,7 @@ const SearchComponent = ({ locations ,searchParams}: Props) => {
   } = useSearchComponent(searchParams);
 
   return (
-    <div className="space-y-4 p-8  bg-white/90   backdrop-blur-lg w-auto max-w-[700px] rounded-xl drop-shadow-xl xl:w-full xl:max-w-full  mx-auto relative pb-12 xl:pb-8">
+    <div className="space-y-4 sm:p-8 p-6  bg-white/90   backdrop-blur-lg w-auto max-w-[700px] rounded-xl drop-shadow-xl xl:w-full xl:max-w-full  mx-auto relative pb-12 xl:pb-8">
       <div className="  flex xl:flex-row flex-col items-center gap-4">
 
         {/* pick up location */}

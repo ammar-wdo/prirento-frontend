@@ -31,7 +31,7 @@ const DatepickerComponent = ({open,setOpen,dateString,setDateString,startDateStr
         <Button
           variant={"outline"}
           className={cn(
-            "w-[200px] justify-start text-left font-normal",
+            "sm:w-[200px] w-fit justify-start text-left font-normal",
             !date && "text-muted-foreground"
           )}
         >
