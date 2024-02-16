@@ -25,6 +25,12 @@ export type CarCardType = {
   companyLogo: string;
 };
 
+export type CarPublicType = Omit<CarCardType, 'oneDayPrice'> & {
+  availablePrice: number | null;
+  notAvailable: boolean;
+  period:string
+};
+
 
 
 

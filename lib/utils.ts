@@ -9,19 +9,16 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const fetcher = async <T>(url: string): Promise<T> => {
-  try {
+ 
     const response = await axios.get<T>(url, {
       headers: {
         "api-Secret": process.env.API_SECRET,
       },
     });
-    return response.data;
-  } catch (error) {
 
-    console.error("Error fetching data:", error);
-    throw new Error("Something went wrong");
+
+    return response.data;
   }
-};
 
 export function convertDateToISOString(date: Date | undefined) {
   if (!date) {

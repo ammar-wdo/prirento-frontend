@@ -12,7 +12,7 @@ const Filter = async ({ searchParams,noBorder }: Props) => {
   );
 
   return (
-    <div className={cn("border rounded-2xl p-6 ",noBorder && 'border-none')}>
+    <div className={cn("border rounded-2xl p-6 sticky top-2",noBorder && 'border-none')}>
       <h3 className="capitalize pb-2 border-b font-bold">filter</h3>
      <FilterClientWrapper brands={brands} searchParams={searchParams}/>
     </div>

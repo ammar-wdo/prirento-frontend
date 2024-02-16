@@ -37,13 +37,7 @@ const page = async ({ searchParams }: Props) => {
           </FilterSlidebar>
         </div>
 
-        <div className="my-4">
-          brand: {brand} <br />
-          carType: {carType} <br />
-          seats: {seats} <br />
-          doors: {doors} <br />
-          electric: {electric} <br />
-        </div>
+    
         {/* Filter and cars */}
         <div className="flex gap-8 xl:mt-12 mt-8">
           <div className="w-[250px] hidden lg:block">

@@ -4,7 +4,7 @@ import {
   CardContent,
  
 } from "@/components/ui/card";
-import { CarCardType } from "@/types";
+import { CarCardType, CarPublicType } from "@/types";
 import CarCardSwiperComponent from "./car-swiper";
 import {  CarFront, Gauge, Info, Settings2, Users } from "lucide-react";
 import CarFeaturesComponent from "./car-features-component";
@@ -13,13 +13,14 @@ import { carsMapper } from "@/mapper";
 import {motion} from 'framer-motion'
 
 type Props = {
-  car: CarCardType;
-  index:number
+  car: CarCardType | CarPublicType;
+  index:number,
+  notAvailable?:boolean
 };
 
 
 
-const CarByTypeCard = ({ car,index }: Props) => {
+const CarByTypeCard = ({ car,index,notAvailable }: Props) => {
 
   const fadeIn = {
     initial:{
@@ -28,10 +29,23 @@ const CarByTypeCard = ({ car,index }: Props) => {
     whileInView:{
         y:0,opacity:100,
         transition:{
-            delay:index * 0.2,
+            delay: 0.1,
             duration:0.9
         }
     }
+  }
+
+
+  let price: number | null = null;
+  if ('oneDayPrice' in car) {
+    price = car?.oneDayPrice; // CarCardType
+  } else if ('availablePrice' in car) {
+    price = car?.availablePrice; // CarPublicType
+  }
+
+  let period = 'day'
+  if('period' in car) {
+    period = car?.period
   }
   return (
     <motion.div
@@ -39,21 +53,22 @@ const CarByTypeCard = ({ car,index }: Props) => {
     variants={fadeIn}
     initial='initial'
     whileInView='whileInView'
+    className="h-full"
    
     >
-<Card className="w-full rounded-3xl overflow-hidden border-none p-0">
-      <CardContent className="p-0">
+<Card className="w-full rounded-3xl overflow-hidden border-none p-0 h-full">
+      <CardContent className="p-0 flex flex-col h-full">
         <CarCardSwiperComponent index={car.id} gallary={car.gallary} />
-<div className="p-4 mt-4">
+<div className="p-4 mt-4 flex  flex-col flex-1">
 <section className="flex justify-between">
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-3 mb-3">
             <h3 className="text-base capitalize font-medium">{car.carName}</h3>
-            <p>
-              <span className="text-lg font-semibold">{car.oneDayPrice}</span>
+            {!notAvailable && <p>
+              <span className="text-lg font-semibold">{price}</span>
               <sub className="text-muted-foreground ml-1 text-base">
-                AED /day
+                AED /{period}
               </sub>
-            </p>
+            </p>}
             <div
               className="flex items-center  gap-2 
             "
@@ -68,25 +83,25 @@ const CarByTypeCard = ({ car,index }: Props) => {
           <div></div>
         </section>
 
-        <section className="flex items-center justify-center gap-12 p-3 rounded-xl bg-gray-100 mt-4">
+        <section className="flex items-center justify-center gap-8 p-3 mb-4 rounded-xl bg-gray-100 mt-auto">
           <CarFeaturesComponent
             title={car.kmIncluded.toString()}
-            icon={<Gauge className="w-5 h-5" />}
+            icon={<Gauge className="w-4 h-4" />}
           />
           <CarFeaturesComponent
             title={car.transmition.toString()}
-            icon={<Settings2 className="w-5 h-5" />}
+            icon={<Settings2 className="w-4 h-4" />}
           />
           <CarFeaturesComponent
             title={car.seats.toString()}
-            icon={<Users className="w-5 h-5" />}
+            icon={<Users className="w-4 h-4" />}
           />
           <CarFeaturesComponent
             title={carsMapper[car.carType].title }
-            icon={<CarFront className="w-5 h-5" />}
+            icon={<CarFront className="w-4 h-4" />}
           />
         </section>
-        <Button variant={'siteMain'} className="w-full mt-4 rounded-full">Book Now</Button>
+        <Button variant={'siteMain'} className="w-full rounded-full">{notAvailable ? "Not Available" : "Book Now"}</Button>
 </div>
        
       </CardContent>
