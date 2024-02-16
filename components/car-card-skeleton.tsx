@@ -5,7 +5,7 @@ type Props = {}
 
 const CarCardSkeleton = (props: Props) => {
   return (
-    <div className="w-full rounded-3xl overflow-hidden border-none p-0 border ">
+    <div className="w-full rounded-3xl  overflow-hidden  p-0 border ">
     <div className="p-0">
      <Skeleton className='w-full aspect-video rounded-none'/>
 <div className="p-4  bg-white">

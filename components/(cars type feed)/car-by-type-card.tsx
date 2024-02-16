@@ -11,16 +11,18 @@ import CarFeaturesComponent from "./car-features-component";
 import { Button } from "../ui/button";
 import { carsMapper } from "@/mapper";
 import {motion} from 'framer-motion'
+import { cn } from "@/lib/utils";
 
 type Props = {
   car: CarCardType | CarPublicType;
   index:number,
   notAvailable?:boolean
+  border?:boolean
 };
 
 
 
-const CarByTypeCard = ({ car,index,notAvailable }: Props) => {
+const CarByTypeCard = ({ car,index,notAvailable ,border}: Props) => {
 
   const fadeIn = {
     initial:{
@@ -56,7 +58,7 @@ const CarByTypeCard = ({ car,index,notAvailable }: Props) => {
     className="h-full"
    
     >
-<Card className="w-full rounded-3xl overflow-hidden border-none p-0 h-full">
+<Card className={cn("w-full rounded-3xl overflow-hidden p-0 h-full",border ? 'border ' : 'border-none ')}>
       <CardContent className="p-0 flex flex-col h-full">
         <CarCardSwiperComponent index={car.id} gallary={car.gallary} />
 <div className="p-4 mt-4 flex  flex-col flex-1">

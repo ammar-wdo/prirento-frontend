@@ -39,12 +39,12 @@ const CarsFeed = async ({ searchParams }: Props) => {
     <Scroller/>
     <div className=" grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8 ">
       {availableCars.map((car,i) => (
-      <CarByTypeCard car={car} index={i} key={car.id}/>
+      <CarByTypeCard car={car} index={i} border={true} key={car.id}/>
      
 
       ))}
       {notAvailableCars.map((car,i) => (
-      <div className="cursor-not-allowed grayscale-[15] pointer-events-none h-full self-stretch opacity-60"  key={car.id}><CarByTypeCard notAvailable={true} car={car} index={i + availableCars.length}/></div>
+      <div className="cursor-not-allowed grayscale-[15] pointer-events-none h-full self-stretch opacity-60 "  key={car.id}><CarByTypeCard border={true} notAvailable={true} car={car} index={i + availableCars.length}/></div>
      
 
       ))}
