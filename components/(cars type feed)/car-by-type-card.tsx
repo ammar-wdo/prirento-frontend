@@ -12,6 +12,7 @@ import { Button } from "../ui/button";
 import { carsMapper } from "@/mapper";
 import {motion} from 'framer-motion'
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 type Props = {
   car: CarCardType | CarPublicType;
@@ -71,6 +72,7 @@ const CarByTypeCard = ({ car,index,notAvailable ,border}: Props) => {
                 AED /{period}
               </sub>
             </p>}
+            {car.slug && <Link href={car.slug}>
             <div
               className="flex items-center  gap-2 
             "
@@ -79,7 +81,8 @@ const CarByTypeCard = ({ car,index,notAvailable ,border}: Props) => {
               <span className="first-letter:capitalize text-sm ">
                 more details
               </span>
-            </div>
+            </div></Link>}
+          
           </div>
 
           <div></div>

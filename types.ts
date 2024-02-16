@@ -23,6 +23,7 @@ export type CarCardType = {
   transmition: Transmition;
   oneDayPrice: number;
   companyLogo: string;
+  slug:string
 };
 
 export type CarPublicType = Omit<CarCardType, 'oneDayPrice'> & {
