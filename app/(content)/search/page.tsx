@@ -1,5 +1,6 @@
 import SearchBanner from "@/components/(banner)/search-banner";
 import CarsFeed from "@/components/(cars feed)/cars-feed";
+import CarsSkeletonFeed from "@/components/(cars feed)/cars-skeleton-feed";
 import CarTypeFeedSkeleton from "@/components/(cars type feed)/car-type-feed-skeleton";
 import Filter from "@/components/(filter)/filter";
 import FilterSlidebar from "@/components/(filter)/filter-slidebar";
@@ -46,7 +47,7 @@ const page = async ({ searchParams }: Props) => {
           <div className=" flex-1">
             <Suspense
               key={JSON.stringify(searchParams)}
-              fallback={<CarTypeFeedSkeleton />}
+              fallback={<CarsSkeletonFeed />}
             >
               <CarsFeed searchParams={searchParams} />
             </Suspense>
