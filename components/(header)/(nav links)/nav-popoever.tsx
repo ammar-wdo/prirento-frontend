@@ -11,6 +11,7 @@ import { useState } from "react";
 import BrandNavCard from "./brand-nav-card";
 
 import TypeNavCard from "./type-nav-card";
+import Link from "next/link";
 
 type Props = {
   title: string;
@@ -22,6 +23,7 @@ type Props = {
 
 const NavPopover = ({ title, Icon, data, type, brand }: Props) => {
   const [open, setOpen] = useState(false);
+
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger onMouseOver={() => setOpen(true)}>
@@ -34,12 +36,30 @@ const NavPopover = ({ title, Icon, data, type, brand }: Props) => {
       <PopoverContent
         onMouseLeave={() => setOpen(false)}
         sideOffset={40}
-        className={cn("min-w-[700px] grid grid-cols-4 w-full gap-4 gap-y-8 p-12 ",type && 'grid-cols-3')}
+        className={cn(
+          "min-w-[700px] grid grid-cols-4 w-full gap-4 gap-y-8 p-12 ",
+          type && "grid-cols-3"
+        )}
       >
-        {brand && data?.map((el) => <BrandNavCard brand={el} key={el.id} />)}
+        {brand &&
+          data?.map((el) => (
+            <Link
+            target="_blank"
+              key={el.id}
+              href={`${process.env.NEXT_PUBLIC_BASE_URL}/search?brand=${el.brand}`}
+            >
+              <BrandNavCard key={el.id} brand={el} />
+            </Link>
+          ))}
         {type &&
           carTypes.map((type) => (
-         <TypeNavCard type={type} key={type}/>
+            <Link
+            target="_blank"
+              key={type}
+              href={`${process.env.NEXT_PUBLIC_BASE_URL}/search?carType=${type}`}
+            >
+              <TypeNavCard type={type} key={type} />
+            </Link>
           ))}
       </PopoverContent>
       <div

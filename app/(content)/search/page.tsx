@@ -23,7 +23,7 @@ const page = async ({ searchParams }: Props) => {
 
   return (
     <div>
-      <SearchBanner />
+      <SearchBanner brand={searchParams.brand} />
 
       <section className="min-h-[800px] container pb-24">
         {/* Search component */}

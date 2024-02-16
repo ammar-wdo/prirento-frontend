@@ -1,5 +1,5 @@
 import { pushSearchParams } from "@/lib/utils";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export type Filters = {
@@ -31,7 +31,10 @@ export const useFilter = (searchParams: {
         seats: parseInitialValue(searchParams.seats),
         doors: parseInitialValue(searchParams.doors),
         electric: parseInitialValue(searchParams.electric),
+    
       };
+
+  
 
   const [filters, setFilters] = useState<Filters>(initialValue);
   const [notMounted, setNotMounted] = useState(true)
@@ -60,14 +63,15 @@ export const useFilter = (searchParams: {
   };
 
 
+
   useEffect(() => {
-    console.log("filters",filters)
+   
     if(notMounted){
         return setNotMounted(false)
     }
 
     const url = pushSearchParams(filters,`${process.env.NEXT_PUBLIC_BASE_URL}/search`,searchParams)
-
+  
     router.push(url,{scroll:false})
   }, [filters]);
 

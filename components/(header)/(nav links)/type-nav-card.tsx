@@ -1,3 +1,4 @@
+
 import { carsMapper } from "@/mapper";
 import Image from "next/image";
 import React from "react";
