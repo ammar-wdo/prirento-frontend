@@ -20,7 +20,7 @@ const TimePickerComponent = ({ open, setOpen, time, setTime }: Props) => {
   const times = generateHourlyTimes();
   return (
     <Popover open={open} onOpenChange={setOpen} >
-      <PopoverTrigger className="px-2 flex-1 hover:bg-muted transition flex items-center  bg-white  rounded-md shrink-0 text-sm">
+      <PopoverTrigger className="px-4 flex-1 hover:bg-muted transition flex items-center justify-end   bg-white  rounded-md shrink-0 text-sm">
        <Clock className="w-4 h-4 mr-2 shrink-0"/> {time || "Time"}
       </PopoverTrigger>
       <PopoverContent className="w-fit ">
