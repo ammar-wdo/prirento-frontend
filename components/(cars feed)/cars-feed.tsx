@@ -17,7 +17,7 @@ const CarsFeed = async({searchParams}: Props) => {
     const cars = await fetcher<{cars:CarCardType[]}>(url).then(data=>data.cars)
   return (
     <div>
-{cars.map(car=><div>car   </div>)}
+{cars.map(car=><div key={car.id}>car   </div>)}
     </div>
   )
 }
