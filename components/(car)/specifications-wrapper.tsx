@@ -1,11 +1,15 @@
 import { SingleCarType } from "@/types";
 import React from "react";
 import CarFeaturesComponent from "../(cars type feed)/car-features-component";
-import { Calendar, Car, CarFront, Settings2, Users } from "lucide-react";
 import { GiCarDoor } from "react-icons/gi";
 import { PiEngineFill } from "react-icons/pi";
 import { MdElectricBolt } from "react-icons/md";
 import { carsElectric } from "@/mapper";
+import { IoCarSport } from "react-icons/io5";
+import { IoCarSharp } from "react-icons/io5";
+import { GiGearStickPattern } from "react-icons/gi";
+import { FaCalendarAlt } from "react-icons/fa";
+import { GiCarSeat } from "react-icons/gi";
 
 type Props = {
   car: SingleCarType;
@@ -19,39 +23,39 @@ const SpecificationsWrapper = ({ car }: Props) => {
         <CarFeaturesComponent
           row={true}
           title={car?.brand}
-          icon={<CarFront />}
+          icon={<IoCarSport className="w-6 h-6"/>}
         />
-        <CarFeaturesComponent row={true} title={car?.carType} icon={<Car />} />
+        <CarFeaturesComponent row={true} title={car?.carType} icon={<IoCarSharp className="w-6 h-6"/>} />
         <CarFeaturesComponent
           row={true}
           title={car?.transmition}
-          icon={<Settings2 />}
+          icon={<GiGearStickPattern className="w-6 h-6"/>}
         />
         <CarFeaturesComponent
           row={true}
           title={car?.year}
-          icon={<Calendar />}
+          icon={<FaCalendarAlt className="w-6 h-6"/>}
         />
         <CarFeaturesComponent
           row={true}
           title={car?.engine}
-          icon={<PiEngineFill />}
+          icon={<PiEngineFill className="w-6 h-6"/>}
         />
         <CarFeaturesComponent
           row={true}
           title={`${car?.seats.toString()} Seats`}
-          icon={<Users />}
+          icon={<GiCarSeat className="w-6 h-6"/>}
         />
         <CarFeaturesComponent
           row={true}
           title={`${car?.doors.toString()} Doors`}
-          icon={<GiCarDoor />}
+          icon={<GiCarDoor className="w-6 h-6"/>}
         />
         {!(car.electric === "none") && (
           <CarFeaturesComponent
             row={true}
             title={carsElectric[car.electric]}
-            icon={<MdElectricBolt />}
+            icon={<MdElectricBolt className="w-6 h-6"/>}
           />
         )}
       </div>

@@ -9,7 +9,7 @@ export type BrandType = {
 export type LocationType = {
   id: string;
   name: string;
-  slug:string
+  slug: string;
 };
 
 export type CarCardType = {
@@ -23,39 +23,38 @@ export type CarCardType = {
   transmition: Transmition;
   oneDayPrice: number;
   companyLogo: string;
-  slug:string
+  slug: string;
 };
 
-export type CarPublicType = Omit<CarCardType, 'oneDayPrice'> & {
+export type CarPublicType = Omit<CarCardType, "oneDayPrice"> & {
   availablePrice: number | null;
   notAvailable: boolean;
-  period:string
+  period: string;
 };
 
-
 export type SingleCarType = {
-  id:string,
+  id: string;
   carName: string;
-  brand:string,
+  brand: string;
   year: string;
   transmition: Transmition;
   kmIncluded: number;
-  engine:string,
-  doors:number,
-  electric:Electric
+  engine: string;
+  doors: number;
+  electric: Electric;
   carType: CarTypes;
   seats: number;
-  deposite:number,
-  description:string,
-  specifications:{title:string,icon:string}[],
-  gallary:string[],
-  price:number | null
-  duration:string,
-  availability:{isAvailable:boolean,message:string}
-}
-
-
-
+  deposite: number;
+  description: string;
+  specifications: { title: string; icon: string }[];
+  gallary: string[];
+  price: number | null;
+  duration: string;
+  location:string,
+  startDate:Date,
+  endDate:Date,
+  availability: { isAvailable: boolean; message: string  ,pickupLocations:string ,dropOffLocations:string};
+};
 
 export type CarTypes =
   | "super_cars"
@@ -65,12 +64,11 @@ export type CarTypes =
   | "classics"
   | "SUV";
 export type Transmition = "auto" | "manual";
-export type Electric = "fully_electric"| "hybrid" | "none"
+export type Electric = "fully_electric" | "hybrid" | "none";
 
-
-export const doors =['2 doors','4+ doors']
-export const seats =['2 seats','4+ seats']
-export const electricArray = ["fully_electric", "hybrid","none"]
+export const doors = ["2 doors", "4+ doors"];
+export const seats = ["2 seats", "4+ seats"];
+export const electricArray = ["fully_electric", "hybrid", "none"];
 
 export const carTypes = [
   "super_cars",
@@ -88,7 +86,7 @@ export const carTypesArray = [
   "business",
   "classics",
   "SUV",
-] 
-export const electric = ["fully_electric", "hybrid","none"] as const;
+];
+export const electric = ["fully_electric", "hybrid", "none"] as const;
 
 export const transmition = ["auto", "manual"] as const;
