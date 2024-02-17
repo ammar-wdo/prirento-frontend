@@ -1,10 +1,11 @@
 import React from 'react'
 
 type Props = {
-  brand:string | string[] | undefined
+  brand?:string | string[] | undefined
+  carName?:string
 }
 
-const SearchBanner = ({brand}: Props) => {
+const SearchBanner = ({brand,carName}: Props) => {
   let content
   if(Array.isArray(brand) && !!brand.length){
     content = brand.join(', ')
@@ -15,7 +16,7 @@ const SearchBanner = ({brand}: Props) => {
   }
   return (
     <div className='bg-main text-white flex py-20 justify-center h-[250px]'>
-        <h3 className='text-xl font-bold md:text-3xl lg:text-5xl capitalize container text-center'>{content}</h3>
+        <h3 className='text-xl font-bold md:text-3xl lg:text-5xl capitalize container text-center'>{carName || content}</h3>
   
     </div>
   )

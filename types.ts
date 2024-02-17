@@ -33,6 +33,28 @@ export type CarPublicType = Omit<CarCardType, 'oneDayPrice'> & {
 };
 
 
+export type SingleCarType = {
+  id:string,
+  carName: string;
+  brand:string,
+  year: string;
+  transmition: Transmition;
+  kmIncluded: number;
+  engine:string,
+  doors:number,
+  electric:Electric
+  carType: CarTypes;
+  seats: number;
+  deposite:number,
+  description:string,
+  specifications:{title:string,icon:string}[],
+  gallary:string[],
+  price:number | null
+  duration:string,
+  availability:{isAvailable:boolean,message:string}
+}
+
+
 
 
 export type CarTypes =
@@ -43,11 +65,12 @@ export type CarTypes =
   | "classics"
   | "SUV";
 export type Transmition = "auto" | "manual";
+export type Electric = "fully_electric"| "hybrid" | "none"
 
 
 export const doors =['2 doors','4+ doors']
 export const seats =['2 seats','4+ seats']
-export const electricArray = ["fully_electric", "hybrid"]
+export const electricArray = ["fully_electric", "hybrid","none"]
 
 export const carTypes = [
   "super_cars",
@@ -66,6 +89,6 @@ export const carTypesArray = [
   "classics",
   "SUV",
 ] 
-export const electric = ["fully_electric", "hybrid"] as const;
+export const electric = ["fully_electric", "hybrid","none"] as const;
 
 export const transmition = ["auto", "manual"] as const;

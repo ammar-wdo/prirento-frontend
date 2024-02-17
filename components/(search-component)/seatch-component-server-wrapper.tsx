@@ -5,15 +5,16 @@ import { GET_LOCATIONS } from '@/links'
 import { LocationType } from '@/types'
 
 type Props = {
-  searchParams?:{[key:string]:string | string[] | undefined}
+  searchParams?:{[key:string]:string | string[] | undefined},
+  urlVar?:string
 }
 
-const SearchComponentServerWrapper = async({searchParams}: Props) => {
+const SearchComponentServerWrapper = async({searchParams,urlVar}: Props) => {
   const locations = await fetcher<{locations:LocationType[]}>(GET_LOCATIONS).then(data=>data.locations)
   
 
   return (
-   <SearchComponent searchParams={searchParams} locations={locations}/>
+   <SearchComponent urlVar={urlVar} searchParams={searchParams} locations={locations}/>
   )
 }
 

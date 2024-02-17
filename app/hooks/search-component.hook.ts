@@ -5,7 +5,7 @@ import qs from "query-string";
 import { useRouter, useSearchParams } from "next/navigation";
 
   
-export const useSearchComponent = (searchParams:{[key:string]:string | string[] | undefined} | undefined) => {
+export const useSearchComponent = (searchParams:{[key:string]:string | string[] | undefined} | undefined,urlVar?:string) => {
  
   const [location, setLocation] = useState(searchParams?.location as string || "");
   const [locationOpen, setLocationOpen] = useState(false);
@@ -205,7 +205,7 @@ export const useSearchComponent = (searchParams:{[key:string]:string | string[] 
 
 
       const url = qs.stringifyUrl({
-        url: "/search",
+        url: urlVar ?  `/${urlVar }` :  "/search",
         query: {
          ... searchParams,
           location,
