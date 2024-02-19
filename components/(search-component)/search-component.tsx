@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Loader } from "lucide-react";
 import { Button } from "../ui/button";
 import { useSearchComponent } from "@/hooks/search-component.hook";
 import { Checkbox } from "../ui/checkbox";
@@ -11,11 +11,11 @@ import LocationPicker from "../location-picker";
 
 type Props = {
   locations: LocationType[];
-  searchParams?:{[key:string]:string | string[] | undefined},
-  urlVar?:string
+  searchParams?: { [key: string]: string | string[] | undefined };
+  urlVar?: string;
 };
 
-const SearchComponent = ({ locations ,searchParams,urlVar}: Props) => {
+const SearchComponent = ({ locations, searchParams, urlVar }: Props) => {
   const {
     startDateSetter,
     endDateSetter,
@@ -42,16 +42,15 @@ const SearchComponent = ({ locations ,searchParams,urlVar}: Props) => {
     startTimeSetter,
     endTimeSetter,
     searchPush,
-
+    loading,
     isDropOff,
 
     isDropOffToggle,
-  } = useSearchComponent(searchParams,urlVar);
+  } = useSearchComponent(searchParams, urlVar);
 
   return (
     <div className="space-y-4 sm:p-8 p-6  bg-white/90   backdrop-blur-lg w-auto max-w-[700px] rounded-xl drop-shadow-xl xl:w-full xl:max-w-full  mx-auto relative pb-12 xl:pb-8">
       <div className="  flex xl:flex-row flex-col items-center gap-4">
-
         {/* pick up location */}
         <div className="flex-1 flex flex-col gap-1 w-full">
           <p>Pick-up location</p>
@@ -87,19 +86,19 @@ const SearchComponent = ({ locations ,searchParams,urlVar}: Props) => {
         </div>
 
         {isDropOff && (
-           <div className="flex-1 flex flex-col gap-1 w-full">
-          <p>Drop-off location</p>
-          <div className="flex-1 flex  p-1 rounded-md border bg-white">
-            <LocationPicker
-              open={dropOffOpen}
-              setOpen={dropOffOpenSetter}
-              location={dropOffLocation}
-              setLocation={dropOffsetter}
-              locations={locations}
-              dropOff
-            />
+          <div className="flex-1 flex flex-col gap-1 w-full">
+            <p>Drop-off location</p>
+            <div className="flex-1 flex  p-1 rounded-md border bg-white">
+              <LocationPicker
+                open={dropOffOpen}
+                setOpen={dropOffOpenSetter}
+                location={dropOffLocation || ''}
+                setLocation={dropOffsetter}
+                locations={locations}
+                dropOff
+              />
+            </div>
           </div>
-        </div>
         )}
 
         {/* Drop off date date */}
@@ -124,11 +123,17 @@ const SearchComponent = ({ locations ,searchParams,urlVar}: Props) => {
         </div>
 
         <Button
-         onClick={searchPush}
+        disabled={loading}
+          onClick={searchPush}
           variant={"siteMain"}
           className="rounded-full py-[28px] px-8 font-medium text-base self-end xl:flex hidden"
         >
-          Find a vehicle <ArrowRight className="w-4 h-4 ml-2 " />
+         Find a vehicle{" "}
+        {loading ? (
+          <Loader className="ml-2 h-4 w-4 animate-spin" />
+        ) : (
+          <ArrowRight className="w-4 h-4 ml-2 " />
+        )}
         </Button>
       </div>
       <div className="flex items-center space-x-2">
@@ -145,12 +150,18 @@ const SearchComponent = ({ locations ,searchParams,urlVar}: Props) => {
         </label>
       </div>
       <Button
-      onClick={searchPush}
-          variant={"siteMain"}
-          className="rounded-full py-[28px] px-8 font-medium text-base self-end xl:hidden w-[200px] tex-sm mt-20 flex absolute -bottom-8 left-[50%] -translate-x-[50%]"
-        >
-          Find a vehicle <ArrowRight className="w-4 h-4 ml-2 " />
-        </Button>
+        disabled={loading}
+        onClick={searchPush}
+        variant={"siteMain"}
+        className="rounded-full py-[28px] px-8 font-medium text-base self-end xl:hidden w-[200px] tex-sm mt-20 flex absolute -bottom-8 left-[50%] -translate-x-[50%]"
+      >
+        Find a vehicle{" "}
+        {loading ? (
+          <Loader className="ml-2 h-4 w-4 animate-spin" />
+        ) : (
+          <ArrowRight className="w-4 h-4 ml-2 " />
+        )}
+      </Button>
     </div>
   );
 };

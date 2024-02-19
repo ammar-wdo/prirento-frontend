@@ -1,46 +1,56 @@
-'use client'
+"use client";
 import { convertDateToISOString } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import qs from "query-string";
 import { useRouter, useSearchParams } from "next/navigation";
 
-  
-export const useSearchComponent = (searchParams:{[key:string]:string | string[] | undefined} | undefined,urlVar?:string) => {
- 
-  const [location, setLocation] = useState(searchParams?.location as string || "");
+export const useSearchComponent = (
+  searchParams: { [key: string]: string | string[] | undefined } | undefined,
+  urlVar?: string
+) => {
+  const [location, setLocation] = useState(
+    (searchParams?.location as string) || ""
+  );
   const [locationOpen, setLocationOpen] = useState(false);
 
   const [dropOffLocation, setDropOffLocation] = useState(
-    searchParams?.dropOffLocation as string || ""
+    (searchParams?.dropOffLocation as string) || ""
   );
   const [dropOffOpen, setDropOffOpen] = useState(false);
 
   const [startDate, setStartDate] = useState<string | undefined>(
-    searchParams?.startDate as string || ""
+    (searchParams?.startDate as string) || ""
   );
   const [endDate, setEndDate] = useState<string | undefined>(
-    searchParams?.endDate as string || ""
+    (searchParams?.endDate as string) || ""
   );
   const [startTime, setStartTime] = useState<string | undefined>(
-    searchParams?.startTime as string || ""
+    (searchParams?.startTime as string) || ""
   );
   const [endTime, setEndTime] = useState<string | undefined>(
-    searchParams?.endTime as string || ""
+    (searchParams?.endTime as string) || ""
   );
 
+  console.log(searchParams?.dropOffLocation, dropOffLocation);
   const [startDateOpen, setStartDateOpen] = useState(false);
   const [endtDateOpen, setEndDateOpen] = useState(false);
   const [startTimeOpen, setStartTimeOpen] = useState(false);
   const [endtTimeOpen, setEndTimeOpen] = useState(false);
+
+  const [loading, setLoading] = useState(false);
 
   const [isDropOff, setisDropOff] = useState(
     !!searchParams?.dropOffLocation || false
   );
 
   useEffect(() => {
+    setLoading(false);
+  }, [searchParams]);
+
+  useEffect(() => {
     if (isDropOff === false) {
       setDropOffLocation("");
-      delete searchParams?.dropOffLocation
+      delete searchParams?.dropOffLocation;
     }
   }, [isDropOff]);
 
@@ -203,12 +213,24 @@ export const useSearchComponent = (searchParams:{[key:string]:string | string[] 
     } else if (!endTime) {
       setEndTimeOpen(true);
     } else {
-
+      if (
+        searchParams?.location !== location ||
+        searchParams.startDate !== startDate ||
+        searchParams.endDate !== endDate ||
+        searchParams.startTime !== startTime ||
+        searchParams.endTime !== endTime ||
+        (!!searchParams.dropOffLocation &&
+          searchParams.dropOffLocation !== dropOffLocation) ||
+        (!searchParams.dropOffLocation && !!dropOffLocation) ||
+        (!!searchParams.dropOffLocation && dropOffLocation==='')
+      ) {
+        setLoading(true);
+      }
 
       const url = qs.stringifyUrl({
-        url: urlVar ?  `/${urlVar }` :  "/search",
+        url: urlVar ? `/${urlVar}` : "/search",
         query: {
-         ... searchParams,
+          ...searchParams,
           location,
           startDate,
           startTime,
@@ -218,7 +240,7 @@ export const useSearchComponent = (searchParams:{[key:string]:string | string[] 
         },
       });
 
-      router.push(url,{scroll:false});
+      router.push(url, { scroll: false });
     }
   };
 
@@ -250,5 +272,6 @@ export const useSearchComponent = (searchParams:{[key:string]:string | string[] 
     startTime,
     endTime,
     searchPush,
+    loading,
   };
 };
