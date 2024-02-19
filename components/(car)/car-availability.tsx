@@ -1,4 +1,9 @@
-import { extractUTCTime, fetcher, formatDate, setDefaultSearchParams } from "@/lib/utils";
+import {
+  extractUTCTime,
+  fetcher,
+  formatDate,
+  setDefaultSearchParams,
+} from "@/lib/utils";
 import React from "react";
 import { GrCircleInformation } from "react-icons/gr";
 import { GET_CAR } from "@/links";
@@ -8,6 +13,7 @@ import InfoAnimator from "./info-animator";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import Scroller from "../scroller";
+import CarInfo from "./car-info";
 
 type Props = {
   params: { carSlug: string };
@@ -15,10 +21,6 @@ type Props = {
 };
 
 const CarAvailability = async ({ searchParams, params }: Props) => {
-
-
-
-
   setDefaultSearchParams(searchParams);
 
   const urlParams = new URLSearchParams();
@@ -45,7 +47,6 @@ const CarAvailability = async ({ searchParams, params }: Props) => {
     GET_CAR + "/" + params.carSlug + `/check?${urlParams}`
   ).then((data) => data.availability);
 
-
   const availabilityStart = new Date(startDate);
   const availabilityEnd = new Date(endDate);
 
@@ -53,7 +54,6 @@ const CarAvailability = async ({ searchParams, params }: Props) => {
   const endTime = extractUTCTime(availabilityEnd);
 
   return (
-
     <div className="lg:col-span-2 order-1 lg:order-2 ">
       <article className="flex gap-3 flex-col">
         <CarDescription title={`Location: ${location}`}>
@@ -94,23 +94,11 @@ const CarAvailability = async ({ searchParams, params }: Props) => {
 
         {/* Info */}
         <div className="flex flex-col gap-3 mt-6 text-sm">
-          <div className="flex items-center justify-between  pb-3 border-b">
-            <span className="text-muted-foreground">Rental Price</span>
-            <span className=" font-medium capitalize">{price} AED</span>
-          </div>
-          <div className="flex items-center justify-between pb-3 border-b">
-            <span className="text-muted-foreground">Deposit Fee</span>
-            <span className=" font-medium capitalize">{deposit} AED</span>
-          </div>
-          <div className="flex items-center justify-between pb-3 border-b">
-            <span className="text-muted-foreground">km Included</span>
-            <span className=" font-medium capitalize">{kmIncluded}</span>
-          </div>
+          <CarInfo title="Rental price" value={`${price} AED`} />
+          <CarInfo title="Deposit Fee" value={`${deposit} AED`} />
+          <CarInfo title="km Included" value={kmIncluded} />
           {deliveryFee && (
-            <div className="flex items-center justify-between pb-3 border-b">
-              <span className="text-muted-foreground">Delivery Fee</span>
-              <span className=" font-medium capitalize">{deliveryFee} AED</span>
-            </div>
+            <CarInfo title="Delivery Fee" value={`${deliveryFee} AED`} />
           )}
         </div>
       </article>
@@ -144,7 +132,7 @@ const CarAvailability = async ({ searchParams, params }: Props) => {
           </div>
         </InfoAnimator>
       )}
-      <Scroller/>
+      <Scroller />
     </div>
   );
 };
