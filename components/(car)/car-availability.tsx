@@ -94,7 +94,7 @@ const CarAvailability = async ({ searchParams, params }: Props) => {
 
         {/* Info */}
         <div className="flex flex-col gap-3 mt-6 text-sm">
-          <CarInfo title="Rental price" value={`${price} AED`} />
+          <CarInfo title="Rental price" value={price ? `${price} AED` : 'N/A'} />
           <CarInfo title="Deposit Fee" value={`${deposit} AED`} />
           <CarInfo title="km Included" value={kmIncluded} />
           {deliveryFee && (
@@ -124,9 +124,9 @@ const CarAvailability = async ({ searchParams, params }: Props) => {
             </div>
 
             {pickupLocations && dropOffLocations && (
-              <div className="mt-2">
-                <p className="">Pick-up locations: {pickupLocations}</p>
-                <p className="">Drop-off locations: {dropOffLocations}</p>
+              <div className="mt-3 text-xs space-y-3">
+                <p className="flex items-center flex-wrap gap-1">Pick-up locations: {pickupLocations.split(',').map(el=><span className="px-2 py-1 rounded-md  bg-muted" key={el}>{el}</span>)}</p>
+                <p className="flex items-center flex-wrap gap-1">Drop-off locations: {dropOffLocations.split(',').map(el=><span className="px-2 py-1 rounded-md  bg-muted" key={el}>{el}</span>)}</p>
               </div>
             )}
           </div>

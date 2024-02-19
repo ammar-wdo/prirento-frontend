@@ -72,7 +72,7 @@ const CarByTypeCard = ({ car,index,notAvailable ,border}: Props) => {
                 AED /{period}
               </sub>
             </p>}
-            {car.slug && <Link href={car.slug}>
+            {car.slug && <Link href={car.slug} className="w-fit hover:underline">
             <div
               className="flex items-center  gap-2 
             "
