@@ -38,23 +38,34 @@ export type SingleCarType = {
   brand: string;
   year: string;
   transmition: Transmition;
-  deliveryFee:number | null;
-  kmIncluded: number;
   engine: string;
   doors: number;
   electric: Electric;
   carType: CarTypes;
   seats: number;
-  deposite: number;
   description: string;
   specifications: { title: string; icon: string }[];
   gallary: string[];
+
+ 
+
+};
+
+export type CarAvailabilityType = {
+  location: string;
+  kmIncluded: number;
+  deliveryFee: number | null;
+  deposit: number;
   price: number | null;
   duration: string;
-  location:string,
-  startDate:Date,
-  endDate:Date,
-  availability: { isAvailable: boolean; message: string  ,pickupLocations:string ,dropOffLocations:string};
+  startDate: Date;
+  endDate: Date;
+  availability: {
+    isAvailable: boolean;
+    message: string;
+    pickupLocations: string;
+    dropOffLocations: string;
+  };
 };
 
 export type CarTypes =

@@ -4,11 +4,17 @@ import CarFeed from "@/components/(car)/car-feed";
 import SearchComponentServerWrapper from "@/components/(search-component)/seatch-component-server-wrapper";
 import ErrorComponent from "@/components/error-component";
 import { Button } from "@/components/ui/button";
-import { extractUTCTime, fetcher, formatDate, setDefaultSearchParams } from "@/lib/utils";
+import { Skeleton } from "@/components/ui/skeleton";
+import {
+  extractUTCTime,
+  fetcher,
+  formatDate,
+  setDefaultSearchParams,
+} from "@/lib/utils";
 import { GET_CAR } from "@/links";
 import { SingleCarType } from "@/types";
 import Link from "next/link";
-import React from "react";
+import React, { Suspense } from "react";
 
 type Props = {
   params: { carSlug: string };
@@ -46,12 +52,6 @@ const page = async ({ params, searchParams }: Props) => {
 
   const car = res.car;
 
-  const startDate = new Date(car.startDate);
-  const endDate = new Date(car.endDate);
-
-  const startTime = extractUTCTime(startDate)
-  const endTime = extractUTCTime(endDate)
-
   return (
     <div>
       <SearchBanner carName={car.carName} />
@@ -72,22 +72,14 @@ const page = async ({ params, searchParams }: Props) => {
           </div>
 
           {/* Car availability */}
-          <CarAvailability
-       deliveryFee={car.deliveryFee}
-            startDate={startDate}
-            endDate={endDate}
-            startTime={startTime}
-            endTime={endTime}
-            duration={car.duration}
-            isAvailable={car.availability.isAvailable}
-            location={car.location}
-            dropOffLocations={car.availability.dropOffLocations}
-            message={car.availability.message}
-            pickupLocations={car.availability.pickupLocations}
-            price={car.price as number}
-            deposit={car.deposite as number}
-            
-          />
+          <Suspense
+            key={`${searchParams.location} ${searchParams.dropOffLocation} ${searchParams.startDate} ${searchParams.endDate} ${searchParams.startTime} ${searchParams.endTime}`}
+            fallback={
+              <Skeleton className="lg:col-span-2 order-1 lg:order-2 aspect-square" />
+            }
+          >
+            <CarAvailability params={params} searchParams={searchParams} />
+          </Suspense>
         </div>
       </section>
     </div>

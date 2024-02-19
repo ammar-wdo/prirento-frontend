@@ -15,13 +15,10 @@ import { cn } from "@/lib/utils";
 import { Skeleton } from "../ui/skeleton";
 
 const CarSwiper = ({ images }: { images: string[] }) => {
-
-
+  
   const [mount, setMount] = useState(false);
-  const [thumbsSwiper, setThumbsSwiper] = useState<SwiperClass>();
+  const [thumbsSwiper, setThumbsSwiper] = useState<SwiperClass | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
-
-
   useEffect(() => {
     setMount(true);
   }, []);

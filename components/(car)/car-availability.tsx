@@ -1,43 +1,58 @@
-import { formatDate } from "@/lib/utils";
+import { extractUTCTime, fetcher, formatDate, setDefaultSearchParams } from "@/lib/utils";
 import React from "react";
+import { GrCircleInformation } from "react-icons/gr";
+import { GET_CAR } from "@/links";
+import { CarAvailabilityType } from "@/types";
 import CarDescription from "./car-description";
+import InfoAnimator from "./info-animator";
 import { Button } from "../ui/button";
 import Link from "next/link";
-import { GrCircleInformation } from "react-icons/gr";
-import InfoAnimator from "./info-animator";
 
 type Props = {
-  location: string;
-  startDate: Date;
-  endDate: Date;
-  isAvailable: boolean;
-  message?: string;
-  pickupLocations?: string;
-  dropOffLocations?: string;
-  duration: string;
-  startTime: string;
-  endTime: string;
-  price: number;
-  deposit: number;
-  deliveryFee: number | null;
+  params: { carSlug: string };
+  searchParams: { [key: string]: string | string[] | undefined };
 };
 
-const CarAvailability = ({
-  location,
-  endDate,
-  isAvailable,
-  startDate,
-  pickupLocations,
-  dropOffLocations,
-  message,
-  duration,
-  startTime,
-  endTime,
-  price,
-  deposit,
-  deliveryFee,
-}: Props) => {
+const CarAvailability = async ({ searchParams, params }: Props) => {
+
+
+
+
+  setDefaultSearchParams(searchParams);
+
+  const urlParams = new URLSearchParams();
+
+  Object.entries(searchParams).forEach(([key, value]) => {
+    if (typeof value === "string") {
+      urlParams.append(key, value);
+    } else if (Array.isArray(value)) {
+      value.forEach((item) => urlParams.append(key, item));
+    }
+  });
+
+  const {
+    availability: { dropOffLocations, isAvailable, message, pickupLocations },
+    deliveryFee,
+    deposit,
+    duration,
+    endDate,
+    kmIncluded,
+    location,
+    price,
+    startDate,
+  } = await fetcher<{ availability: CarAvailabilityType }>(
+    GET_CAR + "/" + params.carSlug + `/check?${urlParams}`
+  ).then((data) => data.availability);
+
+
+  const availabilityStart = new Date(startDate);
+  const availabilityEnd = new Date(endDate);
+
+  const startTime = extractUTCTime(availabilityStart);
+  const endTime = extractUTCTime(availabilityEnd);
+
   return (
+
     <div className="lg:col-span-2 order-1 lg:order-2 ">
       <article className="flex gap-3 flex-col">
         <CarDescription title={`Location: ${location}`}>
@@ -45,7 +60,7 @@ const CarAvailability = ({
             <div className="flex flex-col gap-1 items-center font-medium">
               <span>
                 {" "}
-                {formatDate(startDate, "en-GB", {
+                {formatDate(availabilityStart, "en-GB", {
                   timeZone: "UTC",
                   weekday: "short", // "Sat"
                   day: "2-digit", // "17"
@@ -62,7 +77,7 @@ const CarAvailability = ({
             <div className="flex flex-col gap-1 items-center font-medium">
               <span>
                 {" "}
-                {formatDate(endDate, "en-GB", {
+                {formatDate(availabilityEnd, "en-GB", {
                   timeZone: "UTC",
                   weekday: "short", // "Sat"
                   day: "2-digit", // "17"
@@ -86,6 +101,10 @@ const CarAvailability = ({
             <span className="text-muted-foreground">Deposit Fee</span>
             <span className=" font-medium capitalize">{deposit} AED</span>
           </div>
+          <div className="flex items-center justify-between pb-3 border-b">
+            <span className="text-muted-foreground">km Included</span>
+            <span className=" font-medium capitalize">{kmIncluded}</span>
+          </div>
           {deliveryFee && (
             <div className="flex items-center justify-between pb-3 border-b">
               <span className="text-muted-foreground">Delivery Fee</span>
@@ -97,39 +116,31 @@ const CarAvailability = ({
 
       {isAvailable && (
         <InfoAnimator>
- <Button
-          className="w-full rounded-full mt-6 py-6"
-          asChild
-          variant={"siteMain"}
-        >
-          <Link href="/book">Book Now</Link>
-        </Button>
+          <Button
+            className="w-full rounded-full mt-6 py-6"
+            asChild
+            variant={"siteMain"}
+          >
+            <Link href="/book">Book Now</Link>
+          </Button>
         </InfoAnimator>
-       
       )}
 
       {!isAvailable && (
         <InfoAnimator>
-
-    
-        <div className="p-4 border rounded-xl mt-12">
+          <div className="p-4 border rounded-xl mt-12">
             <div className="flex items-center justify-between">
-            <p>{message}</p>
-            <GrCircleInformation className="w-5 h-5"/>
+              <p>{message}</p>
+              <GrCircleInformation className="w-5 h-5" />
             </div>
-       
-          {pickupLocations && dropOffLocations && (
-            <div className="mt-2">
-          
-              <p className="">
-                Pick-up locations: {pickupLocations}
-              </p>
-              <p className="">
-                Drop-off locations: {dropOffLocations}
-              </p>
-            </div>
-          )}
-        </div>
+
+            {pickupLocations && dropOffLocations && (
+              <div className="mt-2">
+                <p className="">Pick-up locations: {pickupLocations}</p>
+                <p className="">Drop-off locations: {dropOffLocations}</p>
+              </div>
+            )}
+          </div>
         </InfoAnimator>
       )}
     </div>
