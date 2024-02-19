@@ -1,3 +1,4 @@
+import CheckoutHeader from '@/components/(header)/checkout-header'
 import React from 'react'
 
 type Props = {
@@ -6,7 +7,9 @@ type Props = {
 
 const layout = ({children}: Props) => {
   return (
-    <div>{children}</div>
+    <div>
+      <CheckoutHeader/>
+      {children}</div>
   )
 }
 

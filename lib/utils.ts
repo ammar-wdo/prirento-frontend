@@ -157,6 +157,22 @@ export function extractUTCTime(date:Date) {
 }
 
 
+export const searchParamsGenerate = (searchParams:{[key:string]:string|string[] | undefined})=>{
+
+  let generatedSearchParams = new URLSearchParams()
+
+  Object.entries(searchParams).forEach(([key, value]) => {
+    if (typeof value === "string") {
+      generatedSearchParams.append(key, value);
+    } else if (Array.isArray(value)) {
+      value.forEach((item) => generatedSearchParams.append(key, item));
+    }
+  });
+
+  return generatedSearchParams
+}
+
+
 
 
 

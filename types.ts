@@ -46,6 +46,7 @@ export type SingleCarType = {
   description: string;
   specifications: { title: string; icon: string }[];
   gallary: string[];
+  slug:string
 
  
 
@@ -60,6 +61,7 @@ export type CarAvailabilityType = {
   duration: string;
   startDate: Date;
   endDate: Date;
+  slug:string
   availability: {
     isAvailable: boolean;
     message: string;

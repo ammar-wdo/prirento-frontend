@@ -2,6 +2,7 @@ import {
   extractUTCTime,
   fetcher,
   formatDate,
+  searchParamsGenerate,
   setDefaultSearchParams,
 } from "@/lib/utils";
 import React from "react";
@@ -22,15 +23,9 @@ type Props = {
 };
 
 const CarAvailability = async ({ searchParams, params }: Props) => {
-  const urlParams = new URLSearchParams();
+  const urlParams = searchParamsGenerate(searchParams)
 
-  Object.entries(searchParams).forEach(([key, value]) => {
-    if (typeof value === "string") {
-      urlParams.append(key, value);
-    } else if (Array.isArray(value)) {
-      value.forEach((item) => urlParams.append(key, item));
-    }
-  });
+
 
   const {
    availability,
@@ -122,7 +117,7 @@ const CarAvailability = async ({ searchParams, params }: Props) => {
             asChild
             variant={"siteMain"}
           >
-            <Link href="/book">Book Now</Link>
+            <Link href={`/checkout/${params.carSlug}?${urlParams}`}>Book Now</Link>
           </Button>
         </InfoAnimator>
       )}
