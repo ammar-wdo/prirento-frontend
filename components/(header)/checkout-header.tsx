@@ -6,7 +6,7 @@ type Props = {}
 
 const CheckoutHeader = (props: Props) => {
   return (
-    <header className='bg-main h-16 flex items-center'>
+    <header className='bg-main h-[70px] flex items-center'>
 <div className='container '>
    <Link href={'/'}> <Logo/></Link>
 </div>
