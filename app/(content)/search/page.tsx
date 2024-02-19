@@ -15,11 +15,7 @@ type Props = {
 const page = async ({ searchParams }: Props) => {
   setDefaultSearchParams(searchParams);
 
-  const brand = searchParams.brand;
-  const carType = searchParams.carType;
-  const seats = searchParams.seats;
-  const doors = searchParams.doors;
-  const electric = searchParams.electric;
+
 
   return (
     <div>

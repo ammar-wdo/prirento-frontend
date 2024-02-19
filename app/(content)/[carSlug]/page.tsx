@@ -1,9 +1,13 @@
 import SearchBanner from "@/components/(banner)/search-banner";
+import CarAvailability from "@/components/(car)/car-availability";
 import CarFeed from "@/components/(car)/car-feed";
 import SearchComponentServerWrapper from "@/components/(search-component)/seatch-component-server-wrapper";
-import { fetcher, formatDate, setDefaultSearchParams } from "@/lib/utils";
+import ErrorComponent from "@/components/error-component";
+import { Button } from "@/components/ui/button";
+import { extractUTCTime, fetcher, formatDate, setDefaultSearchParams } from "@/lib/utils";
 import { GET_CAR } from "@/links";
 import { SingleCarType } from "@/types";
+import Link from "next/link";
 import React from "react";
 
 type Props = {
@@ -32,10 +36,11 @@ const page = async ({ params, searchParams }: Props) => {
 
   if (!res.success)
     return (
-      <div className="min-h-[900px] flex items-center justify-center">
-        <div className="bg-rose-500/20 border border-rose-500 capitalize min-w-[300px] p-8 rounded-xl">
-          {res.error}
-        </div>
+      <div className="min-h-[900px] flex items-center justify-center flex-col gap-3">
+        <ErrorComponent description={res.error!} />
+        <Button>
+          <Link href={`/${params.carSlug}`}>Refresh</Link>
+        </Button>
       </div>
     );
 
@@ -43,6 +48,9 @@ const page = async ({ params, searchParams }: Props) => {
 
   const startDate = new Date(car.startDate);
   const endDate = new Date(car.endDate);
+
+  const startTime = extractUTCTime(startDate)
+  const endTime = extractUTCTime(endDate)
 
   return (
     <div>
@@ -64,42 +72,19 @@ const page = async ({ params, searchParams }: Props) => {
           </div>
 
           {/* Car availability */}
-          <div className="lg:col-span-2">
-            <article className="flex gap-3 flex-col">
-              <span>
-                {car.availability.isAvailable ? "Available" : "Not available"}
-              </span>
-              <span>{car.availability.message}</span>
-              <span>{car.duration}</span>
-              <span>{car.location}</span>
-              <span>
-                {formatDate(startDate, "en-GB", {
-                  timeZone: "UTC",
-                  weekday: "short", // "Sat"
-                  day: "2-digit", // "17"
-                  month: "short", // "Feb"
-                  year: "numeric", // "2024"
-                })}
-              </span>
-              <span>
-                {formatDate(endDate, "en-GB", {
-                  timeZone: "UTC",
-                  weekday: "short", // "Sat"
-                  day: "2-digit", // "17"
-                  month: "short", // "Feb"
-                  year: "numeric", // "2024"
-                })}
-              </span>
-              <span>
-                {car.availability.pickupLocations &&
-                  car.availability.pickupLocations}
-              </span>
-              <span>
-                {car.availability.dropOffLocations &&
-                  car.availability.dropOffLocations}
-              </span>
-            </article>
-          </div>
+          <CarAvailability
+            startDate={startDate}
+            endDate={endDate}
+            startTime={startTime}
+            endTime={endTime}
+            duration={car.duration}
+            isAvailable={car.availability.isAvailable}
+            location={car.location}
+            dropOffLocations={car.availability.dropOffLocations}
+            message={car.availability.message}
+            pickupLocations={car.availability.pickupLocations}
+            
+          />
         </div>
       </section>
     </div>

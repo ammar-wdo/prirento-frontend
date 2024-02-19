@@ -6,6 +6,9 @@ import { GET_CARS } from "@/links";
 import CarByTypeCard from "../(cars type feed)/car-by-type-card";
 import NoResult from "../no-result";
 import Scroller from "../scroller";
+import ErrorComponent from "../error-component";
+import { Button } from "../ui/button";
+import Link from "next/link";
 
 type Props = {
   searchParams: { [key: string]: string | string[] | undefined };
@@ -28,9 +31,10 @@ const CarsFeed = async ({ searchParams }: Props) => {
   const notAvailableCars = res.notAvailableCars
   if (!res.success)
     return (
-      <div className="p-8 border border-rose-500 bg-rose-500/20 text-muted-foreground rounded-xl font-medium capitalize ">
-        {res.error}
-      </div>
+    <div className="flex flex-col items-center gap-3">
+      <ErrorComponent description={res.error!}/>
+      <Button><Link href={`/search`}>Refresh</Link></Button>
+    </div>
     );
 
     if(!availableCars.length && !notAvailableCars.length) return <NoResult />
