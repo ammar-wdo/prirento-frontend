@@ -51,6 +51,7 @@ const page = async ({ params, searchParams }: Props) => {
         {/* Search component */}
         <div className="-mt-16">
           <SearchComponentServerWrapper
+          label="Check"
             searchParams={searchParams}
             urlVar={params.carSlug}
           />
