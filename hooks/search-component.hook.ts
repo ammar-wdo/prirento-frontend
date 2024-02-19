@@ -218,7 +218,7 @@ export const useSearchComponent = (searchParams:{[key:string]:string | string[] 
         },
       });
 
-      router.push(url);
+      router.push(url,{scroll:false});
     }
   };
 
