@@ -6,9 +6,9 @@ import ErrorComponent from "@/components/error-component";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
-  extractUTCTime,
+
   fetcher,
-  formatDate,
+
   setDefaultSearchParams,
 } from "@/lib/utils";
 import { GET_CAR } from "@/links";
@@ -24,21 +24,12 @@ type Props = {
 const page = async ({ params, searchParams }: Props) => {
   setDefaultSearchParams(searchParams);
 
-  const urlParams = new URLSearchParams();
-
-  Object.entries(searchParams).forEach(([key, value]) => {
-    if (typeof value === "string") {
-      urlParams.append(key, value);
-    } else if (Array.isArray(value)) {
-      value.forEach((item) => urlParams.append(key, item));
-    }
-  });
 
   const res = await fetcher<{
     car: SingleCarType;
     success: boolean;
     error?: string;
-  }>(GET_CAR + "/" + params.carSlug + `?${urlParams}`);
+  }>(GET_CAR + "/" + params.carSlug);
 
   if (!res.success)
     return (

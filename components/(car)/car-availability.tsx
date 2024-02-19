@@ -21,7 +21,7 @@ type Props = {
 };
 
 const CarAvailability = async ({ searchParams, params }: Props) => {
-  setDefaultSearchParams(searchParams);
+
 
   const urlParams = new URLSearchParams();
 
