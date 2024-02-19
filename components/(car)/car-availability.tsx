@@ -14,6 +14,7 @@ import { Button } from "../ui/button";
 import Link from "next/link";
 import Scroller from "../scroller";
 import CarInfo from "./car-info";
+import ErrorComponent from "../error-component";
 
 type Props = {
   params: { carSlug: string };
@@ -21,8 +22,6 @@ type Props = {
 };
 
 const CarAvailability = async ({ searchParams, params }: Props) => {
-
-
   const urlParams = new URLSearchParams();
 
   Object.entries(searchParams).forEach(([key, value]) => {
@@ -34,18 +33,28 @@ const CarAvailability = async ({ searchParams, params }: Props) => {
   });
 
   const {
-    availability: { dropOffLocations, isAvailable, message, pickupLocations },
-    deliveryFee,
-    deposit,
-    duration,
-    endDate,
-    kmIncluded,
-    location,
-    price,
-    startDate,
-  } = await fetcher<{ availability: CarAvailabilityType }>(
-    GET_CAR + "/" + params.carSlug + `/check?${urlParams}`
-  ).then((data) => data.availability);
+   availability,
+    success,
+    error
+    
+  } = await fetcher<{
+    availability: CarAvailabilityType;
+    success: boolean;
+    error?: string;
+  }>(GET_CAR + "/" + params.carSlug + `/check?${urlParams}`);
+
+  if(!success)return <div className="lg:col-span-2 order-1 lg:order-2"><ErrorComponent description={error!}/></div>
+
+
+  const {availability: { dropOffLocations, isAvailable, message, pickupLocations },
+  deliveryFee,
+  deposit,
+  duration,
+  endDate,
+  kmIncluded,
+  location,
+  price,
+  startDate} = availability
 
   const availabilityStart = new Date(startDate);
   const availabilityEnd = new Date(endDate);
@@ -94,7 +103,10 @@ const CarAvailability = async ({ searchParams, params }: Props) => {
 
         {/* Info */}
         <div className="flex flex-col gap-3 mt-6 text-sm">
-          <CarInfo title="Rental price" value={price ? `${price} AED` : 'N/A'} />
+          <CarInfo
+            title="Rental price"
+            value={price ? `${price} AED` : "N/A"}
+          />
           <CarInfo title="Deposit Fee" value={`${deposit} AED`} />
           <CarInfo title="km Included" value={kmIncluded} />
           {deliveryFee && (
@@ -125,8 +137,22 @@ const CarAvailability = async ({ searchParams, params }: Props) => {
 
             {pickupLocations && dropOffLocations && (
               <div className="mt-3 text-xs space-y-3">
-                <p className="flex items-center flex-wrap gap-1">Pick-up locations: {pickupLocations.split(',').map(el=><span className="px-2 py-1 rounded-md  bg-muted" key={el}>{el}</span>)}</p>
-                <p className="flex items-center flex-wrap gap-1">Drop-off locations: {dropOffLocations.split(',').map(el=><span className="px-2 py-1 rounded-md  bg-muted" key={el}>{el}</span>)}</p>
+                <p className="flex items-center flex-wrap gap-1">
+                  Pick-up locations:{" "}
+                  {pickupLocations.split(",").map((el) => (
+                    <span className="px-2 py-1 rounded-md  bg-muted" key={el}>
+                      {el}
+                    </span>
+                  ))}
+                </p>
+                <p className="flex items-center flex-wrap gap-1">
+                  Drop-off locations:{" "}
+                  {dropOffLocations.split(",").map((el) => (
+                    <span className="px-2 py-1 rounded-md  bg-muted" key={el}>
+                      {el}
+                    </span>
+                  ))}
+                </p>
               </div>
             )}
           </div>
