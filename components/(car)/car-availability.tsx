@@ -7,6 +7,7 @@ import CarDescription from "./car-description";
 import InfoAnimator from "./info-animator";
 import { Button } from "../ui/button";
 import Link from "next/link";
+import Scroller from "../scroller";
 
 type Props = {
   params: { carSlug: string };
@@ -129,9 +130,9 @@ const CarAvailability = async ({ searchParams, params }: Props) => {
       {!isAvailable && (
         <InfoAnimator>
           <div className="p-4 border rounded-xl mt-12">
-            <div className="flex items-center justify-between">
+            <div className="flex items-start justify-between">
               <p>{message}</p>
-              <GrCircleInformation className="w-5 h-5" />
+              <GrCircleInformation className="w-5 h-5 shrink-0" />
             </div>
 
             {pickupLocations && dropOffLocations && (
@@ -143,6 +144,7 @@ const CarAvailability = async ({ searchParams, params }: Props) => {
           </div>
         </InfoAnimator>
       )}
+      <Scroller/>
     </div>
   );
 };
