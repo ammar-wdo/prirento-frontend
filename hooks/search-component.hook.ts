@@ -40,6 +40,7 @@ export const useSearchComponent = (searchParams:{[key:string]:string | string[] 
   useEffect(() => {
     if (isDropOff === false) {
       setDropOffLocation("");
+      delete searchParams?.dropOffLocation
     }
   }, [isDropOff]);
 

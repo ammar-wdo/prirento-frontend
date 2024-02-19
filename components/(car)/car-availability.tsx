@@ -1,6 +1,10 @@
 import { formatDate } from "@/lib/utils";
 import React from "react";
 import CarDescription from "./car-description";
+import { Button } from "../ui/button";
+import Link from "next/link";
+import { GrCircleInformation } from "react-icons/gr";
+import InfoAnimator from "./info-animator";
 
 type Props = {
   location: string;
@@ -13,6 +17,9 @@ type Props = {
   duration: string;
   startTime: string;
   endTime: string;
+  price: number;
+  deposit: number;
+  deliveryFee: number | null;
 };
 
 const CarAvailability = ({
@@ -26,16 +33,15 @@ const CarAvailability = ({
   duration,
   startTime,
   endTime,
+  price,
+  deposit,
+  deliveryFee,
 }: Props) => {
   return (
-    <div className="lg:col-span-2">
+    <div className="lg:col-span-2 order-1 lg:order-2 ">
       <article className="flex gap-3 flex-col">
-        <CarDescription
-          title={`Location: ${location.charAt(0).toUpperCase()}${location.slice(
-            1
-          )}`}
-        >
-          <div className="flex items-center justify-between">
+        <CarDescription title={`Location: ${location}`}>
+          <div className="flex items-center justify-between text-sm sm:text-base">
             <div className="flex flex-col gap-1 items-center font-medium">
               <span>
                 {" "}
@@ -69,7 +75,63 @@ const CarAvailability = ({
           </div>
         </CarDescription>
         <p className="font-medium text-center">Duration: {duration}</p>
+
+        {/* Info */}
+        <div className="flex flex-col gap-3 mt-6 text-sm">
+          <div className="flex items-center justify-between  pb-3 border-b">
+            <span className="text-muted-foreground">Rental Price</span>
+            <span className=" font-medium capitalize">{price} AED</span>
+          </div>
+          <div className="flex items-center justify-between pb-3 border-b">
+            <span className="text-muted-foreground">Deposit Fee</span>
+            <span className=" font-medium capitalize">{deposit} AED</span>
+          </div>
+          {deliveryFee && (
+            <div className="flex items-center justify-between pb-3 border-b">
+              <span className="text-muted-foreground">Delivery Fee</span>
+              <span className=" font-medium capitalize">{deliveryFee} AED</span>
+            </div>
+          )}
+        </div>
       </article>
+
+      {isAvailable && (
+        <InfoAnimator>
+ <Button
+          className="w-full rounded-full mt-6 py-6"
+          asChild
+          variant={"siteMain"}
+        >
+          <Link href="/book">Book Now</Link>
+        </Button>
+        </InfoAnimator>
+       
+      )}
+
+      {!isAvailable && (
+        <InfoAnimator>
+
+    
+        <div className="p-4 border rounded-xl mt-12">
+            <div className="flex items-center justify-between">
+            <p>{message}</p>
+            <GrCircleInformation className="w-5 h-5"/>
+            </div>
+       
+          {pickupLocations && dropOffLocations && (
+            <div className="mt-2">
+          
+              <p className="">
+                Pick-up locations: {pickupLocations}
+              </p>
+              <p className="">
+                Drop-off locations: {dropOffLocations}
+              </p>
+            </div>
+          )}
+        </div>
+        </InfoAnimator>
+      )}
     </div>
   );
 };

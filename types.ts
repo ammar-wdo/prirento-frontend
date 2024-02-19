@@ -38,6 +38,7 @@ export type SingleCarType = {
   brand: string;
   year: string;
   transmition: Transmition;
+  deliveryFee:number | null;
   kmIncluded: number;
   engine: string;
   doors: number;

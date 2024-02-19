@@ -2,7 +2,7 @@
 import { BrandType, CarTypes } from "@/types";
 import { Checkbox } from "@/components/ui/checkbox";
 
-import { FilterQuery, Filters, useFilter } from "@/app/hooks/filter-component-hook";
+import { FilterQuery, Filters, useFilter } from "@/hooks/filter-component-hook";
 import SeeMoreButton from "./seemore-button";
 import { carsElectric, carsMapper } from "@/mapper";
 

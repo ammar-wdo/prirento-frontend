@@ -1,6 +1,6 @@
 'use client'
 import { BrandType, carTypesArray, doors, electric, electricArray, seats } from "@/types";
-import { useFilter } from '@/app/hooks/filter-component-hook';
+import { useFilter } from '@/hooks/filter-component-hook';
 import React from 'react'
 import FilterSection from './filter-section';
 

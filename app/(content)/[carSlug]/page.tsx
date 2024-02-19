@@ -65,14 +65,15 @@ const page = async ({ params, searchParams }: Props) => {
           />
         </div>
 
-        <div className="mt-12 grid grid-cols-1 lg:grid-cols-5 gap-6">
+        <div className="mt-24  grid grid-cols-1 lg:grid-cols-5 gap-6">
           {/* Car info */}
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-3 lg:order-1 order-2">
             <CarFeed car={car} />
           </div>
 
           {/* Car availability */}
           <CarAvailability
+       deliveryFee={car.deliveryFee}
             startDate={startDate}
             endDate={endDate}
             startTime={startTime}
@@ -83,6 +84,8 @@ const page = async ({ params, searchParams }: Props) => {
             dropOffLocations={car.availability.dropOffLocations}
             message={car.availability.message}
             pickupLocations={car.availability.pickupLocations}
+            price={car.price as number}
+            deposit={car.deposite as number}
             
           />
         </div>

@@ -2,7 +2,7 @@
 
 import { ArrowRight } from "lucide-react";
 import { Button } from "../ui/button";
-import { useSearchComponent } from "@/app/hooks/search-component.hook";
+import { useSearchComponent } from "@/hooks/search-component.hook";
 import { Checkbox } from "../ui/checkbox";
 import DatepickerComponent from "../date-picker-component";
 import TimePickerComponent from "../time-picker-component";

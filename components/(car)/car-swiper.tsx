@@ -12,16 +12,21 @@ import "swiper/css/thumbs";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { Skeleton } from "../ui/skeleton";
 
 const CarSwiper = ({ images }: { images: string[] }) => {
-  const [thumbsSwiper, setThumbsSwiper] = useState<SwiperClass | null>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
+
+
   const [mount, setMount] = useState(false);
+  const [thumbsSwiper, setThumbsSwiper] = useState<SwiperClass>();
+  const [activeIndex, setActiveIndex] = useState(0);
+
+
   useEffect(() => {
     setMount(true);
   }, []);
 
-  if (!mount) return null;
+  if (!mount) return <Skeleton className="w-full aspect-video rounded-xl"/>;
 
   return (
     <>
@@ -31,7 +36,7 @@ const CarSwiper = ({ images }: { images: string[] }) => {
         loop={true}
         spaceBetween={0}
         navigation={true}
-        thumbs={{ swiper: thumbsSwiper }}
+        thumbs={{ swiper:mount &&  thumbsSwiper }}
         modules={[Navigation, Thumbs]}
         className="mainSwiper rounded-xl overflow-hidden"
       >
@@ -56,9 +61,9 @@ const CarSwiper = ({ images }: { images: string[] }) => {
         spaceBetween={10}
         slidesPerView={5}
         freeMode={true}
-        navigation={true}
+
         watchSlidesProgress={true}
-        modules={[Thumbs, Navigation]}
+        modules={[mount && Thumbs]}
         className="thumbsSwiper mt-6"
         breakpoints={{
             // When the viewport width is >= 320px, display 3 slides
