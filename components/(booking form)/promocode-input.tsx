@@ -29,7 +29,7 @@ const PromocodeInput = ({ submit, promocode, loading }: Props) => {
           submit(text);
           setText("");
         }}
-        className="self-stretch h-auto w-[150px]"
+        className="self-stretch h-auto md:w-[150px] sm:w-[100px] text-sm sm:text-base"
       >
         Apply {loading && <Loader className="animate-spin ml-2 w-4 h-4" />}
       </Button>

@@ -22,7 +22,7 @@ import { Input } from "../ui/input";
 import { Checkbox } from "../ui/checkbox";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { Check } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import ViewSection from "./view-section";
 
 type Props = {
@@ -38,11 +38,13 @@ type Props = {
 const BookingForm = ({ carImage, startDate, endDate, carName,subtotal,deliveryFee,deposit }: Props) => {
   const { form, onSubmit, applyPromo, loading, promocode } = useBooking();
   return (
-    <section className="mt-24 container grid grid-cols-1 lg:grid-cols-2 gap-8">
+
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-          {/* driver details */}
-          <SectionWrapper title="Driver details">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="container space-y-8" >
+          <div className="md:mt-12 mt-8  grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="space-y-8 order-1 sm:order-2">
+  {/* driver details */}
+  <SectionWrapper title="Driver details">
             <FormField
               control={form.control}
               name="email"
@@ -432,11 +434,10 @@ const BookingForm = ({ carImage, startDate, endDate, carName,subtotal,deliveryFe
               )}
             />
           </SectionWrapper>
+          <Button variant={'siteMain'} className="rounded-full ml-auto hidden lg:flex py-5 px-7 h-12" type="submit">Checkout <ArrowRight className="ml-2 w-4 h-4 "/></Button>
 
-          <Button type="submit">Submit</Button>
-        </form>
-      </Form>
-      {/* View section */}
+          </div>
+                  {/* View section */}
       <ViewSection
         loading={loading}
         promocode={promocode}
@@ -451,7 +452,12 @@ const BookingForm = ({ carImage, startDate, endDate, carName,subtotal,deliveryFe
         deposit={deposit}
         subtotal={subtotal}
       />
-    </section>
+          </div>
+          <Button variant={'siteMain'} className="rounded-full ml-auto flex lg:hidden py-5 px-7 h-12" type="submit">Checkout <ArrowRight className="ml-2 w-4 h-4 "/></Button>
+        </form>
+      </Form>
+    
+
   );
 };
 

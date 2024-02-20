@@ -18,7 +18,7 @@ const ImageDateWrapper = ({carImage,startDate,endDate,carName}: Props) => {
     const endTime = extractUTCTime(endDateValue);
   return (
     <div className=" flex  gap-4 ">
-    <div className="w-48 aspect-video relative rounded-xl overflow-hidden">
+    <div className="w-48 aspect-video relative rounded-xl overflow-hidden hidden sm:block">
       <Image
         src={carImage}
         fill
@@ -43,7 +43,7 @@ const ImageDateWrapper = ({carImage,startDate,endDate,carName}: Props) => {
         </span>
         <span>{startTime}</span>
       </p>
-      <p className="text-muted-foreground">
+      <p className="text-muted-foreground mt-1">
         Drop-off date:{" "}
         <span>
           on{" "}

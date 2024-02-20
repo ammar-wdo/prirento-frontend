@@ -33,7 +33,7 @@ const ViewSection = ({
   subtotal,
 }: Props) => {
   return (
-    <article className="border rounded-xl p-6 pb-8 self-start sticky top-8">
+    <article className="border rounded-xl p-6 pb-8 self-start sticky top-8 order-1 sm:order-2">
       <h3 className="text-3xl font-bold pb-4 border-b">Booking Summary</h3>
 
       <ViewItemsWrapper>
