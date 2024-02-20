@@ -2,12 +2,15 @@
 
 import { bookingSchema } from "@/schemas"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useSearchParams } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
 
 export const useBooking = ()=>{
 
+
+    const searchParams = useSearchParams()
 
 
     const form = useForm<z.infer<typeof bookingSchema>>({
@@ -21,19 +24,17 @@ export const useBooking = ()=>{
           billingAddress:"",
           billingFirstName:"",
           billingLastname:"",
-          billingContactNumber:"",
+          billingContactNumber:"+971",
           billingCountry:"",
           billingCity:"",
           billingZipcode:"",
           business:false,
           companyName:"",
-          campanyVat:"",
-          startDate:"",
-          endDate:"",
-          startTime:"",
-          endTime:"",
-          subtotal:undefined,
-          reservationFee:undefined,
+          companyVat:"",
+          startDate:searchParams.get('startDate') as string,
+          endDate:searchParams.get("endDate") as string,
+          startTime:searchParams.get("startTime") as string,
+          endTime:searchParams.get("endTime") as string,
           terms:false,
           paymentMethod:'CREDIT_CARD', 
         },

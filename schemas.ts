@@ -1,7 +1,7 @@
 import * as z from "zod";
 
 const requiredString = z.string().min(1, "Required field");
-const phoneNumberPattern = /^(\+\d{1,3}[- ]?)?\d{10}$/;
+const phoneNumberPattern = /^(?:[0-9]){1,3}(?:[ -]*[0-9]){6,14}$/;
 
 const requiredNumber = z.preprocess((input) => {
   return input === "" ? undefined : Number(input);
@@ -21,7 +21,7 @@ const timeSchema = z.object({
 
 
 
-export const paymentMethod = ["IDEAL", "CREDIT_CARD", "PAYPAL"] as const;
+export const paymentMethod = [ "CREDIT_CARD", "PAYPAL"] as const;
 export const paymentStatus = ["PENDING", "SUCCEEDED", "EXPIRED", "CANCELED"] as const;
 export const bookingStatus = [
   "ACTIVE",
@@ -53,27 +53,25 @@ const billingInfoSchema = z.object({
 const companyInfoSchema = z
   .object({
     business: z.boolean().default(false),
-    companyName: requiredString,
-    campanyVat: requiredString,
+    companyName: z.string().optional(),
+    companyVat: z.string().optional(),
   })
   .refine((data) => !data.business || !!data.companyName, {
     message: "Company name is required",
     path: ["companyName"],
   })
-  .refine((data) => !data.business || !!data.campanyVat, {
+  .refine((data) => !data.business || !!data.companyVat, {
     message: "Company VAT number is required",
-    path: ["campanyVat"],
+    path: ["companyVat"],
   });
 
 
 
 export const bookingSchema = z
   .object({
-    subtotal: requiredNumber,
   
-    reservationFee: requiredNumber,
 
-    terms: z.boolean(),
+    terms: z.boolean().refine(data=>data===true,'You should agree to Terms & Conditions to go further'),
     paymentMethod:z.enum(paymentMethod),
     
   })
@@ -95,4 +93,4 @@ export const bookingSchema = z
       message: "Start date must be before end date",
       path: ["endTime"],
     }
-  );
+  )

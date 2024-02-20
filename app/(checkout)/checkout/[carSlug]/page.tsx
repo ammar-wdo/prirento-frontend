@@ -38,11 +38,11 @@ const page = async ({params,searchParams}: Props) => {
 
 
   return (
-    <div>
-      <section className='mt-24 container grid grid-cols-1 lg:grid-cols-2 gap-4'>
-        <BookingForm/>
+    <div className='pb-20'>
+     
+        <BookingForm carImage={res.car.gallary[0]} startDate={availability.startDate} endDate={availability.endDate} carName={res.car.carName}/>
 
-      </section>
+      
     </div>
   )
 }
