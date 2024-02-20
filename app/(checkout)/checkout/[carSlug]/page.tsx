@@ -1,3 +1,4 @@
+import BookingForm from '@/components/(booking form)/booking-form';
 import ErrorComponent from '@/components/error-component';
 import { fetcher, searchParamsGenerate } from '@/lib/utils';
 import { GET_CAR } from '@/links';
@@ -38,10 +39,9 @@ const page = async ({params,searchParams}: Props) => {
 
   return (
     <div>
-      <section className='mt-24 container'>
-{availability.availability.isAvailable && 'available'}
-{" "}
-{res.car.carName}
+      <section className='mt-24 container grid grid-cols-1 lg:grid-cols-2 gap-4'>
+        <BookingForm/>
+
       </section>
     </div>
   )

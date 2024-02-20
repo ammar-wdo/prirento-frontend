@@ -104,3 +104,9 @@ export const carTypesArray = [
 export const electric = ["fully_electric", "hybrid", "none"] as const;
 
 export const transmition = ["auto", "manual"] as const;
+
+
+
+
+
+
