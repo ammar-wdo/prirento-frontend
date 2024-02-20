@@ -1,26 +1,22 @@
-import BookingForm from '@/components/(booking form)/booking-form';
-import ErrorComponent from '@/components/error-component';
-import { fetcher, searchParamsGenerate } from '@/lib/utils';
-import { GET_CAR } from '@/links';
-import { CarAvailabilityType, SingleCarType } from '@/types';
-import React from 'react'
+import BookingForm from "@/components/(booking form)/booking-form";
+import ErrorComponent from "@/components/error-component";
+import { fetcher, searchParamsGenerate } from "@/lib/utils";
+import { GET_CAR } from "@/links";
+import { CarAvailabilityType, SingleCarType } from "@/types";
+import React from "react";
 
 type Props = {
-    params:{carSlug:string},
-    searchParams:{[key:string]:string | string[] | undefined}
-}
+  params: { carSlug: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
 
-const page = async ({params,searchParams}: Props) => {
-
+const page = async ({ params, searchParams }: Props) => {
   const urlParams = searchParamsGenerate(searchParams);
 
-
-
   const {
-   availability,
-    success:availableSuccess,
-    error:availableError
-    
+    availability,
+    success: availableSuccess,
+    error: availableError,
   } = await fetcher<{
     availability: CarAvailabilityType;
     success: boolean;
@@ -33,18 +29,26 @@ const page = async ({params,searchParams}: Props) => {
     error?: string;
   }>(GET_CAR + "/" + params.carSlug);
 
-
-  if(!availableSuccess) return <div className='flex items-center justify-center h-[calc(100vh-70px)]'><ErrorComponent description={availableError as string}/></div>
-
+  if (!availableSuccess)
+    return (
+      <div className="flex items-center justify-center h-[calc(100vh-70px)]">
+        <ErrorComponent description={availableError as string} />
+      </div>
+    );
 
   return (
-    <div className='pb-20'>
-     
-        <BookingForm carImage={res.car.gallary[0]} startDate={availability.startDate} endDate={availability.endDate} carName={res.car.carName}/>
-
-      
+    <div className="pb-20">
+      <BookingForm
+        carImage={res.car.gallary[0]}
+        startDate={availability.startDate}
+        endDate={availability.endDate}
+        carName={res.car.carName}
+        deliveryFee={availability.deliveryFee}
+        deposit={availability.deposit}
+        subtotal={availability.price as number}
+      />
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default page;

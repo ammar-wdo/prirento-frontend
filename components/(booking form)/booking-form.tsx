@@ -26,16 +26,19 @@ import { Check } from "lucide-react";
 import ViewSection from "./view-section";
 
 type Props = {
-    carImage:string
-    startDate:Date
-    endDate:Date
-    carName:string
+  carImage: string;
+  startDate: Date;
+  endDate: Date;
+  carName: string;
+  subtotal:number,
+  deposit:number,
+  deliveryFee:number | null
 };
 
-const BookingForm = ({carImage,startDate,endDate,carName}: Props) => {
-  const { form, onSubmit } = useBooking();
+const BookingForm = ({ carImage, startDate, endDate, carName,subtotal,deliveryFee,deposit }: Props) => {
+  const { form, onSubmit, applyPromo, loading, promocode } = useBooking();
   return (
-    <section className="mt-24 container grid grid-cols-1 lg:grid-cols-2 gap-4">
+    <section className="mt-24 container grid grid-cols-1 lg:grid-cols-2 gap-8">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           {/* driver details */}
@@ -434,7 +437,20 @@ const BookingForm = ({carImage,startDate,endDate,carName}: Props) => {
         </form>
       </Form>
       {/* View section */}
-      <ViewSection carImage={carImage} startDate={startDate} endDate={endDate} carName={carName}/>
+      <ViewSection
+        loading={loading}
+        promocode={promocode}
+        applyPromo={(val: string) => {
+          applyPromo(val);
+        }}
+        carImage={carImage}
+        startDate={startDate}
+        endDate={endDate}
+        carName={carName}
+        deliveryFee={deliveryFee}
+        deposit={deposit}
+        subtotal={subtotal}
+      />
     </section>
   );
 };

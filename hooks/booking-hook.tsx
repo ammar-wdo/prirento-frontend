@@ -3,6 +3,7 @@
 import { bookingSchema } from "@/schemas"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useSearchParams } from "next/navigation"
+import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
@@ -11,6 +12,14 @@ export const useBooking = ()=>{
 
 
     const searchParams = useSearchParams()
+
+    const [loading, setLoading] = useState(false)
+    const [promocode, setPromocode] = useState<string | undefined>(undefined)
+
+    const applyPromo = (val:string)=>{
+    alert(val)
+
+    }
 
 
     const form = useForm<z.infer<typeof bookingSchema>>({
@@ -47,5 +56,5 @@ export const useBooking = ()=>{
         console.log(values)
       }
 
-      return {form,onSubmit}
+      return {form,onSubmit,applyPromo,promocode,loading}
 }
