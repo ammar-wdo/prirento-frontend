@@ -109,4 +109,19 @@ export const transmition = ["auto", "manual"] as const;
 
 
 
+export type ReturnedDiscount = {
+  id:string,
+  type:"fixed" | "percentage",
+  discountApplyType: "created" | "booked"
+  value:number,
+ promocode:string, 
+}
+
+export type DiscountResponse = {
+  discount: ReturnedDiscount | null;
+  error?: string;
+  success: boolean;
+} | null
+
+
 

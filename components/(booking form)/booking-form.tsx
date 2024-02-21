@@ -36,7 +36,7 @@ type Props = {
 };
 
 const BookingForm = ({ carImage, startDate, endDate, carName,subtotal,deliveryFee,deposit }: Props) => {
-  const { form, onSubmit, applyPromo, loading, promocode } = useBooking();
+  const { form, onSubmit, applyPromo, loading, discountResponse,resetDiscount } = useBooking();
   return (
 
       <Form {...form}>
@@ -439,8 +439,9 @@ const BookingForm = ({ carImage, startDate, endDate, carName,subtotal,deliveryFe
           </div>
                   {/* View section */}
       <ViewSection
+      resetDiscount={resetDiscount}
         loading={loading}
-        promocode={promocode}
+        discountResponse={discountResponse}
         applyPromo={(val: string) => {
           applyPromo(val);
         }}

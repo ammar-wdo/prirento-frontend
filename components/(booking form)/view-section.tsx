@@ -6,13 +6,15 @@ import ImageDateWrapper from "./image-date-wrapper";
 import PromocodeInput from "./promocode-input";
 import ViewItemsWrapper from "./view-items-wrapper";
 import CarFixedValues from "./car-fixed-values";
+import { DiscountResponse } from "@/types";
 
 type Props = {
+  resetDiscount:()=>void
   carImage: string;
   startDate: Date;
   endDate: Date;
   carName: string;
-  promocode: string | undefined;
+discountResponse:DiscountResponse
   loading: boolean;
   applyPromo: (val: string) => void;
   deliveryFee: number | null;
@@ -21,11 +23,12 @@ type Props = {
 };
 
 const ViewSection = ({
+  resetDiscount,
   carImage,
   startDate,
   endDate,
   carName,
-  promocode,
+  discountResponse,
   loading,
   applyPromo,
   deliveryFee,
@@ -47,8 +50,9 @@ const ViewSection = ({
 
       <ViewItemsWrapper>
         <PromocodeInput
+        resetDiscount={resetDiscount}
           loading={loading}
-          promocode={promocode}
+       discountResponse={discountResponse}
           submit={(val: string) => {
             applyPromo(val);
           }}

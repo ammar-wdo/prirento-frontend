@@ -20,6 +20,20 @@ export const fetcher = async <T>(url: string): Promise<T> => {
     return response.data;
   }
 
+
+  export const poster = async <T>(url: string, body: any): Promise<T> => {
+    // Default headers can be extended or overridden by the headers argument
+   
+
+    const response = await axios.post<T>(url, body, {
+        headers: {
+          "api-Secret": process.env.API_SECRET,
+        },
+    });
+
+    return response.data;
+};
+
 export function convertDateToISOString(date: Date | undefined) {
   if (!date) {
     return undefined;

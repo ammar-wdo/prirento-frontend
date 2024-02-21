@@ -1,60 +1,96 @@
-'use client'
+"use client";
 
-import { bookingSchema } from "@/schemas"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useSearchParams } from "next/navigation"
-import { useState } from "react"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
+import { fetcher, poster } from "@/lib/utils";
+import { DISCOUNT_PROXY, GET_CAR } from "@/links";
+import { bookingSchema } from "@/schemas";
+import { DiscountResponse, ReturnedDiscount } from "@/types";
+import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
+import { useParams, useSearchParams } from "next/navigation";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { z } from "zod";
 
 
-export const useBooking = ()=>{
 
+export const useBooking = () => {
+  const searchParams = useSearchParams();
+  const params = useParams();
 
-    const searchParams = useSearchParams()
+  const [loading, setLoading] = useState(false);
+ 
+  const [discountResponse, setDiscountResponse] = useState<DiscountResponse>(null);
 
-    const [loading, setLoading] = useState(false)
-    const [promocode, setPromocode] = useState<string | undefined>(undefined)
+  const resetDiscount = ()=>{
+    setDiscountResponse(null)
+  }
 
-    const applyPromo = (val:string)=>{
-    alert(val)
+  const applyPromo = async (val: string) => {
+    const body = {
+      startDate: searchParams.get("startDate"),
+      endDate: searchParams.get("endDate"),
+      startTime: searchParams.get("startTime"),
+      endTime: searchParams.get("endTime"),
+      promocode: val,
+      params: params.carSlug,
+    };
 
+    try {
+      console.log(process.env.API_SECRET);
+      setLoading(true);
+
+      const res = await axios
+        .post<{
+          success: boolean;
+          error?: string;
+          discount: ReturnedDiscount | null;
+        }>(DISCOUNT_PROXY, body)
+        .then((data) => data.data);
+
+        setDiscountResponse(res)
+
+   
+     
+    } catch (error) {
+      console.log("error", error);
+      toast.error("Something went wrong");
+    } finally {
+      setLoading(false);
     }
+  };
 
+  const form = useForm<z.infer<typeof bookingSchema>>({
+    resolver: zodResolver(bookingSchema),
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      contactNumber: "+971",
+      countryOfResidance: "",
+      billingAddress: "",
+      billingFirstName: "",
+      billingLastname: "",
+      billingContactNumber: "+971",
+      billingCountry: "",
+      billingCity: "",
+      billingZipcode: "",
+      business: false,
+      companyName: "",
+      companyVat: "",
+      startDate: searchParams.get("startDate") as string,
+      endDate: searchParams.get("endDate") as string,
+      startTime: searchParams.get("startTime") as string,
+      endTime: searchParams.get("endTime") as string,
+      terms: false,
+      paymentMethod: "CREDIT_CARD",
+    },
+  });
 
-    const form = useForm<z.infer<typeof bookingSchema>>({
-        resolver: zodResolver(bookingSchema),
-        defaultValues: {
-          firstName: "",
-          lastName:"",
-          email:"",
-          contactNumber:"+971",
-          countryOfResidance:"",
-          billingAddress:"",
-          billingFirstName:"",
-          billingLastname:"",
-          billingContactNumber:"+971",
-          billingCountry:"",
-          billingCity:"",
-          billingZipcode:"",
-          business:false,
-          companyName:"",
-          companyVat:"",
-          startDate:searchParams.get('startDate') as string,
-          endDate:searchParams.get("endDate") as string,
-          startTime:searchParams.get("startTime") as string,
-          endTime:searchParams.get("endTime") as string,
-          terms:false,
-          paymentMethod:'CREDIT_CARD', 
-        },
-      })
+  function onSubmit(values: z.infer<typeof bookingSchema>) {
+    alert(JSON.stringify(values));
+    console.log(values);
+  }
 
-
-
-      function onSubmit(values: z.infer<typeof bookingSchema>) {
-      alert(JSON.stringify(values))
-        console.log(values)
-      }
-
-      return {form,onSubmit,applyPromo,promocode,loading}
-}
+  return { form, onSubmit, applyPromo, discountResponse, loading ,resetDiscount};
+};
