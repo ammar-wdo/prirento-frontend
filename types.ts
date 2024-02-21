@@ -47,6 +47,7 @@ export type SingleCarType = {
   specifications: { title: string; icon: string }[];
   gallary: string[];
   slug:string,
+  kmIncluded:number;
   minimumHours:number|null,
   pickupLocations:string[],
   dropoffLocations:string[]

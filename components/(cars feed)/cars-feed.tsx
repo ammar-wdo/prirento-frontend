@@ -63,7 +63,7 @@ const CarsFeed = async ({ searchParams }: Props) => {
         ))}
         {notAvailableCars.map((car, i) => (
           <div
-            className="cursor-not-allowed grayscale-[15] pointer-events-none h-full self-stretch opacity-60 "
+            className=" grayscale-[15]  h-full self-stretch opacity-60 "
             key={car.id}
           >
             <CarByTypeCard

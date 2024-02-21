@@ -122,12 +122,12 @@ const CarByTypeCard = ({ car, index, notAvailable, border,startDate,startTime,en
                 icon={<CarFront className="w-4 h-4" />}
               />
             </section>
+              <Button asChild variant={"siteMain"} className={cn("w-full rounded-full",notAvailable && 'pointer-events-none cursor-not-allowed')}>
             <Link href={url} className=" w-full">
               {" "}
-              <Button variant={"siteMain"} className="w-full rounded-full">
                 {notAvailable ? "Not Available" : "Book Now"}
-              </Button>
             </Link>
+              </Button>
           </div>
         </CardContent>
       </Card>

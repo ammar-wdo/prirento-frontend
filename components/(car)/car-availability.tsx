@@ -103,7 +103,7 @@ const CarAvailability = async ({ searchParams, params }: Props) => {
             value={price ? `${price} AED` : "N/A"}
           />
           <CarInfo title="Deposit Fee" value={`${deposit} AED`} />
-          <CarInfo title="km Included" value={kmIncluded} />
+         
           {deliveryFee && (
             <CarInfo title="Delivery Fee" value={`${deliveryFee} AED`} />
           )}
