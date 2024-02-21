@@ -1,28 +1,31 @@
 "use client";
 
-import { extractUTCTime, formatDate } from "@/lib/utils";
-import Image from "next/image";
 import ImageDateWrapper from "./image-date-wrapper";
 import PromocodeInput from "./promocode-input";
 import ViewItemsWrapper from "./view-items-wrapper";
 import CarFixedValues from "./car-fixed-values";
 import { DiscountResponse } from "@/types";
 
+import KeyValue from "./key-value";
+
 type Props = {
-  resetDiscount:()=>void
+  discountValue: number | null;
+  resetDiscount: () => void;
   carImage: string;
   startDate: Date;
   endDate: Date;
   carName: string;
-discountResponse:DiscountResponse
+  discountResponse: DiscountResponse;
   loading: boolean;
   applyPromo: (val: string) => void;
   deliveryFee: number | null;
   subtotal: number;
   deposit: number;
+  totalAmount: number;
 };
 
 const ViewSection = ({
+  discountValue,
   resetDiscount,
   carImage,
   startDate,
@@ -34,6 +37,7 @@ const ViewSection = ({
   deliveryFee,
   deposit,
   subtotal,
+  totalAmount,
 }: Props) => {
   return (
     <article className="border rounded-xl p-6 pb-8 self-start sticky top-8 order-1 sm:order-2">
@@ -50,9 +54,9 @@ const ViewSection = ({
 
       <ViewItemsWrapper>
         <PromocodeInput
-        resetDiscount={resetDiscount}
+          resetDiscount={resetDiscount}
           loading={loading}
-       discountResponse={discountResponse}
+          discountResponse={discountResponse}
           submit={(val: string) => {
             applyPromo(val);
           }}
@@ -65,6 +69,16 @@ const ViewSection = ({
           deposit={deposit}
           subtotal={subtotal}
         />
+      </ViewItemsWrapper>
+
+      {!!discountValue && (
+        <ViewItemsWrapper>
+          <KeyValue title="Discount" description={`${discountValue} AED`} />
+        </ViewItemsWrapper>
+      )}
+
+      <ViewItemsWrapper>
+        <KeyValue title="Total amount" description={`${totalAmount} AED`} />
       </ViewItemsWrapper>
     </article>
   );

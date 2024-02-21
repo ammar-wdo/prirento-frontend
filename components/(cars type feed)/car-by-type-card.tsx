@@ -9,15 +9,20 @@ import { carsMapper } from "@/mapper";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import qs from 'query-string'
 
 type Props = {
   car: CarCardType | CarPublicType;
   index: number;
   notAvailable?: boolean;
   border?: boolean;
+  startDate?:string | undefined
+  endDate?:string | undefined
+  startTime?:string | undefined
+  endTime?:string | undefined
 };
 
-const CarByTypeCard = ({ car, index, notAvailable, border }: Props) => {
+const CarByTypeCard = ({ car, index, notAvailable, border,startDate,startTime,endDate,endTime }: Props) => {
   const fadeIn = {
     initial: {
       y: 20,
@@ -32,6 +37,13 @@ const CarByTypeCard = ({ car, index, notAvailable, border }: Props) => {
       },
     },
   };
+
+  const url = qs.stringifyUrl({
+    url:`${process.env.NEXT_PUBLIC_BASE_URL}/${car.slug}` as string,
+    query:{
+      startDate,endDate,startTime,endTime
+    }
+  })
 
   let price: number | null = null;
   if ("oneDayPrice" in car) {
@@ -75,7 +87,7 @@ const CarByTypeCard = ({ car, index, notAvailable, border }: Props) => {
                   </p>
                 )}
                 {car.slug && (
-                  <Link href={car.slug} className="w-fit hover:underline">
+                  <Link href={url} className="w-fit hover:underline">
                     <div
                       className="flex items-center  gap-2 
             "
@@ -110,7 +122,7 @@ const CarByTypeCard = ({ car, index, notAvailable, border }: Props) => {
                 icon={<CarFront className="w-4 h-4" />}
               />
             </section>
-            <Link href={car.slug} className=" w-full">
+            <Link href={url} className=" w-full">
               {" "}
               <Button variant={"siteMain"} className="w-full rounded-full">
                 {notAvailable ? "Not Available" : "Book Now"}

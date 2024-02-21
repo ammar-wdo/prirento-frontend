@@ -20,6 +20,8 @@ const CarsTypeFeed = async ({ searchParams }: Props) => {
     GET_CARS_BY_TYPE +
       `?carType=${searchParams.carType}&page=${searchParams.page}`
   ).then((data) => data.cars);
+
+
   return (
     <div className="container">
       {!cars.length && <NoResult />}

@@ -36,7 +36,7 @@ type Props = {
 };
 
 const BookingForm = ({ carImage, startDate, endDate, carName,subtotal,deliveryFee,deposit }: Props) => {
-  const { form, onSubmit, applyPromo, loading, discountResponse,resetDiscount } = useBooking();
+  const { form, onSubmit, applyPromo, loading, discountResponse,resetDiscount ,discountValue, totalAmount} = useBooking({subtotal,deliveryFee,deposit});
   return (
 
       <Form {...form}>
@@ -439,6 +439,7 @@ const BookingForm = ({ carImage, startDate, endDate, carName,subtotal,deliveryFe
           </div>
                   {/* View section */}
       <ViewSection
+
       resetDiscount={resetDiscount}
         loading={loading}
         discountResponse={discountResponse}
@@ -452,6 +453,8 @@ const BookingForm = ({ carImage, startDate, endDate, carName,subtotal,deliveryFe
         deliveryFee={deliveryFee}
         deposit={deposit}
         subtotal={subtotal}
+        discountValue={discountValue as number | null}
+        totalAmount={totalAmount}
       />
           </div>
           <Button variant={'siteMain'} className="rounded-full ml-auto flex lg:hidden py-5 px-7 h-12" type="submit">Checkout <ArrowRight className="ml-2 w-4 h-4 "/></Button>

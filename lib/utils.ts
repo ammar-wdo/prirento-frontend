@@ -186,6 +186,15 @@ export const searchParamsGenerate = (searchParams:{[key:string]:string|string[] 
   return generatedSearchParams
 }
 
+export const calculateDiscount = (subtotal:number,type:'fixed'|'percentage',value:number)=>{
+  const val =
+    type === "fixed"
+      ? value
+      : (value * subtotal) / 100;
+
+      return val
+}
+
 
 
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { fetcher, poster } from "@/lib/utils";
+import { calculateDiscount, fetcher, poster } from "@/lib/utils";
 import { DISCOUNT_PROXY, GET_CAR } from "@/links";
 import { bookingSchema } from "@/schemas";
 import { DiscountResponse, ReturnedDiscount } from "@/types";
@@ -13,8 +13,13 @@ import { toast } from "sonner";
 import { z } from "zod";
 
 
+type Props = {
+  subtotal:number,
+  deliveryFee:number | null
+  deposit:number
 
-export const useBooking = () => {
+}
+export const useBooking = ({subtotal,deliveryFee,deposit}:Props) => {
   const searchParams = useSearchParams();
   const params = useParams();
 
@@ -25,6 +30,9 @@ export const useBooking = () => {
   const resetDiscount = ()=>{
     setDiscountResponse(null)
   }
+
+  const discountValue =discountResponse?.discount ?calculateDiscount(subtotal,discountResponse.discount.type,discountResponse.discount.value) : null
+  const totalAmount = subtotal + deposit + (deliveryFee || 0) - (discountValue || 0)
 
   const applyPromo = async (val: string) => {
     const body = {
@@ -92,5 +100,8 @@ export const useBooking = () => {
     console.log(values);
   }
 
-  return { form, onSubmit, applyPromo, discountResponse, loading ,resetDiscount};
+
+  
+
+  return { form, onSubmit, applyPromo, discountResponse, loading ,resetDiscount ,discountValue,totalAmount};
 };
