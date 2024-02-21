@@ -13,6 +13,7 @@ type Props = {
 const page = async ({ params, searchParams }: Props) => {
   const urlParams = searchParamsGenerate(searchParams);
 
+//fetch car availability
   const {
     availability,
     success: availableSuccess,
@@ -22,17 +23,19 @@ const page = async ({ params, searchParams }: Props) => {
     success: boolean;
     error?: string;
   }>(GET_CAR + "/" + params.carSlug + `/check?${urlParams}`);
+  console.log(availability)
 
+  // fetch car details
   const res = await fetcher<{
     car: SingleCarType;
     success: boolean;
     error?: string;
   }>(GET_CAR + "/" + params.carSlug);
 
-  if (!availableSuccess)
+  if (!availability.availability.isAvailable)
     return (
       <div className="flex items-center justify-center h-[calc(100vh-70px)]">
-        <ErrorComponent description={availableError as string} />
+        <ErrorComponent description={availability.availability.message as string} />
       </div>
     );
 
