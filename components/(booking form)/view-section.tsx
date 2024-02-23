@@ -7,6 +7,7 @@ import CarFixedValues from "./car-fixed-values";
 import { DiscountResponse } from "@/types";
 
 import KeyValue from "./key-value";
+import FinalPayment from "./final-payment";
 
 type Props = {
   discountValue: number | null;
@@ -22,6 +23,8 @@ type Props = {
   subtotal: number;
   deposit: number;
   totalAmount: number;
+  payLater: number;
+  payNow: number;
 };
 
 const ViewSection = ({
@@ -38,6 +41,8 @@ const ViewSection = ({
   deposit,
   subtotal,
   totalAmount,
+  payLater,
+  payNow,
 }: Props) => {
   return (
     <article className="border rounded-xl p-6 pb-8 self-start sticky top-8 order-1 sm:order-2">
@@ -71,14 +76,31 @@ const ViewSection = ({
         />
       </ViewItemsWrapper>
 
+      {/* discount value */}
       {!!discountValue && (
         <ViewItemsWrapper>
           <KeyValue title="Discount" description={`${discountValue} AED`} />
         </ViewItemsWrapper>
       )}
 
+      {/* total amount */}
       <ViewItemsWrapper>
         <KeyValue title="Total amount" description={`${totalAmount} AED`} />
+      </ViewItemsWrapper>
+
+      {/* pay now and later */}
+      <ViewItemsWrapper>
+        <FinalPayment
+          title="Pay now"
+          description={"Overall price that you will pay now via checkout"}
+          value={payNow}
+        />
+
+        <FinalPayment
+          title="Pay later"
+          description={"Overall price that you will pay at the rental company"}
+          value={payLater}
+        />
       </ViewItemsWrapper>
     </article>
   );

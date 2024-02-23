@@ -34,11 +34,19 @@ export const useBooking = ({subtotal,deliveryFee,deposit,fee}:Props) => {
     setDiscountResponse(null)
   }
 
-
+// calculate discount if any
   const discountValue =(discountResponse?.discount && !!fee) ?calculateDiscount(fee,discountResponse.discount.type,discountResponse.discount.value) : null
 
-  console.log(discountResponse)
+// calculate total amount
   const totalAmount = subtotal + deposit + (deliveryFee || 0) - (discountValue || 0)
+
+  //calculate pay now which is our percentage minuse discount if exists
+  const payNow = fee as number - (discountValue || 0)
+
+  //calculate the remaining value after substracting our the payNow value
+  const payLater = totalAmount - payNow
+
+
 
   const applyPromo = async (val: string) => {
     const body = {
@@ -126,5 +134,5 @@ export const useBooking = ({subtotal,deliveryFee,deposit,fee}:Props) => {
 
   
 
-  return { form, onSubmit, applyPromo, discountResponse, loading ,resetDiscount ,discountValue,totalAmount};
+  return { form, onSubmit, applyPromo, discountResponse, loading ,resetDiscount ,discountValue,totalAmount,payLater,payNow};
 };

@@ -55,6 +55,8 @@ const BookingForm = ({
     resetDiscount,
     discountValue,
     totalAmount,
+    payLater,
+    payNow
   } = useBooking({ subtotal, deliveryFee, deposit, fee });
 
   const isLoading = form.formState.isSubmitting;
@@ -490,6 +492,8 @@ const BookingForm = ({
             subtotal={subtotal}
             discountValue={discountValue as number | null}
             totalAmount={totalAmount}
+            payLater={payLater}
+            payNow={payNow}
           />
         </div>
         {<span>{JSON.stringify(form.formState.errors)}</span>}
