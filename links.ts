@@ -6,5 +6,7 @@ export const GET_CARS_BY_TYPE = MAIN_API + '/api/car-by-type'
 export const GET_CARS = MAIN_API + '/api/cars'
 export const GET_CAR = MAIN_API + '/api/car'
 export const GET_DISCOUNT = MAIN_API + '/api/car'
-export const DISCOUNT_PROXY = '/api/proxy'
+export const CHECK_DISCOINT_PROXY = '/api/proxy/discount'
+export const POST_BOOKING_PROXY = '/api/proxy/booking'
+export const POST_BOOKING = MAIN_API + '/api/booking'
 

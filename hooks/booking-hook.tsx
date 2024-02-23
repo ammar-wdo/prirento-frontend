@@ -1,7 +1,9 @@
 "use client";
 
 import { calculateDiscount, fetcher, poster } from "@/lib/utils";
-import { DISCOUNT_PROXY, GET_CAR } from "@/links";
+import { CHECK_DISCOINT_PROXY, POST_BOOKING_PROXY } from "@/links";
+
+
 import { bookingSchema } from "@/schemas";
 import { DiscountResponse, ReturnedDiscount } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -32,7 +34,10 @@ export const useBooking = ({subtotal,deliveryFee,deposit,fee}:Props) => {
     setDiscountResponse(null)
   }
 
+
   const discountValue =(discountResponse?.discount && !!fee) ?calculateDiscount(fee,discountResponse.discount.type,discountResponse.discount.value) : null
+
+  console.log(discountResponse)
   const totalAmount = subtotal + deposit + (deliveryFee || 0) - (discountValue || 0)
 
   const applyPromo = async (val: string) => {
@@ -46,7 +51,7 @@ export const useBooking = ({subtotal,deliveryFee,deposit,fee}:Props) => {
     };
 
     try {
-      console.log(process.env.API_SECRET);
+   
       setLoading(true);
 
       const res = await axios
@@ -54,7 +59,7 @@ export const useBooking = ({subtotal,deliveryFee,deposit,fee}:Props) => {
           success: boolean;
           error?: string;
           discount: ReturnedDiscount | null;
-        }>(DISCOUNT_PROXY, body)
+        }>(CHECK_DISCOINT_PROXY, body)
         .then((data) => data.data);
 
         setDiscountResponse(res)
@@ -68,6 +73,8 @@ export const useBooking = ({subtotal,deliveryFee,deposit,fee}:Props) => {
       setLoading(false);
     }
   };
+
+  
 
   const form = useForm<z.infer<typeof bookingSchema>>({
     resolver: zodResolver(bookingSchema),
@@ -93,12 +100,27 @@ export const useBooking = ({subtotal,deliveryFee,deposit,fee}:Props) => {
       endTime: searchParams.get("endTime") as string,
       terms: false,
       paymentMethod: "CREDIT_CARD",
+      pickupLocation:searchParams.get("location") as string,
+      dropoffLocation:searchParams.get("dropOffLocation") || "",
+      
     },
   });
 
-  function onSubmit(values: z.infer<typeof bookingSchema>) {
-    alert(JSON.stringify(values));
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof bookingSchema>) {
+   try {
+    const res = await axios.post<{url:string|undefined,success:boolean,error?:string}>(POST_BOOKING_PROXY,{values,params:params.carSlug,discountCode:discountResponse?.discount?.promocode || null}).then(data=>data.data)
+    console.log(res)
+    if(!res.success){
+      toast.error(res.error,{duration:10000})
+    }
+
+    else {
+      toast.success(res.url)
+    }
+   } catch (error) {
+    console.log(error)
+    toast.error("Something went wrong")
+   }
   }
 
 
