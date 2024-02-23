@@ -33,8 +33,8 @@ const page = async ({ params, searchParams }: Props) => {
   }>(GET_CAR + "/" + params.carSlug);
 
 
-  if(!res.success)  <div className="flex items-center justify-center h-[calc(100vh-70px)]">
-  <ErrorComponent description={res.error as string} />
+  if(!availableSuccess) return <div className="flex items-center justify-center h-[calc(100vh-70px)]">
+  <ErrorComponent description={availableError as string} />
 </div>
 
   if (!availability.availability.isAvailable)
