@@ -3,7 +3,6 @@
 import { calculateDiscount, fetcher, poster } from "@/lib/utils";
 import { CHECK_DISCOINT_PROXY, POST_BOOKING_PROXY } from "@/links";
 
-
 import { bookingSchema } from "@/schemas";
 import { DiscountResponse, ReturnedDiscount } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -15,58 +14,73 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
 
-
 type Props = {
-  subtotal:number,
-  deliveryFee:number | null
-  deposit:number
- fee:number | false
-
-}
-export const useBooking = ({subtotal,deliveryFee,deposit,fee}:Props) => {
+  subtotal: number;
+  deliveryFee: number | null;
+  deposit: number;
+  fee: number | false;
+};
+export const useBooking = ({ subtotal, deliveryFee, deposit, fee }: Props) => {
   const searchParams = useSearchParams();
   const params = useParams();
 
   const [loading, setLoading] = useState(false);
- 
-  const [discountResponse, setDiscountResponse] = useState<DiscountResponse>(null);
-  const [carExtraOptions, setCarExtraOptions] =useState <CarExtraOptions[]>([])
+
+  const [discountResponse, setDiscountResponse] =
+    useState<DiscountResponse>(null);
+  const [carExtraOptions, setCarExtraOptions] = useState<CarExtraOptions[]>([]);
 
   //handle click on extra option component
 
-  const handleExtraOptions = (clickedExtraOption:CarExtraOptions)=>{
-    if(!clickedExtraOption.id) return
-const options = carExtraOptions
+  const handleExtraOptions = (clickedExtraOption: CarExtraOptions) => {
+    if (!clickedExtraOption.id) return;
+    const options = carExtraOptions;
 
-if(!options.find(el=>el.id === clickedExtraOption.id)){
-return setCarExtraOptions(prev=>[...prev,clickedExtraOption])
-}
+    if (!options.find((el) => el.id === clickedExtraOption.id)) {
+      return setCarExtraOptions((prev) => [...prev, clickedExtraOption]);
+    }
 
-const newOptions = options.filter(el=>el.id !==clickedExtraOption.id)
-setCarExtraOptions(newOptions)
+    const newOptions = options.filter((el) => el.id !== clickedExtraOption.id);
+    setCarExtraOptions(newOptions);
+  };
 
-  }
+  //the ids of extra options
+  const carExtraOptionsIds = carExtraOptions.map((option) => option.id);
 
-  const carExtraOptionPrice = carExtraOptions.reduce((acc,val)=> val.price + acc,0)
+  // the price of all extra options
+  const carExtraOptionPrice = carExtraOptions.reduce(
+    (acc, val) => val.price + acc,
+    0
+  );
 
   // reset discount
-  const resetDiscount = ()=>{
-    setDiscountResponse(null)
-  }
+  const resetDiscount = () => {
+    setDiscountResponse(null);
+  };
 
-// calculate discount if any
-  const discountValue =(discountResponse?.discount && !!fee) ?calculateDiscount(fee,discountResponse.discount.type,discountResponse.discount.value) : null
+  // calculate discount if any
+  const discountValue =
+    discountResponse?.discount && !!fee
+      ? calculateDiscount(
+          fee,
+          discountResponse.discount.type,
+          discountResponse.discount.value
+        )
+      : null;
 
-// calculate total amount
-  const totalAmount = subtotal + deposit + (deliveryFee || 0) - (discountValue || 0) + carExtraOptionPrice
+  // calculate total amount
+  const totalAmount =
+    subtotal +
+    deposit +
+    (deliveryFee || 0) -
+    (discountValue || 0) +
+    carExtraOptionPrice;
 
   //calculate pay now which is our percentage minuse discount if exists
-  const payNow = fee as number - (discountValue || 0)
+  const payNow = (fee as number) - (discountValue || 0);
 
   //calculate the remaining value after substracting our the payNow value
-  const payLater = totalAmount - payNow
-
-
+  const payLater = totalAmount - payNow;
 
   const applyPromo = async (val: string) => {
     const body = {
@@ -79,7 +93,6 @@ setCarExtraOptions(newOptions)
     };
 
     try {
-   
       setLoading(true);
 
       const res = await axios
@@ -90,10 +103,7 @@ setCarExtraOptions(newOptions)
         }>(CHECK_DISCOINT_PROXY, body)
         .then((data) => data.data);
 
-        setDiscountResponse(res)
-
-   
-     
+      setDiscountResponse(res);
     } catch (error) {
       console.log("error", error);
       toast.error("Something went wrong");
@@ -101,8 +111,6 @@ setCarExtraOptions(newOptions)
       setLoading(false);
     }
   };
-
-  
 
   const form = useForm<z.infer<typeof bookingSchema>>({
     resolver: zodResolver(bookingSchema),
@@ -128,31 +136,48 @@ setCarExtraOptions(newOptions)
       endTime: searchParams.get("endTime") as string,
       terms: false,
       paymentMethod: "CREDIT_CARD",
-      pickupLocation:searchParams.get("location") as string,
-      dropoffLocation:searchParams.get("dropOffLocation") || "",
-      
+      pickupLocation: searchParams.get("location") as string,
+      dropoffLocation: searchParams.get("dropOffLocation") || "",
     },
   });
 
   async function onSubmit(values: z.infer<typeof bookingSchema>) {
-   try {
-    const res = await axios.post<{url:string|undefined,success:boolean,error?:string}>(POST_BOOKING_PROXY,{values,params:params.carSlug,discountCode:discountResponse?.discount?.promocode || null}).then(data=>data.data)
-    console.log(res)
-    if(!res.success){
-      toast.error(res.error,{duration:10000})
+    try {
+      const res = await axios
+        .post<{ url: string | undefined; success: boolean; error?: string }>(
+          POST_BOOKING_PROXY,
+          {
+            values,
+            params: params.carSlug,
+            discountCode: discountResponse?.discount?.promocode || null,
+            carExtraOptionsIds:carExtraOptionsIds.length ? carExtraOptionsIds : null
+          }
+        )
+        .then((data) => data.data);
+      console.log(res);
+      if (!res.success) {
+        toast.error(res.error, { duration: 10000 });
+      } else {
+        toast.success(res.url);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong");
     }
-
-    else {
-      toast.success(res.url)
-    }
-   } catch (error) {
-    console.log(error)
-    toast.error("Something went wrong")
-   }
   }
 
-
-  
-
-  return { form, onSubmit, applyPromo, discountResponse, loading ,resetDiscount ,discountValue,totalAmount,payLater,payNow,handleExtraOptions,carExtraOptions};
+  return {
+    form,
+    onSubmit,
+    applyPromo,
+    discountResponse,
+    loading,
+    resetDiscount,
+    discountValue,
+    totalAmount,
+    payLater,
+    payNow,
+    handleExtraOptions,
+    carExtraOptions,
+  };
 };

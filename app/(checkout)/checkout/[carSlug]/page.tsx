@@ -32,6 +32,11 @@ const page = async ({ params, searchParams }: Props) => {
     error?: string;
   }>(GET_CAR + "/" + params.carSlug);
 
+
+  if(!res.success)  <div className="flex items-center justify-center h-[calc(100vh-70px)]">
+  <ErrorComponent description={res.error as string} />
+</div>
+
   if (!availability.availability.isAvailable)
     return (
       <div className="flex items-center justify-center h-[calc(100vh-70px)]">
