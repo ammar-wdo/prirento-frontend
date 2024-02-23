@@ -49,6 +49,8 @@ const page = async ({ params, searchParams }: Props) => {
         deliveryFee={availability.deliveryFee}
         deposit={availability.deposit}
         subtotal={availability.price as number}
+        fee={availability.fee}
+        
       />
     </div>
   );

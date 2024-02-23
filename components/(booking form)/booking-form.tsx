@@ -33,10 +33,11 @@ type Props = {
   subtotal:number,
   deposit:number,
   deliveryFee:number | null
+fee:number | false
 };
 
-const BookingForm = ({ carImage, startDate, endDate, carName,subtotal,deliveryFee,deposit }: Props) => {
-  const { form, onSubmit, applyPromo, loading, discountResponse,resetDiscount ,discountValue, totalAmount} = useBooking({subtotal,deliveryFee,deposit});
+const BookingForm = ({ carImage, startDate, endDate, carName,subtotal,deliveryFee,deposit ,fee}: Props) => {
+  const { form, onSubmit, applyPromo, loading, discountResponse,resetDiscount ,discountValue, totalAmount} = useBooking({subtotal,deliveryFee,deposit,fee});
   return (
 
       <Form {...form}>

@@ -24,6 +24,8 @@ const CarsFeed = async ({ searchParams }: Props) => {
   const endDate = searchParams.endDate as string;
   const startTime = searchParams.startTime as string;
   const endTime = searchParams.endTime as string;
+  const location = searchParams.location as string
+  const dropOffLocation = searchParams.dropOffLocation as string
 
   const res = await fetcher<{
     availableCars: CarPublicType[];
@@ -59,6 +61,8 @@ const CarsFeed = async ({ searchParams }: Props) => {
             endDate={endDate}
             startTime={startTime}
             endTime={endTime}
+            pickupLocation={location}
+            dropOffLocation={dropOffLocation}
           />
         ))}
         {notAvailableCars.map((car, i) => (
@@ -71,6 +75,12 @@ const CarsFeed = async ({ searchParams }: Props) => {
               notAvailable={true}
               car={car}
               index={i + availableCars.length}
+              startDate={startDate}
+              endDate={endDate}
+              startTime={startTime}
+              endTime={endTime}
+              pickupLocation={location}
+              dropOffLocation={dropOffLocation}
             />
           </div>
         ))}

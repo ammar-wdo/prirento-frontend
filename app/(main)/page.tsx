@@ -10,6 +10,7 @@ import ReviewsComponent from "@/components/(reviews)/reviews-component";
 import SearchComponentServerWrapper from "@/components/(search-component)/seatch-component-server-wrapper";
 import TipsComponent from "@/components/(tips component)/tips-component";
 import Heading from "@/components/heading";
+import { searchParamsGenerate, setDefaultSearchParams } from "@/lib/utils";
 import { Suspense } from "react";
 
 type Props = {
@@ -21,6 +22,8 @@ export default function Home({ searchParams }: Props) {
   if (!searchParams.carType) {
     searchParams.carType = "super_cars";
   }
+
+setDefaultSearchParams(searchParams)
 
   return (
     <div className="">

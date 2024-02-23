@@ -9,20 +9,33 @@ import { carsMapper } from "@/mapper";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import qs from 'query-string'
+import qs from "query-string";
 
 type Props = {
   car: CarCardType | CarPublicType;
   index: number;
   notAvailable?: boolean;
   border?: boolean;
-  startDate?:string | undefined
-  endDate?:string | undefined
-  startTime?:string | undefined
-  endTime?:string | undefined
+  startDate?: string | undefined;
+  endDate?: string | undefined;
+  startTime?: string | undefined;
+  endTime?: string | undefined;
+  pickupLocation?: string;
+  dropOffLocation?: String;
 };
 
-const CarByTypeCard = ({ car, index, notAvailable, border,startDate,startTime,endDate,endTime }: Props) => {
+const CarByTypeCard = ({
+  car,
+  index,
+  notAvailable,
+  border,
+  startDate,
+  startTime,
+  endDate,
+  endTime,
+  pickupLocation,
+  dropOffLocation,
+}: Props) => {
   const fadeIn = {
     initial: {
       y: 20,
@@ -39,11 +52,16 @@ const CarByTypeCard = ({ car, index, notAvailable, border,startDate,startTime,en
   };
 
   const url = qs.stringifyUrl({
-    url:`${process.env.NEXT_PUBLIC_BASE_URL}/${car.slug}` as string,
-    query:{
-      startDate,endDate,startTime,endTime
-    }
-  })
+    url: `${process.env.NEXT_PUBLIC_BASE_URL}/${car.slug}` as string,
+    query: {
+      startDate,
+      endDate,
+      startTime,
+      endTime,
+      location: pickupLocation,
+      ...(!!dropOffLocation && {dropOffLocation:dropOffLocation as string})
+    },
+  });
 
   let price: number | null = null;
   if ("oneDayPrice" in car) {
@@ -56,6 +74,8 @@ const CarByTypeCard = ({ car, index, notAvailable, border,startDate,startTime,en
   if ("period" in car) {
     period = car?.period;
   }
+
+  console.log("startDate", startDate);
   return (
     <motion.div
       viewport={{ once: true }}
@@ -122,12 +142,19 @@ const CarByTypeCard = ({ car, index, notAvailable, border,startDate,startTime,en
                 icon={<CarFront className="w-4 h-4" />}
               />
             </section>
-              <Button asChild variant={"siteMain"} className={cn("w-full rounded-full",notAvailable && 'pointer-events-none cursor-not-allowed')}>
-            <Link href={url} className=" w-full">
-              {" "}
+            <Button
+              asChild
+              variant={"siteMain"}
+              className={cn(
+                "w-full rounded-full",
+                notAvailable && "pointer-events-none cursor-not-allowed"
+              )}
+            >
+              <Link href={url} className=" w-full">
+                {" "}
                 {notAvailable ? "Not Available" : "Book Now"}
-            </Link>
-              </Button>
+              </Link>
+            </Button>
           </div>
         </CardContent>
       </Card>

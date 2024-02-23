@@ -21,7 +21,12 @@ const CarsTypeFeed = async ({ searchParams }: Props) => {
       `?carType=${searchParams.carType}&page=${searchParams.page}`
   ).then((data) => data.cars);
 
-
+  const startDate = searchParams.startDate as string;
+  const endDate = searchParams.endDate as string;
+  const startTime = searchParams.startTime as string;
+  const endTime = searchParams.endTime as string;
+  const location = searchParams.location as string
+  const dropOffLocation = searchParams.dropOffLocation as string
   return (
     <div className="container">
       {!cars.length && <NoResult />}
@@ -30,7 +35,17 @@ const CarsTypeFeed = async ({ searchParams }: Props) => {
           <Scroller />
           <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 ">
             {cars.map((car, i) => (
-              <CarByTypeCard key={car.id} car={car} index={i} />
+              <CarByTypeCard
+                key={car.id}
+                car={car}
+                index={i}
+                startDate={startDate}
+                endDate={endDate}
+                startTime={startTime}
+                endTime={endTime}
+                pickupLocation={location}
+                dropOffLocation={dropOffLocation}
+              />
             ))}
           </div>
           <Button

@@ -17,9 +17,10 @@ type Props = {
   subtotal:number,
   deliveryFee:number | null
   deposit:number
+ fee:number | false
 
 }
-export const useBooking = ({subtotal,deliveryFee,deposit}:Props) => {
+export const useBooking = ({subtotal,deliveryFee,deposit,fee}:Props) => {
   const searchParams = useSearchParams();
   const params = useParams();
 
@@ -31,7 +32,7 @@ export const useBooking = ({subtotal,deliveryFee,deposit}:Props) => {
     setDiscountResponse(null)
   }
 
-  const discountValue =discountResponse?.discount ?calculateDiscount(subtotal,discountResponse.discount.type,discountResponse.discount.value) : null
+  const discountValue =(discountResponse?.discount && !!fee) ?calculateDiscount(fee,discountResponse.discount.type,discountResponse.discount.value) : null
   const totalAmount = subtotal + deposit + (deliveryFee || 0) - (discountValue || 0)
 
   const applyPromo = async (val: string) => {

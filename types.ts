@@ -61,6 +61,7 @@ export type CarAvailabilityType = {
   kmIncluded: number;
   deliveryFee: number | null;
   deposit: number;
+  fee:number | false,
   price: number | null;
   duration: string;
   startDate: Date;
