@@ -47,6 +47,9 @@ setCarExtraOptions(newOptions)
 
   }
 
+  const carExtraOptionPrice = carExtraOptions.reduce((acc,val)=> val.price + acc,0)
+
+  // reset discount
   const resetDiscount = ()=>{
     setDiscountResponse(null)
   }
@@ -55,7 +58,7 @@ setCarExtraOptions(newOptions)
   const discountValue =(discountResponse?.discount && !!fee) ?calculateDiscount(fee,discountResponse.discount.type,discountResponse.discount.value) : null
 
 // calculate total amount
-  const totalAmount = subtotal + deposit + (deliveryFee || 0) - (discountValue || 0)
+  const totalAmount = subtotal + deposit + (deliveryFee || 0) - (discountValue || 0) + carExtraOptionPrice
 
   //calculate pay now which is our percentage minuse discount if exists
   const payNow = fee as number - (discountValue || 0)

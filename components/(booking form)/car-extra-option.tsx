@@ -14,7 +14,7 @@ const CarExtraOption = ({ carExtraOption, active, handleClick }: Props) => {
   return (
     <div
       className={cn(
-        "p-4 rounded-md flex  items-center justify-between bg-muted cursor-pointer active:scale-[0.98] hover:opacity-80 transition",
+        "p-4 rounded-md flex  items-center justify-between bg-muted cursor-pointer active:scale-[0.99] hover:opacity-80 transition",
         active && "ring-2 ring-black"
       )}
       onClick={handleClick}

@@ -379,6 +379,7 @@ const BookingForm = ({
             {/* extra options */}
             {!!carExtraOptions.length && (
               <SectionWrapper title="extra options">
+                <h3>Choose many extra options</h3>
                 {carExtraOptions.map((el) => (
                   <CarExtraOption key={el.id} carExtraOption={el} handleClick={()=>{handleExtraOptions(el)}} active={!!carExtraOptionsState.find(option=>option.id===el.id)} />
                 ))}
@@ -493,6 +494,7 @@ const BookingForm = ({
 
           {/* View section */}
           <ViewSection
+          carExtraOptionsState={carExtraOptionsState}
             resetDiscount={resetDiscount}
             loading={loading}
             discountResponse={discountResponse}

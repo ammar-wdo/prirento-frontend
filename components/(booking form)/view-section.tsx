@@ -4,7 +4,7 @@ import ImageDateWrapper from "./image-date-wrapper";
 import PromocodeInput from "./promocode-input";
 import ViewItemsWrapper from "./view-items-wrapper";
 import CarFixedValues from "./car-fixed-values";
-import { DiscountResponse } from "@/types";
+import { CarExtraOptions, DiscountResponse } from "@/types";
 
 import KeyValue from "./key-value";
 import FinalPayment from "./final-payment";
@@ -25,6 +25,7 @@ type Props = {
   totalAmount: number;
   payLater: number;
   payNow: number;
+  carExtraOptionsState: CarExtraOptions[];
 };
 
 const ViewSection = ({
@@ -43,6 +44,7 @@ const ViewSection = ({
   totalAmount,
   payLater,
   payNow,
+  carExtraOptionsState,
 }: Props) => {
   return (
     <article className="border rounded-xl p-6 pb-8 self-start sticky top-8 order-1 sm:order-2">
@@ -75,6 +77,19 @@ const ViewSection = ({
           subtotal={subtotal}
         />
       </ViewItemsWrapper>
+
+      {/* car extra options */}
+      {!!carExtraOptionsState.length && (
+        <ViewItemsWrapper>
+          {carExtraOptionsState.map((option) => (
+            <KeyValue
+              key={option.id}
+              title={option.label}
+              description={`${option.price} AED`}
+            />
+          ))}
+        </ViewItemsWrapper>
+      )}
 
       {/* discount value */}
       {!!discountValue && (
