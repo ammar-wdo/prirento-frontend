@@ -9,6 +9,7 @@ import { DiscountResponse, ReturnedDiscount } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { useParams, useSearchParams } from "next/navigation";
+import { CarExtraOptions } from "@/types";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -29,6 +30,22 @@ export const useBooking = ({subtotal,deliveryFee,deposit,fee}:Props) => {
   const [loading, setLoading] = useState(false);
  
   const [discountResponse, setDiscountResponse] = useState<DiscountResponse>(null);
+  const [carExtraOptions, setCarExtraOptions] =useState <CarExtraOptions[]>([])
+
+  //handle click on extra option component
+
+  const handleExtraOptions = (clickedExtraOption:CarExtraOptions)=>{
+    if(!clickedExtraOption.id) return
+const options = carExtraOptions
+
+if(!options.find(el=>el.id === clickedExtraOption.id)){
+return setCarExtraOptions(prev=>[...prev,clickedExtraOption])
+}
+
+const newOptions = options.filter(el=>el.id !==clickedExtraOption.id)
+setCarExtraOptions(newOptions)
+
+  }
 
   const resetDiscount = ()=>{
     setDiscountResponse(null)
@@ -134,5 +151,5 @@ export const useBooking = ({subtotal,deliveryFee,deposit,fee}:Props) => {
 
   
 
-  return { form, onSubmit, applyPromo, discountResponse, loading ,resetDiscount ,discountValue,totalAmount,payLater,payNow};
+  return { form, onSubmit, applyPromo, discountResponse, loading ,resetDiscount ,discountValue,totalAmount,payLater,payNow,handleExtraOptions,carExtraOptions};
 };

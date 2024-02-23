@@ -42,6 +42,7 @@ const page = async ({ params, searchParams }: Props) => {
   return (
     <div className="pb-20">
       <BookingForm
+      carExtraOptions={availability.carExtraOptions}
         carImage={res.car.gallary[0]}
         startDate={availability.startDate}
         endDate={availability.endDate}

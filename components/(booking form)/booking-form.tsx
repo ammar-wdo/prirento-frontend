@@ -24,6 +24,8 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { ArrowRight, Check, Loader } from "lucide-react";
 import ViewSection from "./view-section";
+import { CarExtraOptions } from "@/types";
+import CarExtraOption from "./car-extra-option";
 
 type Props = {
   carImage: string;
@@ -34,6 +36,7 @@ type Props = {
   deposit: number;
   deliveryFee: number | null;
   fee: number | false;
+  carExtraOptions: CarExtraOptions[];
 };
 
 const BookingForm = ({
@@ -45,6 +48,7 @@ const BookingForm = ({
   deliveryFee,
   deposit,
   fee,
+  carExtraOptions,
 }: Props) => {
   const {
     form,
@@ -56,7 +60,9 @@ const BookingForm = ({
     discountValue,
     totalAmount,
     payLater,
-    payNow
+    payNow,
+    carExtraOptions:carExtraOptionsState,
+    handleExtraOptions
   } = useBooking({ subtotal, deliveryFee, deposit, fee });
 
   const isLoading = form.formState.isSubmitting;
@@ -370,8 +376,16 @@ const BookingForm = ({
               )}
             </SectionWrapper>
 
-            {/* pament methods */}
+            {/* extra options */}
+            {!!carExtraOptions.length && (
+              <SectionWrapper title="extra options">
+                {carExtraOptions.map((el) => (
+                  <CarExtraOption key={el.id} carExtraOption={el} handleClick={()=>{handleExtraOptions(el)}} active={!!carExtraOptionsState.find(option=>option.id===el.id)} />
+                ))}
+              </SectionWrapper>
+            )}
 
+            {/* pament methods */}
             <SectionWrapper title="Payment method">
               <div className="flex flex-col w-full gap-4">
                 <p>How would you like to pay?</p>
@@ -461,6 +475,7 @@ const BookingForm = ({
                 )}
               />
             </SectionWrapper>
+            {/* big screens submit button */}
             <Button
               disabled={isLoading}
               variant={"siteMain"}
@@ -475,6 +490,7 @@ const BookingForm = ({
               )}
             </Button>
           </div>
+
           {/* View section */}
           <ViewSection
             resetDiscount={resetDiscount}
@@ -497,6 +513,8 @@ const BookingForm = ({
           />
         </div>
         {<span>{JSON.stringify(form.formState.errors)}</span>}
+
+        {/* mobile submit button */}
         <Button
           disabled={isLoading}
           variant={"siteMain"}

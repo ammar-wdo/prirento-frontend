@@ -56,6 +56,18 @@ export type SingleCarType = {
 
 };
 
+export type CarExtraOptions = {
+  id: string;
+  label: string;
+  description: string;
+  price: number;
+  status: 'active' | 'pending';
+  logo: string;
+  carId: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
 export type CarAvailabilityType = {
   location: string;
   kmIncluded: number;
@@ -66,7 +78,8 @@ export type CarAvailabilityType = {
   duration: string;
   startDate: Date;
   endDate: Date;
-  slug:string
+  slug:string;
+  carExtraOptions:CarExtraOptions[]
   availability: {
     isAvailable: boolean;
     message: string;
