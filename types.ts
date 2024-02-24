@@ -105,6 +105,22 @@ export type CarAvailabilityType = {
   };
 };
 
+
+export type Blog ={
+  id: string;
+    title: string;
+    content: string;
+    slug: string;
+    tags: string[];
+    category:{label:string}
+    featuredImage: string;
+    categoryId: string;
+    author: string;
+    shortDescription: string;
+    createdAt: Date;
+    updatedUt: Date;
+}
+
 export type CarTypes =
   | "super_cars"
   | "sports"
