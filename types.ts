@@ -24,6 +24,7 @@ export type CarCardType = {
   oneDayPrice: number;
   companyLogo: string;
   slug: string;
+
 };
 
 export type CarPublicType = Omit<CarCardType, "oneDayPrice"> & {

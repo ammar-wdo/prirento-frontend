@@ -10,6 +10,7 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import qs from "query-string";
+import Image from "next/image";
 
 type Props = {
   car: CarCardType | CarPublicType;
@@ -93,17 +94,17 @@ const CarByTypeCard = ({
         <CardContent className="p-0 flex flex-col h-full">
           <CarCardSwiperComponent index={car.id} gallary={car.gallary} />
           <div className="p-4 mt-4 flex  flex-col flex-1">
-            <section className="flex justify-between">
-              <div className="flex flex-col gap-3 mb-3">
-                <h3 className="text-base capitalize font-medium">
+            <section className="flex justify-between mb-4">
+              <div className="flex flex-col gap-3 justify-between mb-3">
+                <h3 className="text-xl capitalize font-medium">
                   {car.carName}
                 </h3>
                 {!notAvailable && (
-                  <p>
-                    <span className="text-lg font-semibold">{price}</span>
-                    <sub className="text-muted-foreground ml-1 text-base">
+                  <p className="">
+                    <span className="text-xl font-bold">{price}</span>
+                    <span className="text-muted-foreground ml-1 text-sm">
                       AED /{period}
-                    </sub>
+                    </span>
                   </p>
                 )}
                 {car.slug && (
@@ -121,10 +122,22 @@ const CarByTypeCard = ({
                 )}
               </div>
 
-              <div></div>
+             
+<div className="flex flex-col items-center">
+  <span className="text-sm">Reviews</span>
+  
+  <span className="rounded-lg bg-secondaryGreen w-14 aspect-square flex items-center justify-center font-medium text-white">
+8.8
+  </span>
+  <div className="my-2 relative w-14  aspect-video ">
+  <Image src={car.companyLogo} fill alt="company logo " className="object-contain"/>
+  </div>
+</div>
+
+            
             </section>
 
-            <section className="flex items-center justify-center gap-8 p-3 mb-4 rounded-xl bg-gray-100 mt-auto">
+            <section className="flex items-center justify-center gap-10 p-3 mb-4 rounded-xl bg-gray-100 mt-auto">
               <CarFeaturesComponent
                 title={car.kmIncluded.toString()}
                 icon={<Gauge className="w-4 h-4" />}
