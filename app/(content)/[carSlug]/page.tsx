@@ -25,26 +25,26 @@ type Props = {
 const page = async ({ params, searchParams }: Props) => {
   setDefaultSearchParams(searchParams);
 
-
-  const res = await fetcher<{
+//fetch car's details
+  const carDetails = await fetcher<{
     car: SingleCarType;
     success: boolean;
     error?: string;
   }>(GET_CAR + "/" + params.carSlug);
 
-  if (!res.success)
+  if (!carDetails.success)
     return (
       <div className="min-h-[900px] flex items-center justify-center flex-col gap-3">
-        <ErrorComponent description={res.error!} />
+        <ErrorComponent description={carDetails.error!} />
         <Button>
           <Link href={`/`}>main page</Link>
         </Button>
       </div>
     );
 
-    if(!res.car) notFound()
+    if(!carDetails.car) notFound()
 
-  const car = res.car;
+  const car = carDetails.car;
 
   return (
     <div>

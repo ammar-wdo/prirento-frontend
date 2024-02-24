@@ -14,54 +14,50 @@ const page = async ({ params, searchParams }: Props) => {
   const urlParams = searchParamsGenerate(searchParams);
 
 //fetch car availability
-  const {
-    availability,
-    success: availableSuccess,
-    error: availableError,
-  } = await fetcher<{
-    availability: CarAvailabilityType;
+  const carAvailability = await fetcher<{
+    data: CarAvailabilityType;
     success: boolean;
     error?: string;
   }>(GET_CAR + "/" + params.carSlug + `/check?${urlParams}`);
-  console.log(availability)
+
 
   // fetch car details
-  const res = await fetcher<{
+  const carDetails = await fetcher<{
     car: SingleCarType;
     success: boolean;
     error?: string;
   }>(GET_CAR + "/" + params.carSlug);
 
-  if(!res.success) return <div className="flex items-center justify-center h-[calc(100vh-70px)]">
-  <ErrorComponent description={res.error as string} />
+  if(!carDetails.success) return <div className="flex items-center justify-center h-[calc(100vh-70px)]">
+  <ErrorComponent description={carDetails.error as string} />
 </div>
 
 
-  if(!availableSuccess) return <div className="flex items-center justify-center h-[calc(100vh-70px)]">
-  <ErrorComponent description={availableError as string} />
+  if(!carAvailability.success) return <div className="flex items-center justify-center h-[calc(100vh-70px)]">
+  <ErrorComponent description={carAvailability.error as string} />
 </div>
 
-  if (!availability.availability.isAvailable)
+  if (!carAvailability.data.availability.isAvailable)
     return (
       <div className="flex items-center justify-center h-[calc(100vh-70px)]">
-        <ErrorComponent description={availability.availability.message as string} />
+        <ErrorComponent description={carAvailability.data.availability.message as string} />
       </div>
     );
 
   return (
     <div className="pb-20">
       <BookingForm
-      optionalSuperAdminRules = {availability.optionalSuperAdminRules}
-      mandatorySuperAdminRules={availability.mandatorySuperAdminRules}
-      carExtraOptions={availability.carExtraOptions}
-        carImage={res.car.gallary[0]}
-        startDate={availability.startDate}
-        endDate={availability.endDate}
-        carName={res.car.carName}
-        deliveryFee={availability.deliveryFee}
-        deposit={availability.deposit}
-        subtotal={availability.price as number}
-        fee={availability.fee}
+      optionalSuperAdminRules = {carAvailability.data.optionalSuperAdminRules}
+      mandatorySuperAdminRules={carAvailability.data.mandatorySuperAdminRules}
+      carExtraOptions={carAvailability.data.carExtraOptions}
+        carImage={carDetails.car.gallary[0]}
+        startDate={carAvailability.data.startDate}
+        endDate={carAvailability.data.endDate}
+        carName={carDetails.car.carName}
+        deliveryFee={carAvailability.data.deliveryFee}
+        deposit={carAvailability.data.deposit}
+        subtotal={carAvailability.data.price as number}
+        fee={carAvailability.data.fee}
         
       />
     </div>

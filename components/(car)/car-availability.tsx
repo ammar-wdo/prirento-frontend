@@ -28,12 +28,12 @@ const CarAvailability = async ({ searchParams, params }: Props) => {
 
 
   const {
-   availability,
+   data,
     success,
     error
     
   } = await fetcher<{
-    availability: CarAvailabilityType;
+    data: CarAvailabilityType;
     success: boolean;
     error?: string;
   }>(GET_CAR + "/" + params.carSlug + `/check?${urlParams}`);
@@ -49,7 +49,7 @@ const CarAvailability = async ({ searchParams, params }: Props) => {
   kmIncluded,
   location,
   price,
-  startDate} = availability
+  startDate} = data
 
   const availabilityStart = new Date(startDate);
   const availabilityEnd = new Date(endDate);
