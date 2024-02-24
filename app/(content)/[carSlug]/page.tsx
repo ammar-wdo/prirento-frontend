@@ -14,6 +14,7 @@ import {
 import { GET_CAR } from "@/links";
 import { SingleCarType } from "@/types";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import React, { Suspense } from "react";
 
 type Props = {
@@ -36,10 +37,12 @@ const page = async ({ params, searchParams }: Props) => {
       <div className="min-h-[900px] flex items-center justify-center flex-col gap-3">
         <ErrorComponent description={res.error!} />
         <Button>
-          <Link href={`/${params.carSlug}`}>Refresh</Link>
+          <Link href={`/`}>main page</Link>
         </Button>
       </div>
     );
+
+    if(!res.car) notFound()
 
   const car = res.car;
 
