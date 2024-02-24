@@ -79,7 +79,7 @@ export const useBooking = ({ subtotal, deliveryFee, deposit, fee }: Props) => {
   //calculate pay now which is our percentage minuse discount if exists
   const payNow = (fee as number) - (discountValue || 0);
 
-  //calculate the remaining value after substracting our the payNow value
+  //calculate the remaining value after substracting our value (the payNow value)
   const payLater = totalAmount - payNow;
 
   const applyPromo = async (val: string) => {
