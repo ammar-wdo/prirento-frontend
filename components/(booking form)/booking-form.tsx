@@ -24,8 +24,9 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { ArrowRight, Check, Loader } from "lucide-react";
 import ViewSection from "./view-section";
-import { CarExtraOptions } from "@/types";
+import { CarExtraOptions, CarSuperAdminRule } from "@/types";
 import CarExtraOption from "./car-extra-option";
+import SuperadminRule from "./superadmin-rule";
 
 type Props = {
   carImage: string;
@@ -37,6 +38,8 @@ type Props = {
   deliveryFee: number | null;
   fee: number | false;
   carExtraOptions: CarExtraOptions[];
+  mandatorySuperAdminRules: CarSuperAdminRule[];
+  optionalSuperAdminRules: CarSuperAdminRule[];
 };
 
 const BookingForm = ({
@@ -49,6 +52,8 @@ const BookingForm = ({
   deposit,
   fee,
   carExtraOptions,
+  mandatorySuperAdminRules,
+  optionalSuperAdminRules,
 }: Props) => {
   const {
     form,
@@ -61,9 +66,17 @@ const BookingForm = ({
     totalAmount,
     payLater,
     payNow,
-    carExtraOptions:carExtraOptionsState,
-    handleExtraOptions
-  } = useBooking({ subtotal, deliveryFee, deposit, fee });
+    carExtraOptions: carExtraOptionsState,
+    handleExtraOptions,
+    handleOptionalSuperAdminRule,
+    optionalSuperAdminRules :optionalSuperAdminRulesState
+  } = useBooking({
+    subtotal,
+    deliveryFee,
+    deposit,
+    fee,
+    mandatorySuperAdminRules,
+  });
 
   const isLoading = form.formState.isSubmitting;
   return (
@@ -377,12 +390,35 @@ const BookingForm = ({
             </SectionWrapper>
 
             {/* extra options */}
-            {!!carExtraOptions.length && (
+            {(!!carExtraOptions.length || !!optionalSuperAdminRules.length) && (
               <SectionWrapper title="extra options">
                 <h3>Choose many extra options</h3>
-                {carExtraOptions.map((el) => (
-                  <CarExtraOption key={el.id} carExtraOption={el} handleClick={()=>{handleExtraOptions(el)}} active={!!carExtraOptionsState.find(option=>option.id===el.id)} />
-                ))}
+               
+                {!!carExtraOptions.length &&
+                  carExtraOptions.map((el) => (
+                    <CarExtraOption
+                      key={el.id}
+                      carExtraOption={el}
+                      handleClick={() => {
+                        handleExtraOptions(el);
+                      }}
+                      active={
+                        !!carExtraOptionsState.find(
+                          (option) => option.id === el.id
+                        )
+                      }
+                    />
+                  ))}
+
+                {!!optionalSuperAdminRules.length &&
+                  optionalSuperAdminRules.map((el) => (
+                    <SuperadminRule
+                      active={!!optionalSuperAdminRulesState.find(element=>element.id === el.id)}
+                      handleClick={() => handleOptionalSuperAdminRule(el)}
+                      key={el.id}
+                      superAdminRule={el}
+                    />
+                  ))}
               </SectionWrapper>
             )}
 
@@ -494,7 +530,8 @@ const BookingForm = ({
 
           {/* View section */}
           <ViewSection
-          carExtraOptionsState={carExtraOptionsState}
+            mandatorySuperAdminRules={mandatorySuperAdminRules}
+            carExtraOptionsState={carExtraOptionsState}
             resetDiscount={resetDiscount}
             loading={loading}
             discountResponse={discountResponse}

@@ -4,10 +4,12 @@ import ImageDateWrapper from "./image-date-wrapper";
 import PromocodeInput from "./promocode-input";
 import ViewItemsWrapper from "./view-items-wrapper";
 import CarFixedValues from "./car-fixed-values";
-import { CarExtraOptions, DiscountResponse } from "@/types";
+import { CarExtraOptions, CarSuperAdminRule, DiscountResponse } from "@/types";
 
 import KeyValue from "./key-value";
 import FinalPayment from "./final-payment";
+import InfoAnimator from "../(car)/info-animator";
+
 
 type Props = {
   discountValue: number | null;
@@ -26,6 +28,7 @@ type Props = {
   payLater: number;
   payNow: number;
   carExtraOptionsState: CarExtraOptions[];
+  mandatorySuperAdminRules:CarSuperAdminRule[]
 };
 
 const ViewSection = ({
@@ -45,6 +48,7 @@ const ViewSection = ({
   payLater,
   payNow,
   carExtraOptionsState,
+  mandatorySuperAdminRules
 }: Props) => {
   return (
     <article className="border rounded-xl p-6 pb-8 self-start sticky top-8 order-1 sm:order-2">
@@ -77,16 +81,29 @@ const ViewSection = ({
           subtotal={subtotal}
         />
       </ViewItemsWrapper>
+      {/* mandatory super admin rules */}
+      {!!mandatorySuperAdminRules.length &&  <ViewItemsWrapper>
+          {mandatorySuperAdminRules.map((rules) => (
+          
+              <KeyValue
+              key={rules.id}
+                title={rules.label}
+                description={`${rules.value} AED or %`}
+              />
+       
+          ))}
+        </ViewItemsWrapper> }
 
       {/* car extra options */}
-      {!!carExtraOptionsState.length && (
+      {!!carExtraOptionsState.length  && (
         <ViewItemsWrapper>
           {carExtraOptionsState.map((option) => (
-            <KeyValue
-              key={option.id}
-              title={option.label}
-              description={`${option.price} AED`}
-            />
+            <InfoAnimator key={option.id}>
+              <KeyValue
+                title={option.label}
+                description={`${option.price} AED`}
+              />
+            </InfoAnimator>
           ))}
         </ViewItemsWrapper>
       )}

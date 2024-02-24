@@ -68,6 +68,19 @@ export type CarExtraOptions = {
   updatedAt: Date;
 }
 
+export type CarSuperAdminRule = {
+  id: string;
+  label: string;
+  description: string;
+  type: 'fixed' | 'percentage';
+  value: number;
+  mandatory: boolean;
+  applyToAll: boolean;
+  carId: string | null;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
 export type CarAvailabilityType = {
   location: string;
   kmIncluded: number;
@@ -79,7 +92,10 @@ export type CarAvailabilityType = {
   startDate: Date;
   endDate: Date;
   slug:string;
-  carExtraOptions:CarExtraOptions[]
+  carExtraOptions:CarExtraOptions[],
+  mandatorySuperAdminRules:CarSuperAdminRule[],
+  optionalSuperAdminRules:CarSuperAdminRule[]
+
   availability: {
     isAvailable: boolean;
     message: string;

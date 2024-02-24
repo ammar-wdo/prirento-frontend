@@ -32,6 +32,10 @@ const page = async ({ params, searchParams }: Props) => {
     error?: string;
   }>(GET_CAR + "/" + params.carSlug);
 
+  if(!res.success) return <div className="flex items-center justify-center h-[calc(100vh-70px)]">
+  <ErrorComponent description={res.error as string} />
+</div>
+
 
   if(!availableSuccess) return <div className="flex items-center justify-center h-[calc(100vh-70px)]">
   <ErrorComponent description={availableError as string} />
@@ -47,6 +51,8 @@ const page = async ({ params, searchParams }: Props) => {
   return (
     <div className="pb-20">
       <BookingForm
+      optionalSuperAdminRules = {availability.optionalSuperAdminRules}
+      mandatorySuperAdminRules={availability.mandatorySuperAdminRules}
       carExtraOptions={availability.carExtraOptions}
         carImage={res.car.gallary[0]}
         startDate={availability.startDate}

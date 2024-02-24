@@ -4,7 +4,7 @@ import { calculateDiscount, fetcher, poster } from "@/lib/utils";
 import { CHECK_DISCOINT_PROXY, POST_BOOKING_PROXY } from "@/links";
 
 import { bookingSchema } from "@/schemas";
-import { DiscountResponse, ReturnedDiscount } from "@/types";
+import { CarSuperAdminRule, DiscountResponse, ReturnedDiscount } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { useParams, useSearchParams } from "next/navigation";
@@ -14,13 +14,15 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
 
+
 type Props = {
   subtotal: number;
   deliveryFee: number | null;
   deposit: number;
   fee: number | false;
+  mandatorySuperAdminRules: CarSuperAdminRule[]
 };
-export const useBooking = ({ subtotal, deliveryFee, deposit, fee }: Props) => {
+export const useBooking = ({ subtotal, deliveryFee, deposit, fee ,mandatorySuperAdminRules }: Props) => {
   const searchParams = useSearchParams();
   const params = useParams();
 
@@ -30,8 +32,9 @@ export const useBooking = ({ subtotal, deliveryFee, deposit, fee }: Props) => {
     useState<DiscountResponse>(null);
   const [carExtraOptions, setCarExtraOptions] = useState<CarExtraOptions[]>([]);
 
-  //handle click on extra option component
+  const [optionalSuperAdminRules, setOptionalSuperAdminRues] = useState<CarSuperAdminRule[]>([])
 
+  //handle click on extra option component
   const handleExtraOptions = (clickedExtraOption: CarExtraOptions) => {
     if (!clickedExtraOption.id) return;
     const options = carExtraOptions;
@@ -44,14 +47,31 @@ export const useBooking = ({ subtotal, deliveryFee, deposit, fee }: Props) => {
     setCarExtraOptions(newOptions);
   };
 
-  //the ids of extra options
-  const carExtraOptionsIds = carExtraOptions.map((option) => option.id);
+    //the ids of extra options
+    const carExtraOptionsIds = carExtraOptions.map((option) => option.id);
 
-  // the price of all extra options
-  const carExtraOptionPrice = carExtraOptions.reduce(
-    (acc, val) => val.price + acc,
-    0
-  );
+    // the price of all extra options
+    const carExtraOptionPrice = carExtraOptions.reduce(
+      (acc, val) => val.price + acc,
+      0
+    );
+
+  //handle click on optional super admin  rule
+
+  const handleOptionalSuperAdminRule = (rule:CarSuperAdminRule)=>{
+    if(!rule.id) return
+    if(!optionalSuperAdminRules.find(el=>el.id === rule.id))
+    return setOptionalSuperAdminRues(prev=>[...prev,rule])
+
+    const newOptionalRules = optionalSuperAdminRules.filter(el=>el.id !==rule.id)
+    setOptionalSuperAdminRues(newOptionalRules)
+
+  }
+
+  //the ids of optional super admin rules
+  const optionalSuperAdminRulesIds = optionalSuperAdminRules.map(rule=>rule.id)
+
+
 
   // reset discount
   const resetDiscount = () => {
@@ -82,6 +102,9 @@ export const useBooking = ({ subtotal, deliveryFee, deposit, fee }: Props) => {
   //calculate the remaining value after substracting our value (the payNow value)
   const payLater = totalAmount - payNow;
 
+
+
+// apply promocode function
   const applyPromo = async (val: string) => {
     const body = {
       startDate: searchParams.get("startDate"),
@@ -112,6 +135,8 @@ export const useBooking = ({ subtotal, deliveryFee, deposit, fee }: Props) => {
     }
   };
 
+
+//form definition
   const form = useForm<z.infer<typeof bookingSchema>>({
     resolver: zodResolver(bookingSchema),
     defaultValues: {
@@ -150,7 +175,8 @@ export const useBooking = ({ subtotal, deliveryFee, deposit, fee }: Props) => {
             values,
             params: params.carSlug,
             discountCode: discountResponse?.discount?.promocode || null,
-            carExtraOptionsIds:carExtraOptionsIds.length ? carExtraOptionsIds : null
+            carExtraOptionsIds:!!carExtraOptionsIds.length ? carExtraOptionsIds : null,
+            optionalSuperAdminRulesIds:!!optionalSuperAdminRulesIds.length ? optionalSuperAdminRulesIds : null
           }
         )
         .then((data) => data.data);
@@ -179,5 +205,7 @@ export const useBooking = ({ subtotal, deliveryFee, deposit, fee }: Props) => {
     payNow,
     handleExtraOptions,
     carExtraOptions,
+    handleOptionalSuperAdminRule,
+    optionalSuperAdminRules
   };
 };
