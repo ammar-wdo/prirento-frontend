@@ -8,12 +8,12 @@ type Props = {
 
 const FinalPayment = ({title,description,value}: Props) => {
   return (
-    <div className='flex justify-between'>
+    <div className='flex justify-between gap-4'>
     <div className=''>
         <p className='font-medium text-lg capitalize'>{title}</p>
         <p className='first-letter:capitalize text-muted-foreground text-xs'>{description}</p>
     </div>
-    <p className='text-3xl font-bold'>{value} AED</p>
+    <p className='lg:text-3xl font-bold text-lg shrink-0'>{value} AED</p>
     </div>
   )
 }

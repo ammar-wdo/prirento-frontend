@@ -532,6 +532,7 @@ const BookingForm = ({
           <ViewSection
             mandatorySuperAdminRules={mandatorySuperAdminRules}
             carExtraOptionsState={carExtraOptionsState}
+            optionalSuperAdminRulesState={optionalSuperAdminRulesState}
             resetDiscount={resetDiscount}
             loading={loading}
             discountResponse={discountResponse}

@@ -29,6 +29,7 @@ type Props = {
   payNow: number;
   carExtraOptionsState: CarExtraOptions[];
   mandatorySuperAdminRules:CarSuperAdminRule[]
+  optionalSuperAdminRulesState:CarSuperAdminRule[]
 };
 
 const ViewSection = ({
@@ -48,7 +49,8 @@ const ViewSection = ({
   payLater,
   payNow,
   carExtraOptionsState,
-  mandatorySuperAdminRules
+  mandatorySuperAdminRules,
+  optionalSuperAdminRulesState
 }: Props) => {
   return (
     <article className="border rounded-xl p-6 pb-8 self-start sticky top-8 order-1 sm:order-2">
@@ -95,13 +97,21 @@ const ViewSection = ({
         </ViewItemsWrapper> }
 
       {/* car extra options */}
-      {!!carExtraOptionsState.length  && (
+      {(!!carExtraOptionsState.length || !!optionalSuperAdminRulesState.length)  && (
         <ViewItemsWrapper>
-          {carExtraOptionsState.map((option) => (
+          {!!carExtraOptionsState.length && carExtraOptionsState.map((option) => (
             <InfoAnimator key={option.id}>
               <KeyValue
                 title={option.label}
                 description={`${option.price} AED`}
+              />
+            </InfoAnimator>
+          ))}
+          {!!optionalSuperAdminRulesState.length && optionalSuperAdminRulesState.map((rule) => (
+            <InfoAnimator key={rule.id}>
+              <KeyValue
+                title={rule.label}
+                description={`${rule.value} AED or %`}
               />
             </InfoAnimator>
           ))}
