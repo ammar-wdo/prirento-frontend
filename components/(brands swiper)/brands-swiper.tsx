@@ -38,11 +38,11 @@ const BrandsSwiper = ({ brands }: Props) => {
         autoplay={{ delay: 2500, disableOnInteraction: false }}
         breakpoints={{
           200: {
-            slidesPerView: 2,
+            slidesPerView: 3,
             spaceBetween: 20,
           },
           768: {
-            slidesPerView: 3,
+            slidesPerView: 4,
             spaceBetween: 30,
           },
           1024: {
@@ -67,11 +67,11 @@ const BrandsSwiper = ({ brands }: Props) => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className="relative container -mt-16 z-10">
-        <button className="custom-swiper-button-prev absolute left-1 cursor-pointer flex items-center justify-center w-8 h-8 rounded-full hover:bg-secondaryGreen hover:text-white transition shadow-md text-secondaryGreen">
+      <div className="relative container -mt-16 z-10 sm:block hidden">
+        <button className="custom-swiper-button-prev absolute left-1 cursor-pointer flex items-center justify-center w-8 h-8 rounded-full hover:bg-secondaryGreen hover:text-white bg-white transition shadow-md text-secondaryGreen">
           <ChevronLeft />{" "}
         </button>
-        <button className="custom-swiper-button-next absolute right-1 cursor-pointer flex items-center justify-center w-8 h-8 rounded-full hover:bg-secondaryGreen hover:text-white transition shadow-md text-secondaryGreen">
+        <button className="custom-swiper-button-next absolute right-1 cursor-pointer flex items-center justify-center w-8 h-8 rounded-full hover:bg-secondaryGreen hover:text-white bg-white transition shadow-md text-secondaryGreen">
           {" "}
           <ChevronRight />{" "}
         </button>
