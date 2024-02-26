@@ -52,7 +52,7 @@ const page = async (props: Props) => {
         <h3 className="capitalize font-semibold txt-xl mt-12">
                 Contact us
         </h3>
-        <p className="mt-4 max-w-[1100px] font-light">If you have any further questions or require additional assistance not covered in our FAQs, please don't hesitate to reach out to our dedicated customer service team. We're here to help!</p>
+        <p className="mt-4 max-w-[1100px] font-light">If you have any further questions or require additional assistance not covered in our FAQs, please don&apos;t hesitate to reach out to our dedicated customer service team. We're here to help!</p>
 
         <Button asChild variant={'siteMain'} className="rounded-full w-[200px] mx-auto mt-8"><Link href={'/contact-us'} className="flex items-center gap-3">Contact Us <ArrowRight className=""/></Link></Button>
       </section>
