@@ -84,3 +84,7 @@
 .swiper-pagination {
   bottom:-0 !important; /* or any value you prefer */
 }
+
+.tiptap {
+  padding-inline: 0 !important;
+}

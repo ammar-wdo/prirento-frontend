@@ -10,4 +10,5 @@ export const CHECK_DISCOINT_PROXY = '/api/proxy/discount'
 export const POST_BOOKING_PROXY = '/api/proxy/booking'
 export const POST_BOOKING = MAIN_API + '/api/booking'
 export const GET_BLOGS = MAIN_API + '/api/blogs'
+export const GET_BLOG = MAIN_API + '/api/blogs'
 

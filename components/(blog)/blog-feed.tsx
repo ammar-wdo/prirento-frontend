@@ -1,6 +1,6 @@
 import { fetcher } from "@/lib/utils";
 import { GET_BLOGS } from "@/links";
-import { Blog } from "@/types";
+import { Blog, BlogCardType } from "@/types";
 import React from "react";
 import ErrorComponent from "../error-component";
 import NoResult from "../no-result";
@@ -14,7 +14,7 @@ const BlogFeed = async (props: Props) => {
   const res = await fetcher<{
     success: boolean;
     error?: string;
-    blogs: Blog[];
+    blogs: BlogCardType[];
   }>(GET_BLOGS);
 
   if (!res.success)

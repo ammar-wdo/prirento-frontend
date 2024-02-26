@@ -106,6 +106,8 @@ export type CarAvailabilityType = {
 };
 
 
+
+
 export type Blog ={
   id: string;
     title: string;
@@ -120,6 +122,8 @@ export type Blog ={
     createdAt: Date;
     updatedUt: Date;
 }
+
+export type BlogCardType = Omit<Blog,'content'>
 
 export type CarTypes =
   | "super_cars"
