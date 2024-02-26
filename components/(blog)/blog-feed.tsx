@@ -26,7 +26,7 @@ const BlogFeed = async (props: Props) => {
 
   const { blogs } = res;
 
-  console.log("blogs", blogs);
+
   return (
     <div>
       {!blogs.length && <NoResult />}

@@ -106,7 +106,15 @@ export type CarAvailabilityType = {
 };
 
 
+export type AboutType = {
+  content:string
+}
 
+export type Faq  ={
+  id:string,
+  question:string,
+  answer:string
+}
 
 export type Blog ={
   id: string;
