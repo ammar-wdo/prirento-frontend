@@ -30,9 +30,10 @@ const page = async (props: Props) => {
       <ContentBanner title="About us" />
 
       <section className="mt-12 ">
-        <h1 className="text-5xl font-semibold my-4">About us</h1>
+      <h1 className="text-5xl font-semibold my-4 container">About us</h1>
         {/* Content */}
-        <div className="container">
+        <div className="container mt-12">
+    
         <Editor initialContent={about.content} />
         </div>
      
