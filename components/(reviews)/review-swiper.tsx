@@ -6,7 +6,7 @@ import "swiper/css"; // Basic Swiper styles
 import "swiper/css/navigation"; // Navigation module styles
 import "swiper/css/pagination"; // Pagination module styles
 
-import { Navigation, Pagination } from "swiper/modules";
+import { Navigation } from "swiper/modules";
 
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -73,7 +73,7 @@ const ReviewSwiper = (props: Props) => {
     viewport={{ once: true }}
     >
       <Swiper
-        modules={[Navigation, Pagination]}
+        modules={[Navigation]}
         style={{ padding: 20 }}
         slidesPerView={1}
         className="mt-12  max-w-[1300px] "
@@ -82,9 +82,7 @@ const ReviewSwiper = (props: Props) => {
           nextEl: `.custom-swiper-reivew-next`,
           prevEl: `.custom-swiper-review-back`,
         }}
-        pagination={{
-          clickable: true,
-        }}
+      
         breakpoints={{
           640: {
             slidesPerView: 1,
