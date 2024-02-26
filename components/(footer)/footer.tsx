@@ -29,24 +29,7 @@ const Footer = (props: Props) => {
         },
       ],
     },
-    {
-      title: "Support",
-      elements: [
-        {
-          title: "Getting started",
-          href: "/getting-started",
-        },
-        {
-          title: "Help center",
-          href: "/help-center",
-        },
 
-        {
-          title: "Chat support",
-          href: "/chat-support",
-        },
-      ],
-    },
     {
       title: "Contact us",
       elements: [
@@ -76,7 +59,7 @@ const Footer = (props: Props) => {
   ];
   return (
     <div className="bg-main">
-      <section className=" p-6 py-20  text-white grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-20 container">
+      <section className=" p-6 py-20  text-white grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3   gap-20 container">
         <article className="flex flex-col gap-4">
           <div className="relative w-[150px] aspect-video">
             <Image

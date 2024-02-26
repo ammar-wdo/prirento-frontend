@@ -7,7 +7,7 @@ type Props = {};
 const page = (props: Props) => {
   return (
     <div className="pb-12">
-      <ContentBanner title="Contant Us" />
+      <ContentBanner title="Contact Us" />
 
       <section className="mt-20 container min-h-[1000px]">
         <h1 className="text-4xl font-semibold mt-4">Get in touch</h1>

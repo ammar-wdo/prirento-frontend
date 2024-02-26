@@ -105,7 +105,7 @@ const ContactForm = (props: Props) => {
         )}
       />
    
-      <Button disabled={isLoading} className="w-full rounded-full" variant={'siteMain'} type="submit">Submit {isLoading && <Loader className="bl-3 w-3 h-3 animate-spin ml-3"/>}</Button>
+      <Button disabled={isLoading} className="w-full rounded-full py-6" variant={'siteMain'} type="submit">Submit {isLoading && <Loader className="bl-3 w-3 h-3 animate-spin ml-3"/>}</Button>
     </form>
   </Form>
   )
