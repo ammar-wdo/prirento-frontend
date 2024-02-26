@@ -24,7 +24,7 @@ const TimePickerComponent = ({ open, setOpen, time, setTime }: Props) => {
        <Clock className="w-4 h-4 mr-2 shrink-0"/> {time || "Time"}
       </PopoverTrigger>
       <PopoverContent className="w-fit ">
-        <ScrollArea className="w-fit h-[400px]">
+        <ScrollArea className="w-fit h-[200px]">
           <div className="w-fit flex items-center flex-col px-4">
             {times.map((time) => (
               <Button
