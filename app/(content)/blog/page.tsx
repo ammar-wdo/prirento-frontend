@@ -9,7 +9,7 @@ const page = (props: Props) => {
     <div className='min-h-[900px] '>
 <ContentBanner title='Blog'/>
 <section className='container mt-12'>
-  <h3 className='font-semibold capitalize'>Latest Blogs</h3>
+  <h1 className='font-semibold capitalize'>Latest Blogs</h1>
 
 
 <div className='mt-4'>

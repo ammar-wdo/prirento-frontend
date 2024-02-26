@@ -96,3 +96,12 @@ export const bookingSchema = z
       path: ["endTime"],
     }
   )
+
+
+  export const contactSchema = z.object({
+    firstName:requiredString,
+    lastName:requiredString,
+    email:requiredString.email('Invalid email address'),
+    subject:z.string().optional(),
+    message:requiredString
+  })
