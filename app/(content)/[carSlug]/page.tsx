@@ -3,6 +3,7 @@ import CarAvailability from "@/components/(car)/car-availability";
 import CarFeed from "@/components/(car)/car-feed";
 import SearchComponentServerWrapper from "@/components/(search-component)/seatch-component-server-wrapper";
 import ErrorComponent from "@/components/error-component";
+import LoadingComponent from "@/components/loading-component";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
@@ -70,7 +71,13 @@ const page = async ({ params, searchParams }: Props) => {
           <Suspense
             key={`${searchParams.location} ${searchParams.dropOffLocation} ${searchParams.startDate} ${searchParams.endDate} ${searchParams.startTime} ${searchParams.endTime}`}
             fallback={
-              <Skeleton className="lg:col-span-2 order-1 lg:order-2 aspect-square" />
+              <div className="lg:col-span-2 order-1 lg:order-2 aspect-square " >
+                <Skeleton className="w-full rounded-xl h-36" /> 
+                <Skeleton className="mt-4 w-60 mx-auto p-3 rounded-full"/>
+                <Skeleton className="w-full rounded-xl h-36 mt-8" /> 
+                <Skeleton className="w-[90%] rounded-full h-12 mt-8 mx-auto" /> 
+       
+              </div>
             }
           >
             <CarAvailability params={params} searchParams={searchParams} />
