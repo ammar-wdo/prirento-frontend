@@ -11,7 +11,7 @@ const LoadingComponent = (props: Props) => {
          <Crown className='w-44 h-44 text-secondaryGold opacity-45 absolute top-1/2 left-1/2 -translate-x-[50%] -translate-y-[131%] ' />
     <div className='relative w-[300px] aspect-square animate-pulse'>
 
-    <Image alt='loader'  fill src={'/loader-logo.png'}/>
+    <Image priority={true} alt='loader'  fill src={'/loader-logo.png'}/>
     </div>
   
   </div>

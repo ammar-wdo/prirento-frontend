@@ -90,7 +90,7 @@ const ViewSection = ({
               <KeyValue
               key={rules.id}
                 title={rules.label}
-                description={`${rules.value} AED or %`}
+                description={`${rules.valueToPay} AED`}
               />
        
           ))}
@@ -111,7 +111,7 @@ const ViewSection = ({
             <InfoAnimator key={rule.id}>
               <KeyValue
                 title={rule.label}
-                description={`${rule.value} AED or %`}
+                description={`${rule.valueToPay} AED`}
               />
             </InfoAnimator>
           ))}

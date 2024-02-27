@@ -3,6 +3,7 @@ import { twMerge } from "tailwind-merge";
 import axios from "axios";
 
 import qs from "query-string";
+import { CarSuperAdminRule } from "@/types";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -186,6 +187,8 @@ export const searchParamsGenerate = (searchParams:{[key:string]:string|string[] 
   return generatedSearchParams
 }
 
+
+//calculate the value of discount 
 export const calculateDiscount = (fee:number,type:'fixed'|'percentage',value:number)=>{
   const val =
     type === "fixed"
@@ -194,6 +197,21 @@ export const calculateDiscount = (fee:number,type:'fixed'|'percentage',value:num
 
       return val
 }
+
+
+
+//return super admin rule with the value property to pay 
+export const extractsuperadminRuleWithValueToPay = (
+  superAdminRule: CarSuperAdminRule,
+  priceValue: number
+) => {
+  const valueToPay =
+    superAdminRule.type === "percentage"
+      ? (superAdminRule.value * priceValue) / 100
+      : superAdminRule.value;
+
+  return { ...superAdminRule, valueToPay };
+};
 
 
 

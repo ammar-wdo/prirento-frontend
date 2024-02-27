@@ -75,6 +75,7 @@ export type CarSuperAdminRule = {
   description: string;
   type: 'fixed' | 'percentage';
   value: number;
+  valueToPay:number
   mandatory: boolean;
   applyToAll: boolean;
   carId: string | null;
