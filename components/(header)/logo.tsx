@@ -9,6 +9,7 @@ const Logo = ({ white }: Props) => {
   return (
     <div >
       <Image
+      priority={true}
         src={!white ? "/main-logo.png" : "/logo-content.png"}
         width={100}
         height={100}
