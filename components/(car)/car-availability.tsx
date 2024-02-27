@@ -41,7 +41,7 @@ const CarAvailability = async ({ searchParams, params }: Props) => {
   if(!success)return <div className="lg:col-span-2 order-1 lg:order-2"><ErrorComponent description={error!}/></div>
 
 
-  const {availability: { dropOffLocations, isAvailable, message, pickupLocations },
+  const {availability: { dropOffLocations, isAvailable, message, pickupLocations, reservationDates },
   deliveryFee,
   deposit,
   duration,
@@ -150,6 +150,17 @@ const CarAvailability = async ({ searchParams, params }: Props) => {
                 </p>
               </div>
             )}
+            {
+              !!reservationDates.length && 
+              <div className="">
+                
+                {reservationDates.map(date=>
+                <div className="flex items-center gap-4 mt-3">
+                  <span className="text-s ">From: {formatDate(new Date(date.startDate))}</span>
+                  <span className="text-s ">To: {formatDate(new Date(date.endDate))}</span>
+                  </div>)}
+              </div>
+            }
           </div>
         </InfoAnimator>
       )}

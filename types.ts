@@ -103,6 +103,7 @@ export type CarAvailabilityType = {
     message: string;
     pickupLocations: string;
     dropOffLocations: string;
+    reservationDates:{startDate:Date,endDate:Date}[]
   };
 };
 
