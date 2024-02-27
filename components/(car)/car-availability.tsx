@@ -152,7 +152,7 @@ const CarAvailability = async ({ searchParams, params }: Props) => {
             )}
             {
               !!reservationDates.length && 
-              <div className="">
+              <div className="flex flex-col w-full gap-3">
                 
                 {reservationDates.map(date=>
                 <div className="flex items-center gap-4 mt-3">
