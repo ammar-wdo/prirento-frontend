@@ -154,8 +154,8 @@ const CarAvailability = async ({ searchParams, params }: Props) => {
               !!reservationDates.length && 
               <div className="flex flex-col w-full gap-3">
                 
-                {reservationDates.map(date=>
-                <div className="flex items-center gap-4 mt-3">
+                {reservationDates.map((date,index)=>
+                <div key={index} className="flex items-center gap-4 mt-3">
                   <span className="text-s ">From: {formatDate(new Date(date.startDate))}</span>
                   <span className="text-s ">To: {formatDate(new Date(date.endDate))}</span>
                   </div>)}
