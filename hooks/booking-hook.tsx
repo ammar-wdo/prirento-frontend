@@ -12,7 +12,7 @@ import { bookingSchema } from "@/schemas";
 import { CarSuperAdminRule, DiscountResponse, ReturnedDiscount } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
-import { useParams, useSearchParams } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { CarExtraOptions } from "@/types";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -189,7 +189,7 @@ export const useBooking = ({
       dropoffLocation: searchParams.get("dropOffLocation") || "",
     },
   });
-
+const router = useRouter()
   async function onSubmit(values: z.infer<typeof bookingSchema>) {
     try {
       const res = await axios
@@ -210,9 +210,9 @@ export const useBooking = ({
         .then((data) => data.data);
       console.log(res);
       if (!res.success) {
-        toast.error(res.error, { duration: 10000 });
+     return   toast.error(res.error, { duration: 10000 });
       } else {
-        toast.success(res.url);
+       router.push(res.url as string);
       }
     } catch (error) {
       console.log(error);
