@@ -12,7 +12,7 @@ const PopOver = ({description}: Props) => {
   return (
     <Popover>
     <PopoverTrigger onClick={(e)=>e.stopPropagation()}>{<FaInfoCircle className="text-blue-600 hover:scale-125 transition sm:w-5 sm:h-5" />}</PopoverTrigger>
-    <PopoverContent className="max-w-[200px] p-2 rounded-xl text-sm text-muted-foreground px-4">{description}</PopoverContent>
+    <PopoverContent className="max-w-[200px] w-fit first-letter:capitalize p-2 rounded-xl text-sm text-muted-foreground px-4">{description}</PopoverContent>
   </Popover>
   )
 }
