@@ -33,7 +33,7 @@ const page = async ({ params }: Props) => {
       <ContentBanner title={res.company.name} />
 
       {/* Content */}
-      <div className="container mt-12">
+      <div className="container mt-12 min-h-[600px]">
         <Editor initialContent={res.company.content} />
       </div>
 

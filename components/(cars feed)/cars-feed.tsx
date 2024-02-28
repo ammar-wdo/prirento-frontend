@@ -54,7 +54,7 @@ const CarsFeed = async ({ searchParams }: Props) => {
         {availableCars.map((car, i) => (
           <CarByTypeCard
             car={car}
-            index={i}
+         
             border={true}
             key={car.id}
             startDate={startDate}
@@ -74,7 +74,7 @@ const CarsFeed = async ({ searchParams }: Props) => {
               border={true}
               notAvailable={true}
               car={car}
-              index={i + availableCars.length}
+             
               startDate={startDate}
               endDate={endDate}
               startTime={startTime}
