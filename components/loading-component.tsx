@@ -12,11 +12,14 @@ type Props = {
 const LoadingComponent = (props: Props) => {
   return (
     <div className={cn('flex items-center justify-center h-screen relative flex-col gap-2')}>
-         <GiQueenCrown className='md:w-44 md:h-44 w-32 h-32 text-secondaryGold opacity-45  ' />
-    <div className='relative md:w-[300px] w-[200px] aspect-square animate-pulse -mt-[90px] md:-mt-[130px]'>
+     
+      <GiQueenCrown className='md:w-28 md:h-28 w-20 h-20 text-secondaryGold opacity-45  ' />
+    <div className='relative md:w-[170px] w-[110px] aspect-square animate-pulse -mt-[50px] md:-mt-[75px]'>
 
     <Image priority={true} alt='loader'  fill src={'/loader-logo.png'}/>
-    </div>
+
+      </div>
+     
   
   </div>
   )

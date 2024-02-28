@@ -6,12 +6,7 @@ import ErrorComponent from "@/components/error-component";
 import LoadingComponent from "@/components/loading-component";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import {
-
-  fetcher,
-
-  setDefaultSearchParams,
-} from "@/lib/utils";
+import { fetcher, setDefaultSearchParams } from "@/lib/utils";
 import { GET_CAR } from "@/links";
 import { SingleCarType } from "@/types";
 import Link from "next/link";
@@ -19,14 +14,14 @@ import { notFound } from "next/navigation";
 import React, { Suspense } from "react";
 
 type Props = {
-  params: { carSlug: string,companySlug:string };
+  params: { carSlug: string; companySlug: string };
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
 const page = async ({ params, searchParams }: Props) => {
   setDefaultSearchParams(searchParams);
 
-//fetch car's details
+  //fetch car's details
   const carDetails = await fetcher<{
     car: SingleCarType;
     success: boolean;
@@ -43,7 +38,7 @@ const page = async ({ params, searchParams }: Props) => {
       </div>
     );
 
-    if(!carDetails.car) notFound()
+  if (!carDetails.car) notFound();
 
   const car = carDetails.car;
 
@@ -55,7 +50,7 @@ const page = async ({ params, searchParams }: Props) => {
         {/* Search component */}
         <div className="-mt-16">
           <SearchComponentServerWrapper
-          label="Check"
+            label="Check"
             searchParams={searchParams}
             urlVar={`${params.companySlug}/${params.carSlug}`}
           />
@@ -71,12 +66,11 @@ const page = async ({ params, searchParams }: Props) => {
           <Suspense
             key={`${searchParams.location} ${searchParams.dropOffLocation} ${searchParams.startDate} ${searchParams.endDate} ${searchParams.startTime} ${searchParams.endTime}`}
             fallback={
-              <div className="lg:col-span-2 order-1 lg:order-2 aspect-square " >
-                <Skeleton className="w-full rounded-xl h-36" /> 
-                <Skeleton className="mt-4 w-60 mx-auto p-3 rounded-full"/>
-                <Skeleton className="w-full rounded-xl h-36 mt-8" /> 
-                <Skeleton className="w-[90%] rounded-full h-12 mt-8 mx-auto" /> 
-       
+              <div className="lg:col-span-2 order-1 lg:order-2 aspect-square ">
+                <Skeleton className="w-full rounded-xl h-36" />
+                <Skeleton className="mt-4 w-60 mx-auto p-3 rounded-full" />
+                <Skeleton className="w-full rounded-xl h-36 mt-8" />
+                <Skeleton className="w-[90%] rounded-full h-12 mt-8 mx-auto" />
               </div>
             }
           >

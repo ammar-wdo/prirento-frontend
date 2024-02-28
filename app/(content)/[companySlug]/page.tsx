@@ -1,3 +1,4 @@
+import CarDescription from "@/components/(car)/car-description";
 import CarTypeFeedSkeleton from "@/components/(cars type feed)/car-type-feed-skeleton";
 import CompanyCars from "@/components/(company)/company-cars";
 import ContentBanner from "@/components/(content banner)/content-banner";
@@ -32,16 +33,23 @@ const page = async ({ params }: Props) => {
       {/* Banner */}
       <ContentBanner title={res.company.name} />
 
+      {/* gallary and openning days */}
+
+      
+
       {/* Content */}
-      <div className="container mt-12 min-h-[600px]">
-        <Editor initialContent={res.company.content} />
+      <div className="container mt-12 ">
+        <CarDescription title="Description">
+          <div className="min-h-[600px]">
+            <Editor initialContent={res.company.content} />
+          </div>
+        </CarDescription>
       </div>
 
       {/* company cars*/}
       <div className="container mt-12">
-     
         {" "}
-        <Suspense fallback={<CarTypeFeedSkeleton/>}>
+        <Suspense fallback={<CarTypeFeedSkeleton />}>
           <CompanyCars companySlug={params.companySlug} />
         </Suspense>
       </div>
