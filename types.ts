@@ -23,9 +23,57 @@ export type CarCardType = {
   transmition: Transmition;
   oneDayPrice: number;
   companyLogo: string;
+  companySlug:string
   slug: string;
 
 };
+
+
+export type OpeningTimes = {
+  Monday: {
+    openTime: string;
+    closeTime: string;
+    closed: boolean;
+};
+Tuesday: {
+    openTime: string;
+    closeTime: string;
+    closed: boolean;
+};
+Wednesday: {
+    openTime: string;
+    closeTime: string;
+    closed: boolean;
+};
+Thursday: {
+  openTime: string;
+  closeTime: string;
+  closed: boolean;
+};
+Friday: {
+  openTime: string;
+  closeTime: string;
+  closed: boolean;
+};
+Saturday: {
+  openTime: string;
+  closeTime: string;
+  closed: boolean;
+};
+Sunday:{
+  openTime: string;
+  closeTime: string;
+  closed: boolean;
+};
+
+}
+
+export type Company = {
+  name: string;
+  id: string;
+  content: string;
+  openingTime:OpeningTimes
+}
 
 export type CarPublicType = Omit<CarCardType, "oneDayPrice"> & {
   availablePrice: number | null;
@@ -81,6 +129,58 @@ export type CarSuperAdminRule = {
   carId: string | null;
   createdAt: Date;
   updatedAt: Date;
+}
+
+
+export type Booking = {
+  firstName:string
+  lastName:string
+  email:string
+  contactNumber:string
+  countryOfResidance:string
+
+  billingAddress :string
+  billingFirstName   :string
+  billingLastname:string
+  billingContactNumber:string
+  billingCountry :string
+  billingCity    :string
+  billingZipcode :string
+
+  business?:boolean
+  companyName?:string
+  companyVat ?:string
+
+  startDate :Date
+  endDate   :Date
+
+  pickupLocation :string
+  dropoffLocation?:string
+
+  extraOptions:CarExtraOptions[]
+  adminRules:CarSuperAdminRule[]
+
+  subtotal       :number
+  reservationFee :number
+  discount       :number
+  deliveryFee?   :number
+  total          :number
+  payNow         :number
+  payLater       :number
+
+  bookingCode:string
+
+  terms:boolean
+
+
+  paymentMethod :'card' | 'paypal'
+  paymentStatus :"PENDING" | "SUCCEEDED" | "EXPIRED" | "CANCELED"
+  bookingStatus :"ACTIVE"| "REFUND_REQUEST" | "REFUNDED" | "CANCELED"
+
+  
+  carName  :string
+
+  createdAt :Date
 }
 
 export type CarAvailabilityType = {

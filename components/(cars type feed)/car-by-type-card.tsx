@@ -14,7 +14,7 @@ import Image from "next/image";
 
 type Props = {
   car: CarCardType | CarPublicType;
-  index: number;
+
   notAvailable?: boolean;
   border?: boolean;
   startDate?: string | undefined;
@@ -27,7 +27,7 @@ type Props = {
 
 const CarByTypeCard = ({
   car,
-  index,
+
   notAvailable,
   border,
   startDate,
@@ -53,7 +53,7 @@ const CarByTypeCard = ({
   };
 
   const url = qs.stringifyUrl({
-    url: `${process.env.NEXT_PUBLIC_BASE_URL}/${car.slug}` as string,
+    url: `${process.env.NEXT_PUBLIC_BASE_URL}/${car.companySlug}/${car.slug}` as string,
     query: {
       startDate,
       endDate,
@@ -99,7 +99,7 @@ const CarByTypeCard = ({
                 <h3 className="text-xl capitalize font-medium">
                   {car.carName}
                 </h3>
-                {!notAvailable && (
+                {!notAvailable && price && (
                   <p className="">
                     <span className="text-xl font-bold">{price}</span>
                     <span className="text-muted-foreground ml-1 text-sm">
@@ -129,9 +129,12 @@ const CarByTypeCard = ({
   <span className="rounded-lg bg-secondaryGreen w-14 aspect-square flex items-center justify-center font-medium text-white">
 8.8
   </span>
+  <Link href={`/${car.companySlug}`}>
   <div className="my-2 relative w-14  aspect-video ">
   <Image src={car.companyLogo} fill alt="company logo " className="object-contain"/>
   </div>
+  </Link>
+ 
 </div>
 
             

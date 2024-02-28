@@ -15,4 +15,6 @@ export const GET_BLOGS = MAIN_API + '/api/blogs'
 export const GET_BLOG = MAIN_API + '/api/blogs'
 export const GET_ABOUT = MAIN_API + '/api/about'
 export const GET_FAQS = MAIN_API + '/api/faq'
+export const LOGIN = MAIN_API + '/api/login'
+export const GET_COMPANY = MAIN_API + '/api/company'
 

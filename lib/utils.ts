@@ -213,6 +213,30 @@ export const extractsuperadminRuleWithValueToPay = (
   return { ...superAdminRule, valueToPay };
 };
 
+export const capitalizeFirstLetter = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
+
+export const stringParser = (value: unknown): string => {
+
+
+
+
+  switch (typeof value) {
+    case 'boolean':
+      return value ? 'True' : 'False';
+    case 'number':
+      return value.toString();
+    case 'string':
+      // Capitalize the first letter of the string
+      return capitalizeFirstLetter(value);
+    case 'object':
+      return value === null ? '' : JSON.stringify(value);
+    case 'undefined':
+      return '';
+    default:
+      return '';
+  }
+};
+
 
 
 
