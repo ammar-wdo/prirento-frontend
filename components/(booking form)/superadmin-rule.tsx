@@ -5,6 +5,7 @@ import { CarSuperAdminRule } from "@/types";
 import { Check } from "lucide-react";
 import Image from "next/image";
 import React from "react";
+import PopOver from "../pop-over";
 
 type Props = {
   superAdminRule: CarSuperAdminRule;
@@ -31,16 +32,27 @@ const SuperadminRule = ({ superAdminRule, active, handleClick }: Props) => {
           {active && <Check className=" text-white w-5 h-5 absolute " />}
         </span>
 
-        <p className="capitalize text-xs sm:text-base">{superAdminRule.label}</p>
+        <p className="capitalize text-xs sm:text-base">
+          {superAdminRule.label}
+        </p>
       </div>
-      <div className="font-medium">{superAdminRule.valueToPay} AED</div>
-      <div className="relative rounded-full w-12 h-12 hidden sm:block">
-        <Image
-          src={"/loader-logo.png"}
-          fill
-          alt="logo"
-          className="object-contain"
-        />
+
+
+      {/* right */}
+      <div className="flex items-center gap-4">
+        {" "}
+        <div className="font-medium">{superAdminRule.valueToPay} AED</div>
+        <div className="relative rounded-full w-12 h-12 hidden sm:block">
+          <Image
+            src={"/loader-logo.png"}
+            fill
+            alt="logo"
+            className="object-contain"
+          />
+        </div>
+        <span className="ml-auto">
+          <PopOver description={superAdminRule.description} />
+        </span>
       </div>
     </div>
   );
