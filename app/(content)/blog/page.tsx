@@ -4,6 +4,8 @@ import React from 'react'
 
 type Props = {}
 
+export const revalidate = 86400
+
 const page = (props: Props) => {
   return (
     <div className='min-h-[900px] '>

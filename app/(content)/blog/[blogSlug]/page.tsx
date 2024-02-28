@@ -1,7 +1,7 @@
 import ContentBanner from '@/components/(content banner)/content-banner'
 import ErrorComponent from '@/components/error-component'
 import { fetcher, formatDate } from '@/lib/utils'
-import { GET_BLOG } from '@/links'
+import { GET_BLOG, GET_BLOGS } from '@/links'
 import { Blog, BlogCardType } from '@/types'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
@@ -14,6 +14,23 @@ const Editor = dynamic(()=>import('@/components/editor'),{ssr:false})
 
 type Props = {
     params:{blogSlug:string}
+}
+
+
+
+export const revalidate = 86400
+
+export const generateStaticParams = async({params}: Props)=>{
+  const res = await fetcher<{
+    success: boolean;
+    error?: string;
+    blogs: BlogCardType[];
+  }>(GET_BLOGS);
+
+  if(!res.success) return
+
+  return res.blogs.map((blog)=>({blogSlug:blog.slug}))
+
 }
 
 const page = async({params}: Props) => {

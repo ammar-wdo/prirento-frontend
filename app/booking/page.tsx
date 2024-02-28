@@ -1,5 +1,6 @@
 import LoginForm from "@/components/login-form";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 type Props = {};
@@ -14,10 +15,12 @@ const page = (props: Props) => {
           alt="login image"
           className="object-cover"
         />
-        <span className="flex flex-col uppercase text-white text-6xl absolute top-8 left-8 font-semibold">
-          <span>PRI</span>
-          <span>RENTO</span>
-        </span>
+        <Link href={'/'} className="absolute top-8 left-8">
+        <div className=" w-40 aspect-video cursor-pointer ">
+     <Image fill alt="logo" className="object-contain" src={'/white-logo.png'} />
+        </div>
+        </Link>
+      
       </section>
       <section className="flex items-center justify-center p-12">
         <LoginForm/>
