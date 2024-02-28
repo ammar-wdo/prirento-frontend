@@ -1,6 +1,8 @@
 import CarDescription from "@/components/(car)/car-description";
 import CarTypeFeedSkeleton from "@/components/(cars type feed)/car-type-feed-skeleton";
 import CompanyCars from "@/components/(company)/company-cars";
+import CompanyGallary from "@/components/(company)/company-gallary";
+import CompanyScheduleComponent from "@/components/(company)/company-schedule-component";
 import ContentBanner from "@/components/(content banner)/content-banner";
 import ErrorComponent from "@/components/error-component";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -34,8 +36,14 @@ const page = async ({ params }: Props) => {
       <ContentBanner title={res.company.name} />
 
       {/* gallary and openning days */}
-
-      
+      <div className="container mt-12 grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div className="md:col-span-2">
+          <CompanyGallary gallary={res.company.gallary} />
+        </div>
+        <div className="md:col-span-1 h-full">
+         <CompanyScheduleComponent openeingTimes={res.company.openingTime}/>
+        </div>
+      </div>
 
       {/* Content */}
       <div className="container mt-12 ">

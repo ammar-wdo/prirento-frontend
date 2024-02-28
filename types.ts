@@ -73,6 +73,7 @@ export type Company = {
   id: string;
   content: string;
   openingTime:OpeningTimes
+  gallary:string[]
 }
 
 export type CarPublicType = Omit<CarCardType, "oneDayPrice"> & {
