@@ -20,14 +20,14 @@ type Props = {
 
 export const revalidate = 86400
 
-export const generateStaticParams = async({params}: Props)=>{
+export const generateStaticParams = async()=>{
   const res = await fetcher<{
     success: boolean;
     error?: string;
     blogs: BlogCardType[];
   }>(GET_BLOGS);
 
-  if(!res.success) return
+
 
   return res.blogs.map((blog)=>({blogSlug:blog.slug}))
 
