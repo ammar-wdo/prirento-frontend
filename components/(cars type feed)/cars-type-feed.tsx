@@ -38,7 +38,7 @@ const CarsTypeFeed = async ({ searchParams }: Props) => {
               <CarByTypeCard
                 key={car.id}
                 car={car}
-                index={i}
+           
                 startDate={startDate}
                 endDate={endDate}
                 startTime={startTime}
