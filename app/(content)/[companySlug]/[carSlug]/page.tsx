@@ -19,7 +19,7 @@ import { notFound } from "next/navigation";
 import React, { Suspense } from "react";
 
 type Props = {
-  params: { carSlug: string };
+  params: { carSlug: string,companySlug:string };
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
@@ -57,7 +57,7 @@ const page = async ({ params, searchParams }: Props) => {
           <SearchComponentServerWrapper
           label="Check"
             searchParams={searchParams}
-            urlVar={params.carSlug}
+            urlVar={`${params.companySlug}/${params.carSlug}`}
           />
         </div>
 
