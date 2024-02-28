@@ -29,7 +29,7 @@ const CompanyCars = async ({ companySlug }: Props) => {
       gap-4"
       >
         {res.cars.map((car, index) => (
-          <CarByTypeCard border car={car} />
+          <CarByTypeCard key={car.id} border car={car} />
         ))}
       </div>
     </div>
