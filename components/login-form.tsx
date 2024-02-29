@@ -59,7 +59,7 @@ if(!!booking) return <InfoAnimator key={'info' + booking} className="w-full"><Lo
       {error && <InfoAnimator><p className="text-rose-500 capitalize font-medium text-sm">{error}</p></InfoAnimator>}
       <Button disabled={isLoading} variant={'siteMain'} className="py-6 w-full rounded-full" type="submit">Login {isLoading && <Loader className="ml-3 animate-spin w-4 h-4"/>}</Button>
       <div className="flex items-center justify-between mt-8">
-        <span className="text-secondaryGreen">Need help? <Link href={'/contact-us'} className="hover:underline">Contact us</Link></span>
+        <span className="text-secondaryGreen">Need help? <Link href={'/contact-us'} className="underline">Contact us</Link></span>
         <Link href={'/'} className="underline">Go Back</Link>
       </div>
 
