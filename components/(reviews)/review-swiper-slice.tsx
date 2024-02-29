@@ -20,7 +20,7 @@ const ReviewSwiperSlide = ({ i, review }: Props) => {
     <Card className="p-4  rounded-xl  border-none shadow-[1px_1px_5px] min-h-[200px]  shadow-gray-200">
       <CardHeader className=" p-0  ">
         <div className="flex items-center justify-between">
-          <div className="flex items-center sm:flex-row flex-col sm:gap-2">
+          <div className="flex sm:items-center sm:flex-row flex-col sm:gap-2">
             <h3 className="font-medium capitalize">{review.user}</h3>
             <ReactStars
               edit={false}
