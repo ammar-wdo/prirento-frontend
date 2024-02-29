@@ -1,7 +1,9 @@
+'use client'
 import { Booking } from "@/types";
 import React from "react";
 import KeyValue from "./(booking form)/key-value";
 import { formatDate, stringParser } from "@/lib/utils";
+import { Button } from "./ui/button";
 
 type Props = {
   booking: Booking;
@@ -28,6 +30,7 @@ const LoginBookingInfo = ({ booking, resetBooking }: Props) => {
       <KeyValue title={"Start Date"} description={formattedStartDate} />
       <KeyValue title={"End Date"} description={formattedEndDate} />
       <KeyValue title={"Booked at"} description={formattedCreatedAt} />
+      <Button className="mt-12 p-0 h-auto" variant={'link'} onClick={resetBooking}>Back</Button>
     </div>
   );
 };

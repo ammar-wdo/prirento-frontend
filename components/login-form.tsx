@@ -23,10 +23,10 @@ const LoginForm = (props: Props) => {
     const {form, onSubmit, error ,booking ,resetBooking} = useLogin()
     const isLoading = form.formState.isSubmitting
 
-if(!!booking) return <InfoAnimator className="w-full"><LoginBookingInfo booking={booking} resetBooking={resetBooking}/></InfoAnimator>
+if(!!booking) return <InfoAnimator key={'info' + booking} className="w-full"><LoginBookingInfo booking={booking} resetBooking={resetBooking}/></InfoAnimator>
 
   return (
-    <InfoAnimator className="min-w-[300px] max-w-[550px] w-full" ><Form {...form}>
+    <InfoAnimator key={'login' + booking} className="min-w-[300px] max-w-[550px] w-full" ><Form {...form}>
     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full">
       <FormField
         control={form.control}

@@ -10,6 +10,7 @@ import ReviewsComponent from "@/components/(reviews)/reviews-component";
 import SearchComponentServerWrapper from "@/components/(search-component)/seatch-component-server-wrapper";
 import TipsComponent from "@/components/(tips component)/tips-component";
 import Heading from "@/components/heading";
+import { Skeleton } from "@/components/ui/skeleton";
 import { searchParamsGenerate, setDefaultSearchParams } from "@/lib/utils";
 import { Suspense } from "react";
 
@@ -73,8 +74,8 @@ export default function Home({ searchParams }: Props) {
       </div>
 
       {/* Reviews component */}
-      <div className="mt-12">
-        <Suspense>
+      <div className="mt-12 container mb-12">
+        <Suspense fallback={<Skeleton className="min-h-[300px]"/>}>
           <ReviewsComponent />
         </Suspense>
       </div>

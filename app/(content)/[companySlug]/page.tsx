@@ -71,7 +71,7 @@ const page = async ({ params }: Props) => {
       {/* Company reviews */}
 
       <div className="mt-12 container">
-        <Suspense>
+        <Suspense fallback={<Skeleton className="min-h-[300px]"/>}>
           <CarDescription title="Reviews">
           <ReviewsComponent hideHeading={true} companySlug={params.companySlug} />
           </CarDescription>
