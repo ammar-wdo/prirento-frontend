@@ -58,6 +58,8 @@ const page = async ({ params, searchParams }: Props) => {
         deposit={carAvailability.data.deposit}
         subtotal={carAvailability.data.price as number}
         fee={carAvailability.data.fee}
+        terms={carDetails.car.terms}
+        companyName={carDetails.car.companyName}
         
       />
     </div>

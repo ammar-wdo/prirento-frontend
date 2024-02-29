@@ -27,6 +27,8 @@ import ViewSection from "./view-section";
 import { CarExtraOptions, CarSuperAdminRule } from "@/types";
 import CarExtraOption from "./car-extra-option";
 import SuperadminRule from "./superadmin-rule";
+import Link from "next/link";
+import TermsModal from "./terms-modal";
 
 type Props = {
   carImage: string;
@@ -40,6 +42,8 @@ type Props = {
   carExtraOptions: CarExtraOptions[];
   mandatorySuperAdminRules: CarSuperAdminRule[];
   optionalSuperAdminRules: CarSuperAdminRule[];
+  terms: string;
+  companyName:string
 };
 
 const BookingForm = ({
@@ -54,6 +58,8 @@ const BookingForm = ({
   carExtraOptions,
   mandatorySuperAdminRules,
   optionalSuperAdminRules,
+  terms,
+  companyName
 }: Props) => {
   const {
     form,
@@ -69,7 +75,7 @@ const BookingForm = ({
     carExtraOptions: carExtraOptionsState,
     handleExtraOptions,
     handleOptionalSuperAdminRule,
-    optionalSuperAdminRules :optionalSuperAdminRulesState
+    optionalSuperAdminRules: optionalSuperAdminRulesState,
   } = useBooking({
     subtotal,
     deliveryFee,
@@ -393,7 +399,7 @@ const BookingForm = ({
             {(!!carExtraOptions.length || !!optionalSuperAdminRules.length) && (
               <SectionWrapper title="extra options">
                 <h3>Choose many extra options</h3>
-               
+
                 {!!carExtraOptions.length &&
                   carExtraOptions.map((el) => (
                     <CarExtraOption
@@ -413,7 +419,11 @@ const BookingForm = ({
                 {!!optionalSuperAdminRules.length &&
                   optionalSuperAdminRules.map((el) => (
                     <SuperadminRule
-                      active={!!optionalSuperAdminRulesState.find(element=>element.id === el.id)}
+                      active={
+                        !!optionalSuperAdminRulesState.find(
+                          (element) => element.id === el.id
+                        )
+                      }
                       handleClick={() => handleOptionalSuperAdminRule(el)}
                       key={el.id}
                       superAdminRule={el}
@@ -488,6 +498,7 @@ const BookingForm = ({
                 />
               </div>
 
+              {/* terms and conditions */}
               <FormField
                 control={form.control}
                 name="terms"
@@ -501,9 +512,16 @@ const BookingForm = ({
                         />
                       </FormControl>
 
-                      <FormLabel className="space-y-1 leading-4 p-0">
-                        I accept the terms and conditions of Prirento and the
-                        terms and conditions of Company Name
+                      <FormLabel className="space-y-1 leading-4 p-0 ">
+                        I accept the{" "}
+                        <Link
+                          className="underline text-blue-500"
+                          href={"/terms-and-conditions"}
+                          target="_blank"
+                        >
+                          Terms and conditions of Prirento
+                        </Link>{" "}
+                        and the <TermsModal companyName={companyName} initialContent={terms}/>
                       </FormLabel>
                     </div>
 

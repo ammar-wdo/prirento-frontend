@@ -100,7 +100,9 @@ export type SingleCarType = {
   kmIncluded:number;
   minimumHours:number|null,
   pickupLocations:string[],
-  dropoffLocations:string[]
+  dropoffLocations:string[],
+  terms:string,
+  companyName:string
 
  
 

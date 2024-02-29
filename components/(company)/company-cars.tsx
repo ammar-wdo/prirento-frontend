@@ -4,6 +4,7 @@ import { CarCardType } from "@/types";
 import React from "react";
 import ErrorComponent from "../error-component";
 import CarByTypeCard from "../(cars type feed)/car-by-type-card";
+import CarDescription from "../(car)/car-description";
 
 type Props = {
   companySlug: string;
@@ -22,8 +23,8 @@ const CompanyCars = async ({ companySlug }: Props) => {
     <ErrorComponent description={res.error as string} />
   </div>;
   return (
-    <div>
-      <h3 className="text-3xl font-bold">Company cars</h3>
+    <CarDescription title="Company Cars">
+ 
       <div
         className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3
       gap-4"
@@ -32,7 +33,7 @@ const CompanyCars = async ({ companySlug }: Props) => {
           <CarByTypeCard key={car.id} border car={car} />
         ))}
       </div>
-    </div>
+    </CarDescription>
   );
 };
 

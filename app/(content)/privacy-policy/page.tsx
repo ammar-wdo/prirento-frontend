@@ -26,7 +26,7 @@ const page = async (props: Props) => {
       <section className="container mt-12">
 
         {/* content */}
-        <div>
+        <div className="min-h-[700px]">
             <Editor initialContent={res.privacy?.content} />
         </div>
       </section>

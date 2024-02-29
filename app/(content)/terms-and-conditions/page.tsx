@@ -1,7 +1,7 @@
 import ContentBanner from "@/components/(content banner)/content-banner";
 import ErrorComponent from "@/components/error-component";
 import { fetcher } from "@/lib/utils";
-import { GET_PRIVACY, GET_TERMS } from "@/links";
+import { GET_TERMS } from "@/links";
 import dynamic from "next/dynamic";
 const Editor = dynamic(() => import("@/components/editor"), { ssr: false });
 
@@ -26,7 +26,7 @@ const page = async (props: Props) => {
       <section className="container mt-12">
 
         {/* content */}
-        <div>
+        <div className="min-h-[700px]">
             <Editor initialContent={res.terms?.content} />
         </div>
       </section>
