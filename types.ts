@@ -210,6 +210,22 @@ export type CarAvailabilityType = {
   };
 };
 
+export type Review =  {
+  companyName: string;
+  carName: string;
+  carSlug: string | null;
+  companySlug: string;
+  companyLogo:string,
+  user: string;
+  id: string;
+  bookingId: string;
+  carId: string;
+  companyId: string;
+  reviewContent: string
+  rate: number;
+  createdAt: Date;
+  updatedUt: Date;
+}
 
 export type AboutType = {
   content:string

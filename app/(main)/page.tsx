@@ -23,7 +23,7 @@ export default function Home({ searchParams }: Props) {
     searchParams.carType = "super_cars";
   }
 
-setDefaultSearchParams(searchParams)
+  setDefaultSearchParams(searchParams);
 
   return (
     <div className="">
@@ -62,22 +62,21 @@ setDefaultSearchParams(searchParams)
         </div>
       </div>
 
-
       {/* Tips component */}
       <div className="mt-12">
         <TipsComponent />
       </div>
-
 
       {/* Benefits component */}
       <div className="mt-12">
         <BenefitsComponent />
       </div>
 
-
       {/* Reviews component */}
       <div className="mt-12">
-        <ReviewsComponent />
+        <Suspense>
+          <ReviewsComponent />
+        </Suspense>
       </div>
     </div>
   );

@@ -19,4 +19,5 @@ export const LOGIN = MAIN_API + '/api/login'
 export const GET_COMPANY = MAIN_API + '/api/company'
 export const GET_PRIVACY = MAIN_API + '/api/privacy-policy'
 export const GET_TERMS= MAIN_API + '/api/terms-and-conditions'
+export const CHECK_FOR_REVIEW = MAIN_API + '/api/review'   //slug + /check
 

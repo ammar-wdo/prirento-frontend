@@ -111,3 +111,16 @@ export const bookingSchema = z
     email:requiredString.email('Invalid email address'),
     bookingCode:requiredString.startsWith('A',"Starts only with capital A").min(9,'At least 9 characters').max(9,"Maximum 9 characters")
   })
+
+
+  export const reviewVisibility= [  'FIRSTNAME',
+    'FULLNAME',
+    'ANOUNYMOS'] as const
+
+  export const reviewSchema = z.object({
+    
+    reviewContent:z.string().optional(),
+    rate:z.number(),
+    visibility:z.enum(reviewVisibility).default('FULLNAME')
+
+  })

@@ -12,52 +12,12 @@ import { Navigation } from "swiper/modules";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import ReviewSwiperSlide from "./review-swiper-slice";
 import {motion} from 'framer-motion'
+import { Review } from "@/types";
 
-type Props = {};
+type Props = {reviews:Review[]};
 
-const ReviewSwiper = (props: Props) => {
-  const reviews = [
-    {
-      name: "ammar",
-      stars: 5,
-      date: new Date(),
-      content:
-        "Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum",
-      logo: "",
-    },
-    {
-      name: "youcef",
-      stars: 3.5,
-      date: new Date(),
-      content:
-        "Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum",
-      logo: "",
-    },
-    {
-      name: "karim",
-      stars: 4,
-      date: new Date(),
-      content:
-        "Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum",
-      logo: "",
-    },
-    {
-      name: "mohamed swaghi",
-      stars: 3.5,
-      date: new Date(),
-      content:
-        "Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumipsumLorem ipsumLorem ipsumLorem ipsumipsumLorem ipsumLorem ipsumLorem ipsumipsumLorem ipsumLorem ipsumLorem ipsum",
-      logo: "",
-    },
-    {
-      name: "john doe",
-      stars: 2,
-      date: new Date(),
-      content:
-        "Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum",
-      logo: "",
-    },
-  ];
+const ReviewSwiper = ({reviews}: Props) => {
+ 
 
   const [mount, setMount] = useState(false);
   useEffect(() => {

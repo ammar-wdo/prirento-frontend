@@ -1,46 +1,50 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import { SwiperSlide } from 'swiper/react'
 import { Card, CardContent, CardHeader } from '../ui/card'
 import ReactStars from 'react-stars'
+import { Review } from '@/types'
+import { formatDate } from '@/lib/utils'
+import Image from 'next/image'
+import Link from 'next/link'
+import { Button } from '../ui/button'
+import ReviewSlicer from './review-slicer'
 
 type Props = {
     i:number,
-    review: {
-        name: string;
-        stars: number;
-        date: Date;
-        content: string;
-        logo: string;
-    }
+    review: Review
 }
 
 const ReviewSwiperSlide = ({i,review}: Props) => {
+ 
   return (
     <Card className="p-4  rounded-xl  border-none shadow-[1px_1px_5px] min-h-[200px]  shadow-gray-200">
     <CardHeader className=" p-0  ">
         <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-        <h3 className="font-medium capitalize">{review.name}</h3>
+        <h3 className="font-medium capitalize">{review.user}</h3>
         <ReactStars
               edit={false}
               size={14}
               color2="gold"
               color1="gray"
               count={5}
-              value={review.stars}
+              value={review.rate}
 
         />
       </div>
-      <div>
-        logo
+      <Link href={`/${review.companySlug}`}>
+      <div className='w-20 aspect-video relative'>
+        <Image src={review.companyLogo} alt='company logo' className='object-contain' fill/>
       </div>
+      </Link>
+      
    
         </div>
-      <p>{review.date.toLocaleDateString()}</p>
+      <p>{formatDate(new Date(review.createdAt))}</p>
     </CardHeader>
     <CardContent className="text-xs p-0 mt-3 text-muted-foreground">
-        {review.content}
+     <ReviewSlicer reviewContent={review.reviewContent}/>
     </CardContent>
   </Card>
   )

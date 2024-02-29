@@ -1,10 +1,18 @@
 import React from "react";
 import Heading from "../heading";
 import ReviewSwiper from "./review-swiper";
+import { fetcher } from "@/lib/utils";
+import { CHECK_FOR_REVIEW } from "@/links";
+import { Review } from "@/types";
+import ErrorComponent from "../error-component";
 
 type Props = {};
 
-const ReviewsComponent = (props: Props) => {
+const ReviewsComponent = async(props: Props) => {
+
+  const reviewsRes = await fetcher<{success:boolean,error?:string,reviews:Review[]}>(CHECK_FOR_REVIEW)
+
+  if(!reviewsRes.success) return <div className="min-h-[500px] flex items-center justify-center"><ErrorComponent description={reviewsRes.error as string} /></div>
 
 
   return (
@@ -19,7 +27,7 @@ const ReviewsComponent = (props: Props) => {
 
       <div className="container">
 
-<ReviewSwiper/>
+<ReviewSwiper reviews={reviewsRes.reviews}/>
       </div>
     </div>
   );
