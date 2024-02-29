@@ -17,6 +17,8 @@ const Editor = dynamic(() => import("@/components/editor"), { ssr: false });
 
 type Props = { params: { companySlug: string } };
 
+export const revalidate = 0
+
 const page = async ({ params }: Props) => {
   const res = await fetcher<{
     error?: string;
@@ -71,7 +73,7 @@ const page = async ({ params }: Props) => {
       <div className="mt-12 container">
         <Suspense>
           <CarDescription title="Reviews">
-          <ReviewsComponent hide={true} companySlug={params.companySlug} />
+          <ReviewsComponent hideHeading={true} companySlug={params.companySlug} />
           </CarDescription>
         
         </Suspense>
