@@ -58,8 +58,8 @@ const Footer = (props: Props) => {
     "/YouTube.png",
   ];
   return (
-    <div className="bg-main">
-      <section className=" p-6 py-20  text-white grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3   gap-20 container">
+    <div className="bg-main p-6 py-20">
+      <section className="   text-white grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3   gap-20 container">
         <article className="flex flex-col gap-4">
           <div className="relative w-[150px] aspect-video">
             <Image
@@ -85,7 +85,7 @@ const Footer = (props: Props) => {
         {footerLinks.map((link) => (
           <article key={link.title} className=" ">
             <h3 className="font-semibold capitalize">{link.title}</h3>
-            <div className="mt-3 md:mt-8 flex flex-col gap-1 md:gap-8">
+            <div className="mt-3 md:mt-8 flex flex-col gap-4 md:gap-8">
               {link.elements.map((el) => {
                 if ("icon" in el)
                   return (
@@ -98,7 +98,8 @@ const Footer = (props: Props) => {
                   );
 
                 return (
-                  <Link key={el.title}
+                  <Link
+                    key={el.title}
                     className="text-xs font-extralight   md:text-base hover:underline w-fit"
                     href={el.href}
                   >
@@ -109,6 +110,24 @@ const Footer = (props: Props) => {
             </div>
           </article>
         ))}
+      </section>
+
+      {/*copy rights  - terms & privacy */}
+      <section className="pt-8 border-t border-white w-full mt-12 flex items-center justify-between text-white flex-col md:flex-row gap-3 container">
+        <p className="lg:text-lg sm:text-sm font-light text-xs">
+          Copyright © 2023 PRIRENTO.
+        </p>
+
+        <p className="lg:text-lg sm:text-sm font-light text-xs text-cetner">
+          All Rights Reserved |{" "}
+          <Link className="underline" href={"/terms-and-conditions"}>
+            Terms and Conditions
+          </Link>{" "}
+          |{" "}
+          <Link className="underline" href={"/privacy-policy"}>
+            Privacy Policy
+          </Link>
+        </p>
       </section>
     </div>
   );

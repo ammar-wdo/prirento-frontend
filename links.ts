@@ -17,4 +17,6 @@ export const GET_ABOUT = MAIN_API + '/api/about'
 export const GET_FAQS = MAIN_API + '/api/faq'
 export const LOGIN = MAIN_API + '/api/login'
 export const GET_COMPANY = MAIN_API + '/api/company'
+export const GET_PRIVACY = MAIN_API + '/api/privacy-policy'
+export const GET_TERMS= MAIN_API + '/api/terms-and-conditions'
 
