@@ -26,7 +26,7 @@ const NavPopover = ({ title, Icon, data, type, brand }: Props) => {
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger onMouseOver={() => setOpen(true)}>
+      <PopoverTrigger onClick={() => setOpen(true)}>
         {" "}
         <span className="capitalize cursor-pointer flex items-center relative z-10">
           {title}
@@ -34,7 +34,7 @@ const NavPopover = ({ title, Icon, data, type, brand }: Props) => {
         </span>
       </PopoverTrigger>
       <PopoverContent
-        onMouseLeave={() => setOpen(false)}
+      
         sideOffset={40}
         className={cn(
           "min-w-[700px] grid grid-cols-4 w-full gap-4 gap-y-8 p-12 ",
