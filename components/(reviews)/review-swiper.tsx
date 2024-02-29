@@ -36,7 +36,7 @@ const ReviewSwiper = ({reviews}: Props) => {
         modules={[Navigation]}
         style={{ padding: 20 }}
         slidesPerView={1}
-        className="mt-12  max-w-[1300px] "
+        className="max-w-[1300px] "
         spaceBetween={30}
         navigation={{
           nextEl: `.custom-swiper-reivew-next`,

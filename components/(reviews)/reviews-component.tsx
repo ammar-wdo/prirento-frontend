@@ -1,33 +1,39 @@
 import React from "react";
 import Heading from "../heading";
 import ReviewSwiper from "./review-swiper";
-import { fetcher } from "@/lib/utils";
+import { cn, fetcher } from "@/lib/utils";
 import { CHECK_FOR_REVIEW } from "@/links";
 import { Review } from "@/types";
 import ErrorComponent from "../error-component";
+import NoResult from "../no-result";
 
-type Props = {};
+type Props = {
+  companySlug?:string
+  hide?:boolean
+};
 
-const ReviewsComponent = async(props: Props) => {
+const ReviewsComponent = async({companySlug,hide}: Props) => {
 
-  const reviewsRes = await fetcher<{success:boolean,error?:string,reviews:Review[]}>(CHECK_FOR_REVIEW)
+  const reviewsRes = await fetcher<{success:boolean,error?:string,reviews:Review[]}>(!companySlug ? CHECK_FOR_REVIEW :CHECK_FOR_REVIEW + `?companySlug=${companySlug}` )
 
   if(!reviewsRes.success) return <div className="min-h-[500px] flex items-center justify-center"><ErrorComponent description={reviewsRes.error as string} /></div>
 
 
   return (
-    <div className="py-16">
-      <Heading title="reviews">
+    <div className={cn("py-16 ",hide && 'py-4')}>
+   {!hide &&   <Heading title="reviews" >
         <span>
           We are proud to collaborate with some of the best luxury cars rental
           cars in the market, here
           <br /> are some reviews the clients said previously about our partners
         </span>
-      </Heading>
+      </Heading>}
 
       <div className="container">
 
-<ReviewSwiper reviews={reviewsRes.reviews}/>
+        {!reviewsRes.reviews.length ? <div className="mt-8"><NoResult title="No Reviews"/></div> : <div className={!hide ? "mt-12" : ''}><ReviewSwiper reviews={reviewsRes.reviews}/></div> }
+
+
       </div>
     </div>
   );

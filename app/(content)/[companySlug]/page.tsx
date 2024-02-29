@@ -4,6 +4,7 @@ import CompanyCars from "@/components/(company)/company-cars";
 import CompanyGallary from "@/components/(company)/company-gallary";
 import CompanyScheduleComponent from "@/components/(company)/company-schedule-component";
 import ContentBanner from "@/components/(content banner)/content-banner";
+import ReviewsComponent from "@/components/(reviews)/reviews-component";
 import ErrorComponent from "@/components/error-component";
 import { Skeleton } from "@/components/ui/skeleton";
 import { fetcher } from "@/lib/utils";
@@ -62,6 +63,17 @@ const page = async ({ params }: Props) => {
         {" "}
         <Suspense fallback={<CarTypeFeedSkeleton />}>
           <CompanyCars companySlug={params.companySlug} />
+        </Suspense>
+      </div>
+
+      {/* Company reviews */}
+
+      <div className="mt-12 container">
+        <Suspense>
+          <CarDescription title="Reviews">
+          <ReviewsComponent hide={true} companySlug={params.companySlug} />
+          </CarDescription>
+        
         </Suspense>
       </div>
     </div>
