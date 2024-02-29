@@ -10,6 +10,7 @@ const page = (props: Props) => {
     <div className="grid grid-cols-1 lg:grid-cols-3 min-h-screen">
       <section className="hidden lg:block lg:col-span-2 relative h-full ">
         <Image
+        priority={true}
           src={"/login.png"}
           fill
           alt="login image"
@@ -17,7 +18,7 @@ const page = (props: Props) => {
         />
         <Link href={'/'} className="absolute top-8 left-8">
         <div className=" w-40 aspect-video cursor-pointer ">
-     <Image fill alt="logo" className="object-contain" src={'/white-logo.png'} />
+     <Image  fill alt="logo" className="object-contain" src={'/white-logo.png'} />
         </div>
         </Link>
       
