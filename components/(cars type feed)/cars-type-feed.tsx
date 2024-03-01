@@ -36,7 +36,7 @@ const CarsTypeFeed = async ({ searchParams }: Props) => {
       {!!carsRes.cars.length && (
         <div className="w-full ">
           <Scroller />
-          <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 ">
+          <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-8 ">
             {carsRes.cars.map((car, i) => (
               <CarByTypeCard
                 key={car.id}
