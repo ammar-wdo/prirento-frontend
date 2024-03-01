@@ -10,16 +10,17 @@ import Pagination from "../pagination";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import ErrorComponent from "../error-component";
 
 type Props = {
   searchParams: { [ket: string]: string | string[] | undefined };
 };
 
 const CarsTypeFeed = async ({ searchParams }: Props) => {
-  const cars = await fetcher<{ cars: CarCardType[] }>(
+  const carsRes = await fetcher<{ cars: CarCardType[] ,success:boolean,error?:string}>(
     GET_CARS_BY_TYPE +
       `?carType=${searchParams.carType}&page=${searchParams.page}`
-  ).then((data) => data.cars);
+  );
 
   const startDate = searchParams.startDate as string;
   const endDate = searchParams.endDate as string;
@@ -27,14 +28,16 @@ const CarsTypeFeed = async ({ searchParams }: Props) => {
   const endTime = searchParams.endTime as string;
   const location = searchParams.location as string
   const dropOffLocation = searchParams.dropOffLocation as string
+
+  if(!carsRes.success) return <div className="min-h-[600px] flex items-center justify-center"><ErrorComponent description={carsRes.error as  string}/></div>
   return (
     <div className="container">
-      {!cars.length && <NoResult />}
-      {!!cars.length && (
+      {!carsRes.cars.length && <NoResult />}
+      {!!carsRes.cars.length && (
         <div className="w-full ">
           <Scroller />
           <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 ">
-            {cars.map((car, i) => (
+            {carsRes.cars.map((car, i) => (
               <CarByTypeCard
                 key={car.id}
                 car={car}
