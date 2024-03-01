@@ -22,7 +22,15 @@ const LoginBookingInfo = ({ booking, resetBooking }: Props) => {
 
   const formattedStartDate = formatDate(new Date(startDate));
   const formattedEndDate = formatDate(new Date(endDate));
-  const formattedCreatedAt = formatDate(new Date(createdAt));
+  const formattedCreatedAt = formatDate(new Date(createdAt),"en-GB",{
+    timeZone: "Asia/Dubai",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false, 
+  });
 
   return (
     <Accordion type="multiple">
