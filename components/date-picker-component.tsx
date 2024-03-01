@@ -41,6 +41,7 @@ const DatepickerComponent = ({open,setOpen,dateString,setDateString,startDateStr
       </PopoverTrigger>
       <PopoverContent className="w-auto p-0" align="start">
         <Calendar
+        defaultMonth={new Date(new Date(dateString || new Date()).setHours(0,0,0,0))}
           mode="single"
           selected={new Date(new Date(dateString || '').setHours(0,0,0,0))}
           onSelect={(date)=>setDateString(date)}
