@@ -8,9 +8,7 @@ import ErrorComponent from "@/components/error-component";
 
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import {  fetcher, getCarInfo, setDefaultSearchParams } from "@/lib/utils";
-import { GET_CAR } from "@/links";
-import { SingleCarType } from "@/types";
+import {  getCarInfo, setDefaultSearchParams } from "@/lib/utils";
 import { Metadata } from "next";
 
 import Link from "next/link";
@@ -28,28 +26,24 @@ export async function generateMetadata(
 ): Promise<Metadata> {
 
 
-  const carDetails = await fetcher<{
-    car: SingleCarType;
-    success: boolean;
-    error?: string;
-  }>(GET_CAR + "/" + params.carSlug);
+//   const carDetails = await getCarInfo(params.carSlug)
 
-if(!carDetails.car || !carDetails.success) return {
-  title:'Not found',
-  description:'This slug does not exist'
-}
+// if(!carDetails.car || !carDetails.success) return {
+//   title:'Not found',
+//   description:'This slug does not exist'
+// }
 
 
 
  
   return {
-    title:` ${carDetails.car.carName} | PRIRENTO` ,
-    description:`Amazing${carDetails.car.carName}.`,
+    title:` ${params.carSlug} | PRIRENTO` ,
+    description:`Amazing${params.carSlug}.`,
     
     openGraph: {
-      title:` ${carDetails.car.carName} | PRIRENTO` ,
-    description:`Amazing${carDetails.car.carName}.`,
-      images: [...carDetails.car.gallary],
+      title:` ${params.carSlug} | PRIRENTO` ,
+    description:`Amazing${params.carSlug}.`,
+      // images: [...carDetails.car.gallary],
     },
   }
 }
