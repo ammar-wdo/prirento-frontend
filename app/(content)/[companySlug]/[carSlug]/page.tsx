@@ -26,7 +26,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
 
 
-  const carDetails = await getCarInfo(params.carSlug)
+//   const carDetails = await getCarInfo(params.carSlug)
 
 // if(!carDetails.car || !carDetails.success) return {
 //   title:'Not found',
