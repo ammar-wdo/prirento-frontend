@@ -12,7 +12,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       (blog) => ({ url: `${process.env.NEXT_PUBLIC_BASE_URL}/blog/${blog.slug}` })
     );
 
-    console.log('blogs slugs',blogsSlugs)
+
 
 // //cars slugs
     const carsRes = await fetcher<{success:boolean,cars: {
@@ -23,7 +23,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         };
     }[]}>(GET_CARS_SEO)
     const carsSlugs:MetadataRoute.Sitemap = carsRes.cars?.map(car=>({url:`${process.env.NEXT_PUBLIC_BASE_URL}/${car.company.slug}/${car.slug}`}))
-    console.log('cars slugs',carsSlugs)
+
 
 // //companies slugs
     const companiesRes = await fetcher<{success:boolean,companies:{
@@ -31,14 +31,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         slug: string;
     }[]}>(GET_COMPANIES)
     const companiesSlugs:MetadataRoute.Sitemap = companiesRes.companies?.map(company=>({url:`${process.env.NEXT_PUBLIC_BASE_URL}/${company.slug}`}))
-    console.log('companies slugs',companiesSlugs)
+
 
 
 
 
   return [
     ...blogsSlugs,
-    // ...carsSlugs,
+    ...carsSlugs,
     ...companiesSlugs,
     { url: process.env.NEXT_PUBLIC_BASE_URL as string },
     { url: `${process.env.NEXT_PUBLIC_BASE_URL}/blog` },
