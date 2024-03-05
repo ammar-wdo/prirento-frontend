@@ -38,9 +38,7 @@ const BrandsSwiper = ({ brands }: Props) => {
        loop={true}
        modules={[Autoplay]}
        // Setting CSS variable for transition timing
-       onInit={(swiper) => {
-         swiper.el.style.setProperty('--swiper-autoplay-speed', '3000ms');
-       }}
+     
         // modules={[Navigation, Autoplay]}
         // spaceBetween={30}
         // className="max-w-[1200px] "
