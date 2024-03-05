@@ -20,7 +20,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // console.log('cars slugs',carsSlugs)
 
 // //companies slugs
-    const companiesRes = await fetcher<{success:boolean,companies:{id:string,slug:string}[]}>(GET_COMPANIES)
+    const companiesRes = await fetcher<{success:boolean,companies:{
+        id: string;
+        slug: string;
+    }[]}>(GET_COMPANIES)
     const companiesSlugs:MetadataRoute.Sitemap = companiesRes.companies?.map(company=>({url:`${process.env.NEXT_PUBLIC_BASE_URL}/${company.slug}`}))
     console.log('companies slugs',companiesSlugs)
 
