@@ -5,6 +5,7 @@ export const GET_LOCATIONS = MAIN_API + '/api/locations'
 export const GET_CARS_BY_TYPE = MAIN_API + '/api/car-by-type'
 export const GET_CARS = MAIN_API + '/api/cars'
 export const GET_CAR = MAIN_API + '/api/car'
+export const GET_COMPANIES = MAIN_API + '/api/company'
 export const GET_DISCOUNT = MAIN_API + '/api/car'
 export const CHECK_DISCOINT_PROXY = '/api/proxy/discount'
 export const POST_BOOKING_PROXY = '/api/proxy/booking'
@@ -22,4 +23,5 @@ export const GET_TERMS= MAIN_API + '/api/terms-and-conditions'
 export const CHECK_FOR_REVIEW = MAIN_API + '/api/review'   //slug + /check
 export const GET_CAR_RATING = MAIN_API + '/api/car'  //slug + rating
 export const GET_CAR_REVIEWS = MAIN_API + '/api/car'  //slug + reviews
+export const GET_CARS_SEO = MAIN_API + '/api/cars/cars-seo'
 
