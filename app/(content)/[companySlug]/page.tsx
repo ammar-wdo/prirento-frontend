@@ -7,9 +7,10 @@ import ContentBanner from "@/components/(content banner)/content-banner";
 import ReviewsComponent from "@/components/(reviews)/reviews-component";
 import ErrorComponent from "@/components/error-component";
 import { Skeleton } from "@/components/ui/skeleton";
-import { fetcher } from "@/lib/utils";
+import { fetcher, getCompanyInfo } from "@/lib/utils";
 import { GET_COMPANY } from "@/links";
 import { Company } from "@/types";
+import { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
 
@@ -19,12 +20,39 @@ type Props = { params: { companySlug: string } };
 
 export const revalidate = 0
 
+//generate metadata
+export async function generateMetadata(
+  { params }: Props,
+
+): Promise<Metadata> {
+
+
+  const res = await getCompanyInfo(params.companySlug)
+
+if(!res.company || !res.success) return {
+  title:'Not found',
+  description:'This slug does not exist'
+}
+
+
+
+ 
+  return {
+    title:`Amazing luxurious cars  - ${res?.company?.name} | PRIRENTO` ,
+    description:`Find best luxurious cars  at ${res.company.name}.`,
+    
+    openGraph: {
+      title:`Amazing luxurious cars  - ${res?.company?.name} | PRIRENTO` ,
+    description:`Find best luxurious cars  at ${res?.company?.name}.`,
+      images: [...res.company.gallary],
+    },
+  }
+}
+
 const page = async ({ params }: Props) => {
-  const res = await fetcher<{
-    error?: string;
-    success: boolean;
-    company: Company;
-  }>(GET_COMPANY + `/${params.companySlug}`);
+
+
+  const res = await getCompanyInfo(params.companySlug)
 
   if (!res.success)
     return (
