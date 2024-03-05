@@ -4,6 +4,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import NextTopLoader from 'nextjs-toploader';
 import { GoogleAnalytics } from '@next/third-parties/google'
+import { GoogleTagManager } from '@next/third-parties/google'
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -36,6 +37,7 @@ export default function RootLayout({
         <Toaster richColors={true} position="top-center" />
       </body>
       <GoogleAnalytics gaId="G-PQFR6PWJQ0" />
+      <GoogleTagManager gtmId="GTM-N3H97TR5" />
     </html>
   );
 }
