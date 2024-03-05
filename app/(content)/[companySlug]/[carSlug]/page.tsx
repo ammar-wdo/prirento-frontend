@@ -107,9 +107,9 @@ const page = async ({ params, searchParams }: Props) => {
         {/* car reviews */}
         <div className="mt-24">
           <CarDescription title="Reviews">
-            <Suspense fallback={<Skeleton className="h-[350px]" />}>
+        
               <CarReviewsComponent carSlug={car.slug} />
-            </Suspense>
+      
           </CarDescription>
         </div>
       </section>
