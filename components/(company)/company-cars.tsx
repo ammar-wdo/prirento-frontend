@@ -5,6 +5,7 @@ import React from "react";
 import ErrorComponent from "../error-component";
 import CarByTypeCard from "../(cars type feed)/car-by-type-card";
 import CarDescription from "../(car)/car-description";
+import RatingComponent from "../(cars type feed)/rating-component";
 
 type Props = {
   companySlug: string;
@@ -30,7 +31,9 @@ const CompanyCars = async ({ companySlug }: Props) => {
       gap-4"
       >
         {res.cars.map((car, index) => (
-          <CarByTypeCard key={car.id} border car={car} />
+          <CarByTypeCard key={car.id} border car={car} >
+            <RatingComponent carSlug={car.slug}/>
+            </CarByTypeCard>
         ))}
       </div>
     </CarDescription>

@@ -1,6 +1,8 @@
 import SearchBanner from "@/components/(banner)/search-banner";
 import CarAvailability from "@/components/(car)/car-availability";
+import CarDescription from "@/components/(car)/car-description";
 import CarFeed from "@/components/(car)/car-feed";
+import CarReviewsComponent from "@/components/(car)/car-reviews-component";
 import SearchComponentServerWrapper from "@/components/(search-component)/seatch-component-server-wrapper";
 import ErrorComponent from "@/components/error-component";
 import LoadingComponent from "@/components/loading-component";
@@ -76,6 +78,15 @@ const page = async ({ params, searchParams }: Props) => {
           >
             <CarAvailability params={params} searchParams={searchParams} />
           </Suspense>
+        </div>
+
+        {/* car reviews */}
+        <div className="mt-24">
+          <CarDescription title="Reviews">
+            <Suspense fallback={<Skeleton className="h-[350px]" />}>
+              <CarReviewsComponent carSlug={car.slug} />
+            </Suspense>
+          </CarDescription>
         </div>
       </section>
     </div>

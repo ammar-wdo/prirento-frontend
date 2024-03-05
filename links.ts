@@ -20,4 +20,6 @@ export const GET_COMPANY = MAIN_API + '/api/company'
 export const GET_PRIVACY = MAIN_API + '/api/privacy-policy'
 export const GET_TERMS= MAIN_API + '/api/terms-and-conditions'
 export const CHECK_FOR_REVIEW = MAIN_API + '/api/review'   //slug + /check
+export const GET_CAR_RATING = MAIN_API + '/api/car'  //slug + rating
+export const GET_CAR_REVIEWS = MAIN_API + '/api/car'  //slug + reviews
 

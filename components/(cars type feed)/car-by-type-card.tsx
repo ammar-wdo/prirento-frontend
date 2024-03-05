@@ -11,10 +11,12 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import qs from "query-string";
 import Image from "next/image";
+import RatingComponent from "./rating-component";
+import { ReactNode } from "react";
 
 type Props = {
   car: CarCardType | CarPublicType;
-
+children?:ReactNode
   notAvailable?: boolean;
   border?: boolean;
   startDate?: string | undefined;
@@ -27,7 +29,7 @@ type Props = {
 
 const CarByTypeCard = ({
   car,
-
+children,
   notAvailable,
   border,
   startDate,
@@ -124,11 +126,7 @@ const CarByTypeCard = ({
 
              
 <div className="flex flex-col items-center">
-  <span className="text-sm">Reviews</span>
-  
-  <span className="rounded-lg bg-secondaryGreen w-14 aspect-square flex items-center justify-center font-medium text-white">
-8.8
-  </span>
+{children}
   <Link href={`/${car.companySlug}`}>
   <div className="my-2 relative w-14  aspect-video ">
   <Image src={car.companyLogo} fill alt="company logo " className="object-contain"/>

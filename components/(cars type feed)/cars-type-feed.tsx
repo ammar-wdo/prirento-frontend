@@ -11,6 +11,9 @@ import { Button } from "../ui/button";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import ErrorComponent from "../error-component";
+import RatingComponent from "./rating-component";
+import { Suspense } from "react";
+import { Skeleton } from "../ui/skeleton";
 
 type Props = {
   searchParams: { [ket: string]: string | string[] | undefined };
@@ -48,7 +51,11 @@ const CarsTypeFeed = async ({ searchParams }: Props) => {
                 endTime={endTime}
                 pickupLocation={location}
                 dropOffLocation={dropOffLocation}
-              />
+              >
+       
+               <RatingComponent carSlug={car.slug} />
+          
+                </CarByTypeCard>
             ))}
           </div>
           <Button

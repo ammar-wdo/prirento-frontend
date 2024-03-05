@@ -1,7 +1,7 @@
 import { fetcher } from "@/lib/utils";
 import qs from "query-string";
 import { CarPublicType } from "@/types";
-import React from "react";
+import React, { Suspense } from "react";
 import { GET_CARS } from "@/links";
 import CarByTypeCard from "../(cars type feed)/car-by-type-card";
 import NoResult from "../no-result";
@@ -9,6 +9,8 @@ import Scroller from "../scroller";
 import ErrorComponent from "../error-component";
 import { Button } from "../ui/button";
 import Link from "next/link";
+import { Skeleton } from "../ui/skeleton";
+import RatingComponent from "../(cars type feed)/rating-component";
 
 type Props = {
   searchParams: { [key: string]: string | string[] | undefined };
@@ -24,8 +26,8 @@ const CarsFeed = async ({ searchParams }: Props) => {
   const endDate = searchParams.endDate as string;
   const startTime = searchParams.startTime as string;
   const endTime = searchParams.endTime as string;
-  const location = searchParams.location as string
-  const dropOffLocation = searchParams.dropOffLocation as string
+  const location = searchParams.location as string;
+  const dropOffLocation = searchParams.dropOffLocation as string;
 
   const res = await fetcher<{
     availableCars: CarPublicType[];
@@ -54,7 +56,6 @@ const CarsFeed = async ({ searchParams }: Props) => {
         {availableCars.map((car, i) => (
           <CarByTypeCard
             car={car}
-         
             border={true}
             key={car.id}
             startDate={startDate}
@@ -63,7 +64,11 @@ const CarsFeed = async ({ searchParams }: Props) => {
             endTime={endTime}
             pickupLocation={location}
             dropOffLocation={dropOffLocation}
-          />
+          >
+         
+              <RatingComponent carSlug={car.slug} />
+        
+          </CarByTypeCard>
         ))}
         {notAvailableCars.map((car, i) => (
           <div
@@ -74,14 +79,17 @@ const CarsFeed = async ({ searchParams }: Props) => {
               border={true}
               notAvailable={true}
               car={car}
-             
               startDate={startDate}
               endDate={endDate}
               startTime={startTime}
               endTime={endTime}
               pickupLocation={location}
               dropOffLocation={dropOffLocation}
-            />
+            >
+          
+                <RatingComponent carSlug={car.slug} />
+         
+            </CarByTypeCard>
           </div>
         ))}
       </div>
