@@ -21,33 +21,33 @@ type Props = { params: { companySlug: string } };
 export const revalidate = 0
 
 //generate metadata
-export async function generateMetadata(
-  { params }: Props,
+// export async function generateMetadata(
+//   { params }: Props,
 
-): Promise<Metadata> {
+// ): Promise<Metadata> {
 
 
-  const res = await getCompanyInfo(params.companySlug)
+//   const res = await getCompanyInfo(params.companySlug)
 
-if(!res.company || !res.success) return {
-  title:'Not found',
-  description:'This slug does not exist'
-}
+// if(!res.company || !res.success) return {
+//   title:'Not found',
+//   description:'This slug does not exist'
+// }
 
 
 
  
-  return {
-    title:`Amazing luxurious cars  - ${res?.company?.name} | PRIRENTO` ,
-    description:`Find best luxurious cars  at ${res.company.name}.`,
+//   return {
+//     title:`Amazing luxurious cars  - ${res?.company?.name} | PRIRENTO` ,
+//     description:`Find best luxurious cars  at ${res.company.name}.`,
     
-    openGraph: {
-      title:`Amazing luxurious cars  - ${res?.company?.name} | PRIRENTO` ,
-    description:`Find best luxurious cars  at ${res?.company?.name}.`,
-      images: [...res.company.gallary],
-    },
-  }
-}
+//     openGraph: {
+//       title:`Amazing luxurious cars  - ${res?.company?.name} | PRIRENTO` ,
+//     description:`Find best luxurious cars  at ${res?.company?.name}.`,
+//       images: [...res.company.gallary],
+//     },
+//   }
+// }
 
 const page = async ({ params }: Props) => {
 
@@ -99,12 +99,12 @@ const page = async ({ params }: Props) => {
       {/* Company reviews */}
 
       <div className="mt-12 container">
-      
+        <Suspense fallback={<Skeleton className="min-h-[300px]"/>}>
           <CarDescription title="Reviews">
           <ReviewsComponent hideHeading={true} companySlug={params.companySlug} />
           </CarDescription>
         
-   
+        </Suspense>
       </div>
     </div>
   );
