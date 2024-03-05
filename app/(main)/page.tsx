@@ -24,11 +24,11 @@ export const revalidate = 0;
 export const metadata: Metadata = {
   title: "PRIRENTO - Luxurious car rental - UAE",
   description:
-    "Descover the most luxorious car rental service in UAE, get hustle free experience, 24/7 support, no fees, full  protection ",
+    "Descover the most luxorious car rental service in UAE, get hustle free experience, 24/7 support,money back guarantee, no fees, full  protection. ",
   openGraph: {
     title: "PRIRENTO - Luxurious car rental - UAE",
     description:
-      "Descover the most luxorious car rental service in UAE, get hustle free experience, 24/7 support, no fees, full  protection ",
+      "Descover the most luxorious car rental service in UAE, get hustle free experience, 24/7 support,money back guarantee, no fees, full  protection. ",
       images:['/banner.png']
   },
 };
