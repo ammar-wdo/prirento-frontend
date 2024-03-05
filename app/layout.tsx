@@ -35,7 +35,7 @@ export default function RootLayout({
         {children}
         <Toaster richColors={true} position="top-center" />
       </body>
-      <GoogleAnalytics gaId="GTM-N3H97TR5" />
+      <GoogleAnalytics gaId="G-PQFR6PWJQ0" />
     </html>
   );
 }
