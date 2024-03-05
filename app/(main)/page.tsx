@@ -12,12 +12,26 @@ import TipsComponent from "@/components/(tips component)/tips-component";
 import Heading from "@/components/heading";
 import { Skeleton } from "@/components/ui/skeleton";
 import { searchParamsGenerate, setDefaultSearchParams } from "@/lib/utils";
+import { Metadata } from "next";
 import { Suspense } from "react";
 
 type Props = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
 export const revalidate = 0;
+
+
+export const metadata: Metadata = {
+  title: "PRIRENTO - Luxurious car rental - UAE",
+  description:
+    "Descover the most luxorious car rental service in UAE, get hustle free experience, 24/7 support, no fees, full  protection ",
+  openGraph: {
+    title: "PRIRENTO - Luxurious car rental - UAE",
+    description:
+      "Descover the most luxorious car rental service in UAE, get hustle free experience, 24/7 support, no fees, full  protection ",
+      images:['/banner.png']
+  },
+};
 
 export default function Home({ searchParams }: Props) {
   if (!searchParams.carType) {
