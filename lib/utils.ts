@@ -3,8 +3,8 @@ import { twMerge } from "tailwind-merge";
 import axios from "axios";
 
 import qs from "query-string";
-import { CarSuperAdminRule, Company } from "@/types";
-import { GET_COMPANY } from "@/links";
+import { CarSuperAdminRule, Company, SingleCarType } from "@/types";
+import { GET_CAR, GET_COMPANY } from "@/links";
 import { cache } from "react";
 
 export function cn(...inputs: ClassValue[]) {
@@ -249,6 +249,19 @@ export const getCompanyInfo =cache(async(slug:string)=>{
 
   return res
 })
+
+
+
+export const getCarInfo =cache(async(slug:string)=>{
+
+  const carDetails = await fetcher<{
+    car: SingleCarType;
+    success: boolean;
+    error?: string;
+  }>(GET_CAR + "/" + slug);
+
+  return carDetails
+}) 
 
 
 

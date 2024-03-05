@@ -5,12 +5,12 @@ import CarFeed from "@/components/(car)/car-feed";
 import CarReviewsComponent from "@/components/(car)/car-reviews-component";
 import SearchComponentServerWrapper from "@/components/(search-component)/seatch-component-server-wrapper";
 import ErrorComponent from "@/components/error-component";
-import LoadingComponent from "@/components/loading-component";
+
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { fetcher, setDefaultSearchParams } from "@/lib/utils";
-import { GET_CAR } from "@/links";
-import { SingleCarType } from "@/types";
+import {  getCarInfo, setDefaultSearchParams } from "@/lib/utils";
+import { Metadata } from "next";
+
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import React, { Suspense } from "react";
@@ -20,15 +20,39 @@ type Props = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
+export async function generateMetadata(
+  { params }: Props,
+
+): Promise<Metadata> {
+
+
+  const carDetails = await getCarInfo(params.carSlug)
+
+if(!carDetails.car || !carDetails.success) return {
+  title:'Not found',
+  description:'This slug does not exist'
+}
+
+
+
+ 
+  return {
+    title:` ${carDetails.car.carName} | PRIRENTO` ,
+    description:`Amazing${carDetails.car.carName}.`,
+    
+    openGraph: {
+      title:` ${carDetails.car.carName} | PRIRENTO` ,
+    description:`Amazing${carDetails.car.carName}.`,
+      images: [...carDetails.car.gallary],
+    },
+  }
+}
+
 const page = async ({ params, searchParams }: Props) => {
   setDefaultSearchParams(searchParams);
 
   //fetch car's details
-  const carDetails = await fetcher<{
-    car: SingleCarType;
-    success: boolean;
-    error?: string;
-  }>(GET_CAR + "/" + params.carSlug);
+  const carDetails = await getCarInfo(params.carSlug)
 
   if (!carDetails.success)
     return (
