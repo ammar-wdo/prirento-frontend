@@ -15,9 +15,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.log('blogs slugs',blogsSlugs)
 
 // //cars slugs
-    // const carsRes = await fetcher<{success:boolean,cars:{id:string,slug:string,company:{slug:string}}[]}>(GET_CARS_SEO)
-    // const carsSlugs:MetadataRoute.Sitemap = carsRes.cars?.map(car=>({url:`${process.env.NEXT_PUBLIC_BASE_URL}/${car.company.slug}/${car.slug}`}))
-    // console.log('cars slugs',carsSlugs)
+    const carsRes = await fetcher<{success:boolean,cars: {
+        id: string;
+        slug: string;
+        company: {
+            slug: string;
+        };
+    }[]}>(GET_CARS_SEO)
+    const carsSlugs:MetadataRoute.Sitemap = carsRes.cars?.map(car=>({url:`${process.env.NEXT_PUBLIC_BASE_URL}/${car.company.slug}/${car.slug}`}))
+    console.log('cars slugs',carsSlugs)
 
 // //companies slugs
     const companiesRes = await fetcher<{success:boolean,companies:{
