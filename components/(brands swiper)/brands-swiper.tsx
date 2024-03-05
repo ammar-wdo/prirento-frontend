@@ -26,16 +26,31 @@ const BrandsSwiper = ({ brands }: Props) => {
   return (
     <>
       <Swiper
-        modules={[Navigation, Autoplay]}
-        spaceBetween={30}
-        className="max-w-[1200px] "
-        navigation={{
-          nextEl: ".custom-swiper-button-next",
-          prevEl: ".custom-swiper-button-prev",
-        }}
-        loop={true}
-        speed={1500}
-        autoplay={{ delay: 2500, disableOnInteraction: false }}
+       spaceBetween={0}
+       centeredSlides={true}
+       autoplay={{
+         delay: 0,
+         disableOnInteraction: false,
+         pauseOnMouseEnter: true,
+         
+       }}
+       speed={3000}
+       loop={true}
+       modules={[Autoplay]}
+       // Setting CSS variable for transition timing
+       onInit={(swiper) => {
+         swiper.el.style.setProperty('--swiper-autoplay-speed', '3000ms');
+       }}
+        // modules={[Navigation, Autoplay]}
+        // spaceBetween={30}
+        // className="max-w-[1200px] "
+        // navigation={{
+        //   nextEl: ".custom-swiper-button-next",
+        //   prevEl: ".custom-swiper-button-prev",
+        // }}
+        // loop={true}
+        // speed={1500}
+        // autoplay={{ delay: 2500, disableOnInteraction: false }}
         breakpoints={{
           200: {
             slidesPerView: 3,
@@ -67,15 +82,7 @@ const BrandsSwiper = ({ brands }: Props) => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className="relative container -mt-16 z-10 sm:block hidden">
-        <button className="custom-swiper-button-prev absolute left-1 cursor-pointer flex items-center justify-center w-8 h-8 rounded-full hover:bg-secondaryGreen hover:text-white bg-white transition shadow-md text-secondaryGreen">
-          <ChevronLeft />{" "}
-        </button>
-        <button className="custom-swiper-button-next absolute right-1 cursor-pointer flex items-center justify-center w-8 h-8 rounded-full hover:bg-secondaryGreen hover:text-white bg-white transition shadow-md text-secondaryGreen">
-          {" "}
-          <ChevronRight />{" "}
-        </button>
-      </div>
+
     </>
   );
 };
