@@ -12,6 +12,7 @@ import { GET_COMPANY } from "@/links";
 import { Company } from "@/types";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
+import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
 const Editor = dynamic(() => import("@/components/editor"), { ssr: false });
@@ -60,6 +61,9 @@ const page = async ({ params }: Props) => {
         <ErrorComponent description={res.error as string} />
       </div>
     );
+
+
+    if (!res.company) notFound();
 
   return (
     <div className="pb-12">
