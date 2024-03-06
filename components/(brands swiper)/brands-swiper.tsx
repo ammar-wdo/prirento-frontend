@@ -70,7 +70,7 @@ const BrandsSwiper = ({ brands }: Props) => {
             className="hover:bg-muted rounded-lg p-1 transition "
             key={brand.id}
           >
-            <Link href={`/search?`}>
+            <Link href={`/search?brand=${brand.brand}`}>
             <div className="sm:w-[100px] w-[60px] active:scale-95 aspect-square relative mx-auto my-auto cursor-pointer transition">
               <Image
                 fill
