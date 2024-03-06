@@ -39,11 +39,11 @@ export const revalidate = 0
 
  
 //   return {
-//     title:`Amazing luxurious cars  - ${res?.company?.name} | PRIRENTO` ,
+//     title:`${res?.company?.name} | PRIRENTO` ,
 //     description:`Find best luxurious cars  at ${res.company.name}.`,
     
 //     openGraph: {
-//       title:`Amazing luxurious cars  - ${res?.company?.name} | PRIRENTO` ,
+//       title:`${res?.company?.name} | PRIRENTO` ,
 //     description:`Find best luxurious cars  at ${res?.company?.name}.`,
 //       images: [...res.company.gallary],
 //     },

@@ -14,9 +14,9 @@ const BenefitsComponent = (props: Props) => {
       icon: <Sparkles className="w-5 h-5" />,
     },
     {
-      title: "Affordable Prices",
+      title: "Money back guarantee",
       description:
-        "Our rental rates are highly competitive and affordable, allowing our customers to enjoy their trips without breaking the bank.",
+        "refund possibilities at certain situations",
       icon: <HandCoins className="w-5 h-5" />,
     },
     {

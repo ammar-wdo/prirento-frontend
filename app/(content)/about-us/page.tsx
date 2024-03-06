@@ -7,9 +7,24 @@ import React from "react";
 import dynamic from "next/dynamic";
 import ReviewsComponent from "@/components/(reviews)/reviews-component";
 import BenefitsComponent from "@/components/(benefits)/benefits-component";
+import { Metadata } from "next";
 const Editor = dynamic(() => import("@/components/editor"), { ssr: false });
 
 type Props = {};
+
+
+export const metadata: Metadata = {
+  title: "PRIRENTO - About us - UAE",
+  description:
+    "Descover the most luxorious car rental service in UAE, get hustle free experience, 24/7 support,money back guarantee, no fees, full  protection. ",
+  openGraph: {
+    title: "PRIRENTO - About us - UAE",
+    description:
+      "Descover the most luxorious car rental service in UAE, get hustle free experience, 24/7 support,money back guarantee, no fees, full  protection. ",
+      
+      images:['/banner.png']
+  },
+};
 
 const page = async (props: Props) => {
   const aboutRes = await fetcher<{

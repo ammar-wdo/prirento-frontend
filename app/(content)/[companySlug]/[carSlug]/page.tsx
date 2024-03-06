@@ -42,7 +42,7 @@ export async function generateMetadata(
     
     openGraph: {
       title:` ${params.carSlug} | PRIRENTO` ,
-    description:`Amazing${params.carSlug}.`,
+    description:`Amazing ${params.carSlug}.`,
       // images: [...carDetails.car.gallary],
     },
   }
