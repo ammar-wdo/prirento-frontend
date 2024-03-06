@@ -70,7 +70,7 @@ const Footer = (props: Props) => {
             />
           </div>
           <h3 className="text-xs font-light md:text-base">
-          Elevate Your Drive with UAE's Finest Luxury Cars.{" "}
+          Elevate Your Drive with UAE&apos;s Finest Luxury Cars.{" "}
           </h3>
           <div className="flex items-center gap-8 mt-4 flex-wrap">
             {socialIcons.map((icon) => (
