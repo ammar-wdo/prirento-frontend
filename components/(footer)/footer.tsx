@@ -69,10 +69,9 @@ const Footer = (props: Props) => {
               className="object-contain"
             />
           </div>
-          <p className="text-xs font-light md:text-base">
-            Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem
-            IpsumLorem IpsumLorem Ipsum{" "}
-          </p>
+          <h3 className="text-xs font-light md:text-base">
+          Elevate Your Drive with UAE's Finest Luxury Cars.{" "}
+          </h3>
           <div className="flex items-center gap-8 mt-4 flex-wrap">
             {socialIcons.map((icon) => (
               <div className="w-4  aspect-square relative shrink-0" key={icon}>

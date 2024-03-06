@@ -56,11 +56,9 @@ export default function Home({ searchParams }: Props) {
       <div className="mt-24">
         <div className="bg-gray-100 pt-24 pb-12">
           <div className="container">
-            <Heading title=" Our impressive collections of cars">
+            <Heading title=" Your extraordinary journey starts now!">
               <span>
-                Ranging from elegant sedans to powerful sports cars, all
-                carefully selected to provide our <br />
-                customers with the ultimate drivin experience.
+              Find your perfect match in our stunning car selection!
               </span>
             </Heading>
           </div>

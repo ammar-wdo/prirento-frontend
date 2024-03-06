@@ -10,7 +10,7 @@ const BenefitsComponent = (props: Props) => {
     {
       title: "Quality Choice",
       description:
-        "We offer a wide range of high-quality vehicles to choose from, including luxury cars, SUVs, vans, and more.",
+        "From luxurious sedans and spacious Luxury SUVs to VIP vans, we've got the perfect ride for every story find the perfect match for your journey.",
       icon: <Sparkles className="w-5 h-5" />,
     },
     {
@@ -22,14 +22,14 @@ const BenefitsComponent = (props: Props) => {
     {
       title: "Convenient Online Booking",
       description:
-        "With our easy-to-use online booking system, customers can quickly and conveniently reserve their rental car from anywhere, anytime.",
+        "Book your ideal rental car effortlessly with our user-friendly online system. Reserve your vehicle anytime, anywhere, ensuring a hassle-free rental experience from start to finish.",
       icon: <BadgeCheck className="w-5 h-5" />,
     },
   ];
   return (
     <div className="bg-main py-16">
         <div className="container">
-        <Heading className="text-white" title="Our Services & Benefits">
+        <Heading className="text-white" title="Simplifying Your Luxury Rental Experience">
         <span>
           To make renting easy and hassle-free, we provide a variety of services
           and advantages.

@@ -11,7 +11,7 @@ const TipsComponent = (props: Props) => {
   return (
     <div className="pb-12">
         <div className="container">
-        <Heading title="How it works">
+        <Heading title="Easy Luxury Car Rental">
         <span>
           Renting a luxury car has never been easier.Our streamlined process
           makes it simple for you <br />
