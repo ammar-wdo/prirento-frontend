@@ -11,6 +11,7 @@ import { Navigation, Autoplay } from "swiper/modules";
 import { BrandType } from "@/types";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import Link from "next/link";
 
 type Props = {
   brands: BrandType[];
@@ -69,6 +70,7 @@ const BrandsSwiper = ({ brands }: Props) => {
             className="hover:bg-muted rounded-lg p-1 transition "
             key={brand.id}
           >
+            <Link href={`/search?`}>
             <div className="sm:w-[100px] w-[60px] active:scale-95 aspect-square relative mx-auto my-auto cursor-pointer transition">
               <Image
                 fill
@@ -77,6 +79,8 @@ const BrandsSwiper = ({ brands }: Props) => {
                 className="object-contain"
               />
             </div>
+            </Link>
+         
           </SwiperSlide>
         ))}
       </Swiper>
