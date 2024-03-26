@@ -12,7 +12,7 @@ const CarFixedValues = ({ subtotal, deliveryFee, deposit }: Props) => {
     <div className="flex w-full flex-col gap-3">
       <KeyValue title="rental price" description={`${subtotal} AED`} />
       <KeyValue title="refundable deposit" description={`${deposit} AED`} />
-      {deliveryFee && (
+      {!!deliveryFee && (
         <KeyValue title="delivery fee" description={`${deliveryFee} AED`} />
       )}
     </div>
