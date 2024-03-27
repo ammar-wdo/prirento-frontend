@@ -11,16 +11,23 @@ import { BrandType } from "@/types";
 
 type Props = {
   white?: boolean;
+  transparent?:boolean
 };
 
-const MainHeader = async({ white }: Props) => {
+const MainHeader = async({ white,transparent }: Props) => {
   const brands = await fetcher<{brands:BrandType[]}>(GET_BRANDS).then(data=>data.brands)
 
   return (
-    <header className={cn("bg-main", white && "bg-white")}>
+    <header className={cn("bg-main", white && "bg-white",transparent && 'bg-transparent relative ')}>
       <div className="container h-24 flex items-center justify-between">
         <Link href={'/'}>
-        <Logo white={white}/>
+      {transparent ?    <Image
+      priority={true}
+        src={'/white-logo.png'}
+        width={100}
+        height={100}
+        alt="logo"
+      /> :  <Logo white={white}/>}
         </Link>
       
 

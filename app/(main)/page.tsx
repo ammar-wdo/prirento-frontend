@@ -5,6 +5,7 @@ import CarTypeFeedSkeleton from "@/components/(cars type feed)/car-type-feed-ske
 import CarsTypeComponent from "@/components/(cars type feed)/cars-type-component";
 
 import CarsTypeFeed from "@/components/(cars type feed)/cars-type-feed";
+import MainInfo from "@/components/(main info)/main-info";
 import ReviewsComponent from "@/components/(reviews)/reviews-component";
 
 import SearchComponentServerWrapper from "@/components/(search-component)/seatch-component-server-wrapper";
@@ -47,9 +48,9 @@ export default function Home({ searchParams }: Props) {
       <div className="container xl:-mt-[3rem] -mt-[12rem]">
         <SearchComponentServerWrapper />
       </div>
-      {/* Brands logos component */}
+      {/* main info */}
       <div className="container mt-20">
-        <BrandsSwiperServerWrapeer />
+        <MainInfo />
       </div>
 
       {/* Cars types feed component */}
