@@ -130,7 +130,7 @@ const SearchComponent = ({ locations, searchParams, urlVar,label }: Props) => {
           variant={"siteMain"}
           className="rounded-full py-[28px] px-8 font-medium text-base self-end xl:flex hidden"
         >
-          {label || "Find a vehicle"}{" "}
+          {label || "Search"}{" "}
         {loading ? (
           <Loader className="ml-2 h-4 w-4 animate-spin" />
         ) : (
@@ -157,7 +157,7 @@ const SearchComponent = ({ locations, searchParams, urlVar,label }: Props) => {
         variant={"siteMain"}
         className="rounded-full py-[28px] px-8 font-medium text-base self-end xl:hidden w-[200px] tex-sm mt-20 flex absolute -bottom-8 left-[50%] -translate-x-[50%]"
       >
-       {label || "Find a vehicle"} {" "}
+       {label || "Search"} {" "}
         {loading ? (
           <Loader className="ml-2 h-4 w-4 animate-spin" />
         ) : (
