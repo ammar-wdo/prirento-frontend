@@ -24,7 +24,7 @@ const ReviewsComponent = async({companySlug,hideHeading}: Props) => {
    {!hideHeading &&   <Heading title="reviews" >
         <span>
           We are proud to collaborate with some of the best luxury cars rental
-          cars in the market, here
+          companies in the market, here
           <br /> are some reviews the clients said previously about our partners
         </span>
       </Heading>}
