@@ -31,7 +31,7 @@ const BenefitsComponent = (props: Props) => {
         <div className="container">
         <Heading className="text-white" title="Simplifying Your Luxury Rental Experience">
         <span>
-          To make renting easy and hassle-free, we provide a variety of services
+          To make renting easy and hassle-free, we provide a variety of cars
           and advantages.
           <br /> We have you covered with a variety of vehicles and flexible
           rental terms.

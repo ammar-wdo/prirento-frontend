@@ -12,7 +12,7 @@ const SearchBanner = ({brand,carName}: Props) => {
   }else if(typeof brand ==='string'){
     content = brand
   }else {
-    content = "All Vehicles"
+    content = "All Cars"
   }
   return (
     <div className='bg-main text-white flex py-20 justify-center h-[250px]'>

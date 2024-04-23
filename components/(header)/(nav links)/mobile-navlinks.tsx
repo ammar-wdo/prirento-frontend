@@ -20,7 +20,7 @@ export const links = [
     href: "/about-us",
   },
   {
-    label: "All vehicles",
+    label: "All cars",
     href: "/search",
   },
   {
