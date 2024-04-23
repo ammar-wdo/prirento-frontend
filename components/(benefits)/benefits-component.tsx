@@ -33,7 +33,7 @@ const BenefitsComponent = (props: Props) => {
         <span>
           To make renting easy and hassle-free, we provide a variety of cars
           and advantages.
-          <br /> We have you covered with a variety of vehicles and flexible
+          <br /> We have you covered with a variety of cars and flexible
           rental terms.
         </span>
       </Heading>
