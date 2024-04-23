@@ -14,21 +14,21 @@ const TipsDescription = (props: Props) => {
       descriptions:
         "Choose from our wide range of premium cars, select the pickup and return dates and locations that suit you best.",
       icon: <Search className="w-6 h-6" />,
-      image: "/browse.png",
+      image: "/select-now.png",
     },
     {
       title: "Book and confirm",
       descriptions:
         "Book your desired car with just a few clicks and receive an instant confirmation via email or SMS.",
       icon: <CalendarCheck2 className="w-6 h-6" />,
-      image: "/booking-confirm.png",
+      image: "/book-easily.png",
     },
     {
       title: "Enjoy your ride",
       descriptions:
         "Pick up your car at the designated location and enjoy your premium driving experience with our top-quality service.",
       icon: <Laugh className="w-6 h-6" />,
-      image: "/enjoy-ride.png",
+      image: "/enjoy.png",
     },
   ];
 
@@ -82,7 +82,7 @@ const TipsDescription = (props: Props) => {
           <Image
             priority
             fill
-            src={index !== undefined ? tips[index].image : "/default.png"}
+            src={index !== undefined ? tips[index].image : "/default-image.png"}
             className="object-contain"
             alt="tip-image"
           />
