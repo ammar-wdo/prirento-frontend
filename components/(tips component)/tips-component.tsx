@@ -13,9 +13,9 @@ const TipsComponent = (props: Props) => {
         <div className="container">
         <Heading title="Easy Luxury Car Rental">
         <span>
-          Renting a luxury car has never been easier.Our streamlined process
+          Renting a luxury car has never been easier. Our streamlined process
           makes it simple for you <br />
-          to book and confirm your vehice of choice online{" "}
+          to book and confirm your car of choice online{" "}
         </span>
       </Heading>
 
