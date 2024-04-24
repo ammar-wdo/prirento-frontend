@@ -8,7 +8,7 @@ type Props = {};
 const Banner = (props: Props) => {
   return (
     <div className="bg-main md:pb-32 pb-56 h-[550px] relative">
-      <Image priority={true} src={'/banner-image.jpg'} fill alt='banner-image' className="object-cover object-bottom hidden xl:block" />
+      <Image priority={true} src={'/banner-image2.jpeg'} fill alt='banner-image' className="object-cover object-bottom hidden xl:block" />
       <Image priority={true} src={'/banner-mobile.jpg'} fill alt='banner-image' className="object-cover  xl:hidden object-center" />
          <MainHeader transparent={true} />
          <div className="container">  <h1 className="capitalize text-white  text-left font-semibold text-2xl md:text-3xl lg:text-[40px] w-fit relative  xl:mt-32 mt-8 sm:bg-main">
