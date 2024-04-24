@@ -30,14 +30,15 @@ const BlogCard = ({blog}: Props) => {
         <p className=" px-4 py-2  rounded-lg bg-muted capitalize text-sm w-fit">
             {blog.category.label}
         </p>
-        <p className="font-medium mt-2 first-letter:capitalize">{blog.shortDescription}</p>
+        <p className="font-medium mt-4 first-letter:capitalize">{blog.title}</p>
+        <p className="text-muted-foreground text-sm mt-2 first-letter:capitalize">{blog.shortDescription}</p>
         </div>
    
       </CardContent>
       <CardFooter className="p-0 px-0 pb-0 mt-auto">
 <div className="flex items-center gap-4 ">
-    <p className="text-sm text-muted-foreground capitalize">{blog.author}</p>
-    <p className="text-sm text-muted-foreground capitalize">{formatDate(new Date(blog.createdAt))}</p>
+    <p className="text-sm font-semibold capitalize">{blog.author}</p>
+    <p className="text-sm font-semibold capitalize">{formatDate(new Date(blog.createdAt))}</p>
 </div>
       </CardFooter>
     </Card>

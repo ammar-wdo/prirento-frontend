@@ -53,7 +53,7 @@ const {blog,relatedBlogs} = blogRes
       <section className='mt-12 flex flex-col w-full gap-4 container pb-12'>
 <span className='px-4 py-2 rounded-lg bg-muted w-fit capitalize'>{blog.category.label}</span>
 
-<h1 className='font-semibold text-3xl capitalize '>{blog.shortDescription}</h1>
+<h1 className='font-semibold text-3xl capitalize '>{blog.title}</h1>
 
 <div className='flex items-center gap-8 text-sm text-muted-foreground'>
 {blog.author && <p className='capitalize'>{blog.author}</p>}

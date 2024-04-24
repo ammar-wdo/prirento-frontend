@@ -28,7 +28,7 @@ const BlogFeed = async (props: Props) => {
 
 
   return (
-    <div>
+    <div className="pb-12">
       {!blogs.length && <NoResult />}
       {!!blogs.length && (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-stretch gap-3">
