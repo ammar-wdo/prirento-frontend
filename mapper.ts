@@ -13,7 +13,8 @@ export const carsMapper :{[key:string]:{title:string,src:string}} = {
 
 export const carsElectric :{[key:string]:string} ={
     "fully_electric":'Fully electric',
-    'hybrid':'Hybrid'
+    'hybrid':'Hybrid',
+    'none':'None electric'
 
 }
 

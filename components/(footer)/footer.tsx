@@ -51,11 +51,14 @@ const Footer = (props: Props) => {
   ];
 
   const socialIcons = [
-    "/Facebook.png",
-    "/Twitter.png",
-    "/Instagram.png",
-    "/LinkedIn.png",
-    "/YouTube.png",
+    {image: "/Facebook.png",url:'https://facebook.com/profile.php?id=61556710156284'},
+    {image:'/Twitter.png',url:'https://twitter.com/prirento'},
+    {image:'/Instagram.png',url:'https://www.instagram.com/prirento/'},
+    {image:'/LinkedIn.png',url:'https://www.linkedin.com/company/prirento/'},
+  
+   
+   
+   
   ];
   return (
     <div className="bg-main p-6 py-20">
@@ -74,8 +77,10 @@ const Footer = (props: Props) => {
           </h3>
           <div className="flex items-center gap-8 mt-4 flex-wrap">
             {socialIcons.map((icon) => (
-              <div className="w-4  aspect-square relative shrink-0" key={icon}>
-                <Image src={icon} fill alt={icon} className="object-contain " />
+              <div className="w-4  aspect-square relative shrink-0" key={icon.image}>
+                <Link target="_blank" href={icon.url}>
+                <Image src={icon.image} fill alt={icon.image} className="object-contain " />
+                </Link>
               </div>
             ))}
           </div>
