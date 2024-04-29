@@ -225,6 +225,7 @@ export type Review =  {
   rate: number;
   createdAt: Date;
   updatedUt: Date;
+  placeholderDate:Date | null
 }
 
 export type AboutType = {

@@ -43,7 +43,7 @@ const ReviewSwiperSlide = ({ i, review }: Props) => {
           </Link>
         </div>
         <p>
-          {formatDate(new Date(review.createdAt), "en-GB", {
+          {formatDate(new Date(review.placeholderDate || review.createdAt), "en-GB", {
             timeZone: "Asia/Dubai",
             year: "numeric",
             month: "2-digit",
