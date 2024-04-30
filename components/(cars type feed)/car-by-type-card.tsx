@@ -25,6 +25,7 @@ children?:ReactNode
   endTime?: string | undefined;
   pickupLocation?: string;
   dropOffLocation?: String;
+  toLink?:boolean
 };
 
 const CarByTypeCard = ({
@@ -38,6 +39,7 @@ children,
   endTime,
   pickupLocation,
   dropOffLocation,
+  toLink
 }: Props) => {
   const fadeIn = {
     initial: {
@@ -54,8 +56,20 @@ children,
     },
   };
 
+
+  const checkoutUrl =  qs.stringifyUrl({
+    url:  `${process.env.NEXT_PUBLIC_BASE_URL}/checkout/${car.slug}` as string ,
+    query: {
+      startDate,
+      endDate,
+      startTime,
+      endTime,
+      location: pickupLocation,
+      ...(!!dropOffLocation && {dropOffLocation:dropOffLocation as string})
+    },
+  });
   const url = qs.stringifyUrl({
-    url: `${process.env.NEXT_PUBLIC_BASE_URL}/${car.companySlug}/${car.slug}` as string,
+    url:  `${process.env.NEXT_PUBLIC_BASE_URL}/${car.companySlug}/${car.slug}` as string,
     query: {
       startDate,
       endDate,
@@ -164,7 +178,7 @@ children,
                 notAvailable && "pointer-events-none cursor-not-allowed"
               )}
             >
-              <Link href={url} className=" w-full">
+              <Link href={toLink ? checkoutUrl :  url} className=" w-full">
                 {" "}
                 {notAvailable ? "Not Available" : "Book Now"}
               </Link>

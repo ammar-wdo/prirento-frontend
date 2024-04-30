@@ -22,6 +22,8 @@ const CarsFeed = async ({ searchParams }: Props) => {
     query: { ...searchParams },
   });
 
+  
+
   const startDate = searchParams.startDate as string;
   const endDate = searchParams.endDate as string;
   const startTime = searchParams.startTime as string;
@@ -64,6 +66,7 @@ const CarsFeed = async ({ searchParams }: Props) => {
             endTime={endTime}
             pickupLocation={location}
             dropOffLocation={dropOffLocation}
+            toLink
           >
          
               <RatingComponent carSlug={car.slug} />
