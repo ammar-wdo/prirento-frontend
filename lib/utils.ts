@@ -95,6 +95,10 @@ export function setDefaultSearchParams(searchParams: {
   [key: string]: string | string[] | undefined;
 }) {
   // Set default location
+if(!searchParams.page){
+  searchParams.page = "1"
+}
+
   if (!searchParams.location) {
     searchParams.location = "dubai";
   }
