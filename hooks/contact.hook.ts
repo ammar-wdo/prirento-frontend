@@ -30,7 +30,11 @@ export const useContact = ()=>{
             const res = await axios.post<{success:boolean,error?:string,message?:string}>(CONTACT_PROXY,values).then(data=>data.data)
 
             if(!res.success) return toast.error(res.error as string)
-form.reset()
+form.reset({email:'',
+firstName:'',
+lastName:'',
+message:'',
+subject:''})
             toast.success(res.message as string)
             
         } catch (error) {
