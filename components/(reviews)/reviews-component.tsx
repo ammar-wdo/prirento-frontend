@@ -31,7 +31,7 @@ const ReviewsComponent = async ({ companySlug, hideHeading }: Props) => {
     );
 
   return (
-    <div className={cn("py-16 ", hideHeading && "py-4")}>
+    <div className={cn("sm:py-16 py-6 ", hideHeading && "py-4")}>
       {!hideHeading && (
         <Heading title="reviews">
           <span>

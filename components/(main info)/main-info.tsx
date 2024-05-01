@@ -23,7 +23,7 @@ const info = [
 
 const MainInfo = (props: Props) => {
   return (
-    <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-20">
+    <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-20 gap-10">
       {info.map((el) => (
         <article key={el.title} className="flex flex-col   ">
           <div className="flex items-center gap-4 ">
@@ -32,7 +32,7 @@ const MainInfo = (props: Props) => {
             </div>
             <h3 className="capitalize font-bold text-[17px]">{el.title}</h3>
           </div>
-          <p className="mt-6 sm:text-[25px] text-base font-bold ">{el.description}</p>
+          <p className="mt-6 sm:text-[25px] text-[23px] font-bold ">{el.description}</p>
         </article>
       ))}
     </section>

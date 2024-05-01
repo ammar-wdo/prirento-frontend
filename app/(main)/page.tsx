@@ -54,8 +54,8 @@ export default function Home({ searchParams }: Props) {
       </div>
 
       {/* Cars types feed component */}
-      <div className="mt-24">
-        <div className="bg-gray-100 pt-24 pb-12">
+      <div className="mt-12 sm:mt-24">
+        <div className="bg-gray-100 pt-12 sm:pt-24 pb-12">
           <div className="container">
             <Heading title=" Your extraordinary journey starts now!">
               <span>
@@ -82,12 +82,12 @@ export default function Home({ searchParams }: Props) {
       </div>
 
       {/* Benefits component */}
-      <div className="mt-12">
+      <div className="mt-6 sm:mt-12">
         <BenefitsComponent />
       </div>
 
       {/* Reviews component */}
-      <div className="mt-12 container mb-12">
+      <div className="my-4 container ">
         <Suspense fallback={<Skeleton className="min-h-[300px]"/>}>
           <ReviewsComponent />
         </Suspense>

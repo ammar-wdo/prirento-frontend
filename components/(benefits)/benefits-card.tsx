@@ -30,7 +30,7 @@ const BenefitsCard = ({benefit,index}: Props) => {
     whileInView='whileInView'
     viewport={{ once: true }}
     
-    className='p-8 flex items-center flex-col text-white justify-self-center max-w-[350px] gap-4'>
+    className='py-4 px-8 flex items-center flex-col text-white justify-self-center max-w-[350px] gap-4'>
         <span className='w-12 h-12 flex items-center justify-center bg-white  text-black rounded-full'>{benefit.icon}</span>
         <h3 className='font-bold capitalize'>{benefit.title}</h3>
         <p className='text-sm text-center font-light text-muted'>{benefit.description}</p>

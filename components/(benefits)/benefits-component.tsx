@@ -16,13 +16,13 @@ const BenefitsComponent = (props: Props) => {
     {
       title: "Money back guarantee",
       description:
-        "refund possibilities at certain situations",
+        "Your rental is risk-free with Prirento. Our money-back guarantee ensures peace of mind.",
       icon: <HandCoins className="w-5 h-5" />,
     },
     {
       title: "Convenient Online Booking",
       description:
-        "Book your ideal rental car effortlessly with our user-friendly online system. Reserve your vehicle anytime, anywhere, ensuring a hassle-free rental experience from start to finish.",
+        "Book your ideal rental car effortlessly with our user-friendly online system. Reserve your car anytime, anywhere, ensuring a hassle-free rental experience from start to finish.",
       icon: <BadgeCheck className="w-5 h-5" />,
     },
   ];
@@ -38,7 +38,7 @@ const BenefitsComponent = (props: Props) => {
         </span>
       </Heading>
 
-      <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-12 ">
+      <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-6 ">
         {benefits.map((benefit,index)=><BenefitsCard key={index} index={index} benefit={benefit}/>)}
         </div>
         </div>

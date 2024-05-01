@@ -61,8 +61,8 @@ const Footer = (props: Props) => {
    
   ];
   return (
-    <div className="bg-main p-6 py-20">
-      <section className="   text-white grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3   gap-20 container">
+    <div className="bg-main p-6 pt-14 pb-7">
+      <section className="   text-white grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3   sm:gap-20 gap-8 container">
         <article className="flex flex-col gap-4">
           <div className="relative w-[150px] aspect-video">
             <Image
@@ -72,7 +72,7 @@ const Footer = (props: Props) => {
               className="object-contain"
             />
           </div>
-          <h3 className="text-xs font-light md:text-base">
+          <h3 className="text-base">
           Elevate Your Drive with UAE&apos;s Finest Luxury Cars.{" "}
           </h3>
           <div className="flex items-center gap-8 mt-4 flex-wrap">
@@ -88,14 +88,14 @@ const Footer = (props: Props) => {
 
         {footerLinks.map((link) => (
           <article key={link.title} className=" ">
-            <h3 className="font-semibold capitalize">{link.title}</h3>
+            <h3 className="font-bold capitalize">{link.title}</h3>
             <div className="mt-3 md:mt-8 flex flex-col gap-4 md:gap-8">
               {link.elements.map((el) => {
                 if ("icon" in el)
                   return (
                     <div key={el.title} className="flex items-center">
                       {el.icon}
-                      <p className="text-xs first-letter:capitalize font-light md:text-base">
+                      <p className="text-sm first-letter:capitalize  md:text-base">
                         {el.title}
                       </p>
                     </div>
@@ -104,7 +104,7 @@ const Footer = (props: Props) => {
                 return (
                   <Link
                     key={el.title}
-                    className="text-xs font-extralight   md:text-base hover:underline w-fit"
+                    className="text-sm    md:text-base hover:underline w-fit"
                     href={el.href}
                   >
                     {el.title}
@@ -118,12 +118,12 @@ const Footer = (props: Props) => {
 
       {/*copy rights  - terms & privacy */}
       <section className="pt-8 border-t border-white w-full mt-12 flex items-center justify-between text-white flex-col md:flex-row gap-3 container">
-        <p className="lg:text-lg sm:text-sm font-light text-xs">
-          Copyright © 2023 PRIRENTO.
+        <p className="lg:text-lg   text-sm">
+          Copyright © 2024 PRIRENTO <span className="hidden sm:inline-block">| All Rights Reserved</span>
         </p>
 
-        <p className="lg:text-lg sm:text-sm font-light text-xs text-cetner">
-          All Rights Reserved |{" "}
+        <p className="lg:text-lg   text-sm text-cetner">
+           {" "}
           <Link className="underline" href={"/terms-and-conditions"}>
             Terms and Conditions
           </Link>{" "}
