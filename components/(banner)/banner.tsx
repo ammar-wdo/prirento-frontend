@@ -15,7 +15,7 @@ const Banner = (props: Props) => {
       Find & compare luxury cars
      
       </h1>
-      <h2 className="capitalize text-white  text-left font-semibold text-2xl md:text-3xl lg:text-[40px] w-fit relative  mt-2 sm:bg-main">In one click.</h2>
+      <h2 className="capitalize text-white   text-left font-semibold text-2xl md:text-3xl lg:text-[40px] w-fit relative  mt-2 sm:bg-main">In one click.</h2>
       </div>
     
    
