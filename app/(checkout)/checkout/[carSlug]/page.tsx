@@ -3,6 +3,7 @@ import ErrorComponent from "@/components/error-component";
 import { fetcher, searchParamsGenerate } from "@/lib/utils";
 import { GET_CAR } from "@/links";
 import { CarAvailabilityType, SingleCarType } from "@/types";
+import { redirect } from "next/navigation";
 import React from "react";
 
 type Props = {
@@ -38,11 +39,7 @@ const page = async ({ params, searchParams }: Props) => {
 </div>
 
   if (!carAvailability.data.availability.isAvailable)
-    return (
-      <div className="flex items-center justify-center h-[calc(100vh-70px)]">
-        <ErrorComponent description={carAvailability.data.availability.message as string} />
-      </div>
-    );
+    return redirect(`${process.env.NEXT_PUBLIC_BASE_URL!}/${carAvailability.data.companySlug}/${carAvailability.data.slug}?${urlParams}`);
 
   return (
     <div className="pb-20">

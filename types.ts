@@ -197,6 +197,7 @@ export type CarAvailabilityType = {
   startDate: Date;
   endDate: Date;
   slug:string;
+  companySlug:string,
   carExtraOptions:CarExtraOptions[],
   mandatorySuperAdminRules:CarSuperAdminRule[],
   optionalSuperAdminRules:CarSuperAdminRule[]
