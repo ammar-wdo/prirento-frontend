@@ -42,8 +42,8 @@ const page = async (props: Props) => {
           <Accordion type="multiple" className="mt-12">
             {faqs.map((faq) => (
               <AccordionItem  key={faq.id} value={faq.id}>
-                <AccordionTrigger className="py-6 hover:bg-muted hover:no-underline " >{faq.question}</AccordionTrigger>
-                <AccordionContent className="py-3 text-muted-foreground">{faq.answer}</AccordionContent>
+                <AccordionTrigger className="py-6 hover:bg-muted hover:no-underline text-start" >{faq.question}</AccordionTrigger>
+                <AccordionContent className="py-3 text-muted-foreground text-start">{faq.answer}</AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
