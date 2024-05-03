@@ -23,13 +23,13 @@ export const revalidate = 0;
 
 
 export const metadata: Metadata = {
-  title: "PRIRENTO - Luxurious car rental - UAE",
+  title: "Luxury Car Rentals in UAE | Experience Elegance with Prirento ",
   description:
-    "Descover the most luxorious car rental service in UAE, get hustle free experience, 24/7 support,money back guarantee, no fees, full  protection. ",
+    "Explore elite luxury car rentals in the UAE with Pri Rento. Discover our exclusive fleet of premium vehicles. Unmatched service and competitive rates. Book your extraordinary journey today! ",
   openGraph: {
-    title: "PRIRENTO - Luxurious car rental - UAE",
+    title: "Luxury Car Rentals in UAE | Experience Elegance with Prirento ",
     description:
-      "Descover the most luxorious car rental service in UAE, get hustle free experience, 24/7 support,money back guarantee, no fees, full  protection. ",
+      "Explore elite luxury car rentals in the UAE with Pri Rento. Discover our exclusive fleet of premium vehicles. Unmatched service and competitive rates. Book your extraordinary journey today! ",
       images:['/banner.png']
   },
 };

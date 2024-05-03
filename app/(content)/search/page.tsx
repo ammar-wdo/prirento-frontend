@@ -6,11 +6,29 @@ import Filter from "@/components/(filter)/filter";
 import FilterSlidebar from "@/components/(filter)/filter-slidebar";
 import SearchComponentServerWrapper from "@/components/(search-component)/seatch-component-server-wrapper";
 import { setDefaultSearchParams } from "@/lib/utils";
+import { Metadata } from "next";
 import { Suspense } from "react";
 
 type Props = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
+
+
+export const metaData:Metadata ={
+  title:
+    "Explore Our Luxury Fleet | Prirento UAE",
+  description:
+    "Dive into our extensive collection of luxury cars available for rent at Pri Rento. From sleek sports cars to elegant sedans, find the perfect vehicle to elevate your driving experience in the UAE. Reserve your dream car today!",
+  openGraph: {
+    title:
+      "Explore Our Luxury Fleet | Prirento UAE",
+    description:
+      "Dive into our extensive collection of luxury cars available for rent at Pri Rento. From sleek sports cars to elegant sedans, find the perfect vehicle to elevate your driving experience in the UAE. Reserve your dream car today!",
+
+    images: ["/banner.png"],
+  },
+}
+
 
 const page = async ({ searchParams }: Props) => {
   setDefaultSearchParams(searchParams);
