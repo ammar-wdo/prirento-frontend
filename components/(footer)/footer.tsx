@@ -20,7 +20,7 @@ const Footer = (props: Props) => {
         },
 
         {
-          title: "FAQ",
+          title: "FAQs",
           href: "/faq",
         },
         {

@@ -33,7 +33,7 @@ const page = async (props: Props) => {
   const { faqs } = faqsRes;
   return (
     <div>
-      <ContentBanner title="FAQ" />
+      <ContentBanner title="FAQs" />
 
       <section className="mt-12 container min-h-[1200px] flex flex-col pb-12">
         <h1 className="text-4xl font-medium mt-4">Frequently Asked Questions</h1>
