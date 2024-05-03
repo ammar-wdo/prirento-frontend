@@ -14,20 +14,17 @@ type Props = {
 };
 
 
-export const metaData:Metadata ={
-  title:
-    "Explore Our Luxury Fleet | Prirento UAE",
+export const metadata: Metadata = {
+  title: "Explore Our Luxury Fleet | Pri Rento UAE",
   description:
-    "Dive into our extensive collection of luxury cars available for rent at Pri Rento. From sleek sports cars to elegant sedans, find the perfect vehicle to elevate your driving experience in the UAE. Reserve your dream car today!",
+    "Dive into our extensive collection of luxury cars available for rent at Pri Rento. From sleek sports cars to elegant sedans, find the perfect vehicle to elevate your driving experience in the UAE. Reserve your dream car today! ",
   openGraph: {
-    title:
-      "Explore Our Luxury Fleet | Prirento UAE",
+    title: "Explore Our Luxury Fleet | Pri Rento UAE",
     description:
-      "Dive into our extensive collection of luxury cars available for rent at Pri Rento. From sleek sports cars to elegant sedans, find the perfect vehicle to elevate your driving experience in the UAE. Reserve your dream car today!",
-
-    images: ["/banner.png"],
+      "Dive into our extensive collection of luxury cars available for rent at Pri Rento. From sleek sports cars to elegant sedans, find the perfect vehicle to elevate your driving experience in the UAE. Reserve your dream car today! ",
+    
   },
-}
+};
 
 
 const page = async ({ searchParams }: Props) => {
