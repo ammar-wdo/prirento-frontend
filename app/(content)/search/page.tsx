@@ -15,11 +15,11 @@ type Props = {
 
 
 export const metadata: Metadata = {
-  title: "Explore Our Luxury Fleet | Pri Rento UAE",
+  title: "Explore Our Luxury Fleet | Prirento UAE",
   description:
     "Dive into our extensive collection of luxury cars available for rent at Pri Rento. From sleek sports cars to elegant sedans, find the perfect vehicle to elevate your driving experience in the UAE. Reserve your dream car today! ",
   openGraph: {
-    title: "Explore Our Luxury Fleet | Pri Rento UAE",
+    title: "Explore Our Luxury Fleet | Prirento UAE",
     description:
       "Dive into our extensive collection of luxury cars available for rent at Pri Rento. From sleek sports cars to elegant sedans, find the perfect vehicle to elevate your driving experience in the UAE. Reserve your dream car today! ",
     
