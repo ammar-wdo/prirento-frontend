@@ -26,24 +26,24 @@ export async function generateMetadata(
 ): Promise<Metadata> {
 
 
-//   const carDetails = await getCarInfo(params.carSlug)
+  const carDetails = await getCarInfo(params.carSlug)
 
-// if(!carDetails.car || !carDetails.success) return {
-//   title:'Not found',
-//   description:'This slug does not exist'
-// }
+if(!carDetails.car || !carDetails.success) return {
+  title:'Not found',
+  description:'This slug does not exist'
+}
 
 
 
  
   return {
-    title:` ${params.carSlug} | PRIRENTO` ,
-    description:`Amazing${params.carSlug}.`,
+    title:` ${carDetails.car.carName} | PRIRENTO` ,
+    description:`Amazing${carDetails.car.carName}.`,
     
     openGraph: {
-      title:` ${params.carSlug} | PRIRENTO` ,
-    description:`Amazing ${params.carSlug}.`,
-      // images: [...carDetails.car.gallary],
+      title:` ${carDetails.car.carName} | PRIRENTO` ,
+    description:`Amazing ${carDetails.car.carName}.`,
+      images: [...carDetails.car.gallary],
     },
   }
 }

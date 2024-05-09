@@ -21,34 +21,34 @@ type Props = { params: { companySlug: string } };
 
 export const revalidate = 0
 
-//generate metadata
-// export async function generateMetadata(
-//   { params }: Props,
+// generate metadata
+export async function generateMetadata(
+  { params }: Props,
 
-// ): Promise<Metadata> {
+): Promise<Metadata> {
 
 
-//   const res = await getCompanyInfo(params.companySlug)
+  const res = await getCompanyInfo(params.companySlug)
 
-// if(!res.company || !res.success) return {
-//   title:'Not found',
-//   description:'This slug does not exist'
-// }
+if(!res.company || !res.success) return {
+  title:'Not found',
+  description:'This slug does not exist'
+}
 
 
 
  
-//   return {
-//     title:`${res?.company?.name} | PRIRENTO` ,
-//     description:`Find best luxurious cars  at ${res.company.name}.`,
+  return {
+    title:`${res?.company?.name} | PRIRENTO` ,
+    description:`Find best luxurious cars  at ${res.company.name}.`,
     
-//     openGraph: {
-//       title:`${res?.company?.name} | PRIRENTO` ,
-//     description:`Find best luxurious cars  at ${res?.company?.name}.`,
-//       images: [...res.company.gallary],
-//     },
-//   }
-// }
+    openGraph: {
+      title:`${res?.company?.name} | PRIRENTO` ,
+    description:`Find best luxurious cars  at ${res?.company?.name}.`,
+      images: [...res.company.gallary],
+    },
+  }
+}
 
 const page = async ({ params }: Props) => {
 
