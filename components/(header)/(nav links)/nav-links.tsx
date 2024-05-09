@@ -16,6 +16,7 @@ export const links = [
     label: "About us",
     href: "/about-us",
   },
+ 
   {
     label: "All cars",
     href: "/search",
@@ -30,8 +31,9 @@ export const links = [
     icon: <ChevronDown className="ml-1 w-3 h-3" />,
     type:true
   },
+
   {
-    label: "My booking",
+    label: "My Booking",
     button: true,
   },
 ];
@@ -42,7 +44,7 @@ const NavLinks = ({white,brands}: Props) => {
 
  
   return (
-    <nav className={cn("flex items-center lg:gap-12 text-white text-sm gap-4   lg:text-base font-normal flex-row  ",white && 'text-main')}>
+    <nav className={cn("flex items-center lg:gap-6 text-white text-sm gap-3 xl:gap-12   lg:text-base font-normal flex-row  ",white && 'text-main')}>
       {links.map(({ label, href, button, icon,type,brand }) => {
         if (href)
           return (

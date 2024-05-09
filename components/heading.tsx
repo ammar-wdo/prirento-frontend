@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 
-type Props = { title: string; children: ReactNode,className?:string };
+type Props = { title: string; children?: ReactNode,className?:string };
 
 const Heading = ({title,children,className}: Props) => {
   return <div className={className}>

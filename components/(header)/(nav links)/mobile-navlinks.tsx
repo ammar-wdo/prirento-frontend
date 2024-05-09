@@ -19,6 +19,7 @@ export const links = [
     label: "About us",
     href: "/about-us",
   },
+  
   {
     label: "All cars",
     href: "/search",
@@ -33,6 +34,7 @@ export const links = [
     icon: <ChevronRight className="ml-1 w-3 h-3" />,
     type: true,
   },
+
 ];
 
 type Props = {brands:BrandType[]};
