@@ -31,10 +31,9 @@ const BenefitsComponent = (props: Props) => {
         <div className="container">
         <Heading className="text-white" title="Simplifying Your Luxury Rental Experience">
         <span>
-          To make renting easy and hassle-free, we provide a variety of cars
-          and advantages.
-          <br /> We have you covered with a variety of cars and flexible
-          rental terms.
+        Discover the pinnacle of luxury car rental with Prirento, offering a premium fleet at Dubai 
+Airport and across the city<br/>Experience premium car rental in Dubai with our curated 
+collection. Choose Prirento for the best luxury car rental in Dubai.
         </span>
       </Heading>
 

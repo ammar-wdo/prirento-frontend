@@ -76,11 +76,14 @@ const Footer = (props: Props) => {
           <h3 className="text-base">
           Elevate Your Drive with UAE&apos;s Finest Luxury Cars.{" "}
           </h3>
-          <div className="flex items-center gap-8 mt-4 flex-wrap">
+          <div className="flex items-center gap-6 mt-4 flex-wrap">
             {socialIcons.map((icon) => (
             
-                <Link target="_blank" href={icon.url} className="w-4  aspect-square relative shrink-0 ">
-                <Image src={icon.image} fill alt={icon.image} className="object-contain " />
+                <Link target="_blank" href={icon.url} className=" p-2">
+                  <div className="w-4  aspect-square relative shrink-0 ">
+                  <Image src={icon.image} fill alt={icon.image} className="object-contain " />
+                  </div>
+               
                 </Link>
            
             ))}

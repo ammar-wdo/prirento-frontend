@@ -60,7 +60,7 @@ export default function Home({ searchParams }: Props) {
           <div className="container">
             <Heading title=" Your extraordinary journey starts now!">
               <span>
-              Find your perfect match in our stunning car selection!
+              Find your perfect match in our stunning car selection with premium car rental in Dubai!
               </span>
             </Heading>
           </div>

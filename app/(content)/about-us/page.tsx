@@ -61,13 +61,13 @@ const page = async (props: Props) => {
           <div className="flex flex-col justify-between">
             <h2 className="font-bold text-4xl">Who are we ?</h2>
             <p className="text-xl text-justify mt-12 lg:mt-0">
-              AP Supercar Rental for holiday or business trips are available
-              from us with an emphasis on exclusivity. We provide a complete
-              selection of Alenia Exotic car rental options to make every
-              client’s rental experience perfect. We strive to provide a service
-              that is both affordable and meets and exceeds the customer’s
-              expectations, and we are not satisfied unless the customer is
-              satisfied. Let us drive your AP Supercars!
+              Prirento is your gateway to sports car rental in Dubai, offering a
+              curated fleet of the world’s most prestigious vehicles. As leaders
+              in exotic car rental, we deliver unparalleled luxury, style, and
+              performance for every journey. With a commitment to excellence and
+              personalized service, we redefine the standard of driving
+              elegance. Discover the thrill of the road with Prirento, where
+              every drive is a statement of prestige.
             </p>
 
             {/* greeen component */}
@@ -85,16 +85,15 @@ const page = async (props: Props) => {
           <div className="flex flex-col justify-between">
             <h2 className="font-bold text-4xl">What do we offer ?</h2>
             <p className="text-xl text-justify mt-12 lg:mt-0">
-              Our cars are ideal for any trip, whether it is a weekend getaway,
-              a business trip, or a road trip. You will be able to find a
-              vehicle that perfectly meets your needs from our fantastic
-              selection of rental cars in Dubai. If you would like to know more
-              about our car categories, which include exotic, prestige, and
-              muscle cars, as well as a variety of car brands such as Rolls
-              Royce, Lamborghini, Ferrari, and Porsche, please contact one of
-              our consultants. With our Ferrari 488 Spyder or Mercedes G63 in
-              our Cabriolet category, you can enjoy exploring DUBAI at your
-              leisure.
+              At Prirento, we specialize in sports car hire in Dubai, with an
+              unmatched selection of premium vehicles. Whether you're looking to
+              hire a Lamborghini, rent a Ferrari, or explore the city with a
+              Bentley, Mercedes-Benz, or Rolls-Royce, we have you covered. Our
+              fleet includes only the best in luxury and performance, providing
+              premium car rental in Dubai like no other. From BMW to Lambo hire,
+              each car is meticulously maintained to offer you the ultimate
+              driving experience. Experience the pinnacle of elegance with
+              Prirento, where every journey is crafted to perfection.
             </p>
 
             {/* greeen component */}

@@ -35,10 +35,8 @@ const ReviewsComponent = async ({ companySlug, hideHeading }: Props) => {
       {!hideHeading && (
         <Heading title="reviews">
           <span>
-            We are proud to collaborate with some of the best luxury cars rental
-            companies in the market, here
-            <br /> are some reviews the clients said previously about our
-            partners
+          We are proud to collaborate with some of the best luxury car rental companies in the 
+market<br/> offering luxury car rental in the UAE and premium rental cars in Dubai. 
           </span>
         </Heading>
       )}

@@ -13,9 +13,8 @@ const TipsComponent = (props: Props) => {
         <div className="container">
         <Heading title="Easy Luxury Car Rental">
         <span>
-          Renting a luxury car has never been easier. Our streamlined process
-          makes it simple for you <br />
-          to book and confirm your car of choice online{" "}
+        Discover unparalleled luxury car rental in the UAE with Prirento<br/> your gateway to 
+exclusive driving experiences with premium rental cars in Dubai. 
         </span>
       </Heading>
 
