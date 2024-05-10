@@ -86,8 +86,8 @@ const page = async (props: Props) => {
             <h2 className="font-bold text-4xl">What do we offer ?</h2>
             <p className="text-xl text-justify mt-12 lg:mt-0">
               At Prirento, we specialize in sports car hire in Dubai, with an
-              unmatched selection of premium vehicles. Whether you're looking to
-              hire a Lamborghini, rent a Ferrari, or explore the city with a
+              unmatched selection of premium vehicles. Whether you&apos;re looking to
+              hire a Lamborghini, rent a Ferrari, or explore the city with a 
               Bentley, Mercedes-Benz, or Rolls-Royce, we have you covered. Our
               fleet includes only the best in luxury and performance, providing
               premium car rental in Dubai like no other. From BMW to Lambo hire,
