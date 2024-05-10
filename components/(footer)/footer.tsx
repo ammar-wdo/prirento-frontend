@@ -34,16 +34,14 @@ const Footer = (props: Props) => {
       title: "Contact us",
       elements: [
         {
-          title: "contact@company.com",
+          title: "contact@prirento.ae",
           icon: <Mail className="mr-2 w-4 h-4 shrink-0" />,
+          mail:true
         },
-        {
-          title: "(414)687-5892",
-          icon: <Phone className="mr-2 w-4 h-4 shrink-0" />,
-        },
+       
 
         {
-          title: "794 Mcallister St San Francisco, 94102",
+          title: "Al Hebiah, Park-A2, Dubai",
           icon: <MapPin className="mr-2 w-4 h-4 shrink-0" />,
         },
       ],
@@ -51,10 +49,13 @@ const Footer = (props: Props) => {
   ];
 
   const socialIcons = [
-    {image: "/Facebook.png",url:'https://facebook.com/profile.php?id=61556710156284'},
-    {image:'/Twitter.png',url:'https://twitter.com/prirento'},
+    {image: "/Facebook.png",url:'https://www.facebook.com/profile.php?id=61556710156284'},
+    {image:'/twitter-alt.png',url:'https://twitter.com/PriRento'},
     {image:'/Instagram.png',url:'https://www.instagram.com/prirento/'},
-    {image:'/LinkedIn.png',url:'https://www.linkedin.com/company/prirento/'},
+    {image:'/LinkedIn.png',url:'https://www.linkedin.com/company/prirentoo/'},
+    {image:'/pinterest.png',url:'https://www.pinterest.com/prirento/'},
+    {image:'/quora.png',url:'https://www.quora.com/profile/PriRento'},
+    {image:'/tik-tok.png',url:'https://www.tiktok.com/@prirento5'},
   
    
    
@@ -77,11 +78,11 @@ const Footer = (props: Props) => {
           </h3>
           <div className="flex items-center gap-8 mt-4 flex-wrap">
             {socialIcons.map((icon) => (
-              <div className="w-4  aspect-square relative shrink-0" key={icon.image}>
-                <Link target="_blank" href={icon.url}>
+            
+                <Link target="_blank" href={icon.url} className="w-4  aspect-square relative shrink-0 ">
                 <Image src={icon.image} fill alt={icon.image} className="object-contain " />
                 </Link>
-              </div>
+           
             ))}
           </div>
         </article>
@@ -93,12 +94,15 @@ const Footer = (props: Props) => {
               {link.elements.map((el) => {
                 if ("icon" in el)
                   return (
-                    <div key={el.title} className="flex items-center">
+              !("mail" in el) ?       <div key={el.title} className="flex items-center">
                       {el.icon}
-                      <p className="text-sm first-letter:capitalize  md:text-base">
+                      <p className="text-sm  md:text-base">
                         {el.title}
                       </p>
-                    </div>
+                    </div> :<Link  key={el.title} className="flex items-center hover:underline w-fit" href={`mailto:${el.title}`}>{el.icon}
+                      <p className="text-sm  md:text-base">
+                        {el.title}
+                      </p></Link>
                   );
 
                 return (
@@ -124,11 +128,11 @@ const Footer = (props: Props) => {
 
         <p className="lg:text-lg   text-sm text-cetner">
            {" "}
-          <Link className="underline" href={"/terms-and-conditions"}>
+          <Link className="hover:underline" href={"/terms-and-conditions"}>
             Terms and Conditions
           </Link>{" "}
           |{" "}
-          <Link className="underline" href={"/privacy-policy"}>
+          <Link className="hover:underline" href={"/privacy-policy"}>
             Privacy Policy
           </Link>
         </p>
