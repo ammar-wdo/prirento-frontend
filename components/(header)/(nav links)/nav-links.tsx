@@ -58,7 +58,7 @@ const NavLinks = ({white,brands}: Props) => {
               className={cn("bg-white hover:bg-white/90 text-secondaryGreen rounded-xl lg:text-base md:block hidden",white && 'bg-secondaryGreen hover:bg-secondaryGreen/90 text-white')}
               asChild
             >
-              <Link href={"/booking"}>My booking</Link>
+              <Link href={"/booking"}>{label}</Link>
             </Button>
           );
 
