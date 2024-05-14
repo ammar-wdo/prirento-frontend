@@ -37,7 +37,7 @@ const LocationPicker = ({
         <div className="flex flex-col gap-1  ">
         {locations.map((element) => (
           <Button key={element.id} onClick={() => setLocation(element.slug)} variant={"ghost"}>
-            {element.name}
+            <span className="text-start w-full">{element.name}</span>
           </Button>
         ))}
         </div>
