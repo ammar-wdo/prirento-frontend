@@ -26,20 +26,16 @@ const page = (props: Props) => {
         {/* contact info */}
         <h3 className="font-semibold mt-6"> Contact Information</h3>
         <ul className="mt-3 list-disc  text-black">
-          <li className="flex items-center gap-1 ">
-            {" "}
-            <span className="font-medium">Phone:</span>
-            <span>+123-456-7890</span>
-          </li>
+         
           <li className="flex items-center gap-1">
             {" "}
             <span className="font-medium">Email:</span>
-            <span>info@prirento.com</span>
+            <span>contact@prirento.ae</span>
           </li>
           <li className="flex items-center gap-1">
             {" "}
             <span className="font-medium">Address:</span>
-            <span> 123 Luxury Drive, City, Country</span>
+            <span>Al Hebiah, Park-A2, Dubai</span>
           </li>
         </ul>
 
