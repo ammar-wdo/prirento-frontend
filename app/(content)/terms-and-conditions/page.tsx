@@ -7,6 +7,8 @@ const Editor = dynamic(() => import("@/components/editor"), { ssr: false });
 
 type Props = {};
 
+export const revalidate = 86400
+
 const page = async (props: Props) => {
   const res = await fetcher<{
     success: boolean;

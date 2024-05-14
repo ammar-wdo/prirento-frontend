@@ -13,7 +13,7 @@ import {
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-
+export const revalidate = 86400
 type Props = {};
 
 const page = async (props: Props) => {

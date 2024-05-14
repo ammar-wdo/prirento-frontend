@@ -14,6 +14,8 @@ const Editor = dynamic(() => import("@/components/editor"), { ssr: false });
 
 type Props = {};
 
+export const revalidate = 86400
+
 export const metadata: Metadata = {
   title:
     "Experience Luxury at Its Finest: Prirento | Premier Car Rental Service in UAE ",
