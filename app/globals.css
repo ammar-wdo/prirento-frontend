@@ -95,5 +95,5 @@
 
 
  p.bn-inline-content {
-  @apply  text-xl text-black !important
+  @apply  text-[18px] text-black !important
 }

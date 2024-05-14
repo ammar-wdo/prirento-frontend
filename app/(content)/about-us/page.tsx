@@ -62,7 +62,7 @@ const page = async (props: Props) => {
 
           <div className="flex flex-col justify-between">
             <h2 className="font-bold text-4xl">Who are we ?</h2>
-            <p className="text-xl text-justify mt-12 lg:mt-0">
+            <p className="text-[18px] text-justify mt-12 lg:mt-0">
               Prirento is your gateway to sports car rental in Dubai, offering a
               curated fleet of the world&apos;s most prestigious vehicles. As leaders
               in exotic car rental, we deliver unparalleled luxury, style, and
@@ -86,7 +86,7 @@ const page = async (props: Props) => {
         <article className="grid grid-cols-1 lg:grid-cols-2 gap-24 container  mt-24">
           <div className="flex flex-col justify-between">
             <h2 className="font-bold text-4xl">What do we offer ?</h2>
-            <p className="text-xl text-justify mt-12 lg:mt-0">
+            <p className="text-[18px] text-justify mt-12 lg:mt-0">
               At Prirento, we specialize in sports car hire in Dubai, with an
               unmatched selection of premium vehicles. Whether you&apos;re looking to
               hire a Lamborghini, rent a Ferrari, or explore the city with a 
