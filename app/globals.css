@@ -92,3 +92,8 @@
 .input {
   @apply bg-neutral-100 border-none p-8
 }
+
+
+ p.bn-inline-content {
+  @apply  text-xl text-black !important
+}
