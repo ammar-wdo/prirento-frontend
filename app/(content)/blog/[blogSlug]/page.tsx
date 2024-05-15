@@ -61,7 +61,9 @@ const {blog,relatedBlogs} = blogRes
 </div>
 
 <div className='relative lg:aspect-[16/5] aspect-video rounded-lg w-full overflow-hidden'>
-  <Image src={blog.featuredImage} alt='blog-image' fill className='object-cover ' />
+  <div className='absolute w-full h-full bg-black/30  z-10'/>
+  <Image src={blog.featuredImage} alt='blog-image' fill className='object-cover blur-sm' />
+  <Image src={blog.featuredImage} alt='blog-image' fill className='object-contain z-20' />
 
 </div>
 
