@@ -5,6 +5,8 @@ import { Toaster } from "@/components/ui/sonner";
 import NextTopLoader from 'nextjs-toploader';
 import { GoogleAnalytics } from '@next/third-parties/google'
 import { GoogleTagManager } from '@next/third-parties/google'
+import dynamic from "next/dynamic";
+const CrispChat = dynamic(()=>import("../components/crisp-component"))
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -30,6 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <CrispChat/>
       <body className={inter.className}>
       <NextTopLoader
   color="#C6A046" />
