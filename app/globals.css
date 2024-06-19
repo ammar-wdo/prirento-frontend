@@ -95,11 +95,18 @@
 
 
  p.bn-inline-content {
-  @apply  text-[18px] text-black !important
+  @apply  text-[15px] text-black text-justify  !important
 }
 
 
 .bn-inline-content a {
   color: blue;
 
+
 }
+
+.bn-block-content{
+  text-align: justify;
+ 
+}
+
