@@ -34,26 +34,27 @@ const BlogsClientCotroller = ({ blogs, categories }: Props) => {
 
   return (
     <div>
-      <div className="mb-12 flex items-center gap-4">
+      <div className="mb-12 flex items-center gap-4 overflow-x-auto pb-4">
         <Button
+                className={cn(categorySelected !== undefined && "bg-muted text-black")}
           onClick={() => {
             setCategorySelected(undefined);
             setPageNumber(1);
           }}
-          variant={"siteMain"}
-          className={cn(categorySelected !== undefined && "opacity-80")}
+          variant={categorySelected !== undefined? "ghost":"siteMain"}
+       
         >
           All
         </Button>
         {categories.map((cat) => (
           <Button
-            className={cn(categorySelected !== cat.id && "opacity-80")}
+           className={cn(categorySelected !== cat.id && "bg-muted text-black")}
             onClick={() => {
               setCategorySelected(cat.id);
               setPageNumber(1);
             }}
             key={cat.id}
-            variant={"siteMain"}
+            variant={categorySelected !== cat.id? "ghost":"siteMain"}
           >
             {cat.label}
           </Button>

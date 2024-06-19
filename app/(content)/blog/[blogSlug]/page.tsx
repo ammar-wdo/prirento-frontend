@@ -78,7 +78,7 @@ const {blog,relatedBlogs} = blogRes
   
   <h3 className='font-medium text-lg'>Related blogs</h3>
 
-  <div className='mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
+  <div className='mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
     {relatedBlogs.map((blogElement)=><Link key={blogElement.id} href={blogElement.slug}><BlogCard blog={blogElement} /></Link>)}
 
   </div>
