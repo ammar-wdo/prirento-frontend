@@ -1,12 +1,14 @@
 import { fetcher } from "@/lib/utils";
 import { GET_BLOGS } from "@/links";
-import { Blog, BlogCardType } from "@/types";
+import { Blog, BlogCardType, BlogCategory } from "@/types";
 import React from "react";
 import ErrorComponent from "../error-component";
 import NoResult from "../no-result";
 import Image from "next/image";
 import BlogCard from "./blog-card";
 import Link from "next/link";
+import { Button } from "../ui/button";
+import BlogsClientCotroller from "./blogs-client-controller";
 
 type Props = {};
 
@@ -15,6 +17,7 @@ const BlogFeed = async (props: Props) => {
     success: boolean;
     error?: string;
     blogs: BlogCardType[];
+    categories:BlogCategory[]
   }>(GET_BLOGS);
 
   if (!res.success)
@@ -24,19 +27,12 @@ const BlogFeed = async (props: Props) => {
       </div>
     );
 
-  const { blogs } = res;
+  const { blogs, categories } = res;
 
 
   return (
     <div className="pb-12">
-      {!blogs.length && <NoResult />}
-      {!!blogs.length && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-stretch gap-3">
-          {blogs.map((blog) => (
-          <Link  key={blog.id} href={`/blog/${blog.slug}`} ><BlogCard blog={blog} /></Link>
-          ))}
-        </div>
-      )}
+    <BlogsClientCotroller categories={categories} blogs={blogs}/>
     </div>
   );
 };

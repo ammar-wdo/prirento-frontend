@@ -254,6 +254,12 @@ export type Blog ={
     updatedUt: Date;
 }
 
+export type BlogCategory ={
+  id:string,
+  label:string,
+  slug:string
+}
+
 export type BlogCardType = Omit<Blog,'content'>
 
 export type CarTypes =
