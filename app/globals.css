@@ -97,3 +97,9 @@
  p.bn-inline-content {
   @apply  text-[18px] text-black !important
 }
+
+
+.bn-inline-content a {
+  color: blue;
+
+}
