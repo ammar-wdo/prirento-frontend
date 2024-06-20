@@ -1,5 +1,6 @@
 import ContactForm from "@/components/(contact)/contact-form";
 import ContentBanner from "@/components/(content banner)/content-banner";
+import { customerServiceEmail } from "@/constants";
 import React from "react";
 
 type Props = {};
@@ -30,7 +31,7 @@ const page = (props: Props) => {
           <li className="flex items-center gap-1">
             {" "}
             <span className="font-medium">Email:</span>
-            <span>contact@prirento.ae</span>
+            <span>{customerServiceEmail}</span>
           </li>
           <li className="flex items-center gap-1">
             {" "}

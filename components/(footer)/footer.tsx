@@ -1,3 +1,4 @@
+import { customerServiceEmail } from "@/constants";
 import { Mail, MapPin, Phone } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -34,7 +35,7 @@ const Footer = (props: Props) => {
       title: "Contact us",
       elements: [
         {
-          title: "contact@prirento.ae",
+          title: customerServiceEmail,
           icon: <Mail className="mr-2 w-4 h-4 shrink-0" />,
           mail:true
         },
