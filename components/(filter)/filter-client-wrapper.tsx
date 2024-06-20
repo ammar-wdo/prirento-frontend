@@ -3,6 +3,7 @@ import { BrandType, carTypesArray, doors, electric, electricArray, seats } from 
 import { useFilter } from '@/hooks/filter-component-hook';
 import React from 'react'
 import FilterSection from './filter-section';
+import { Loader } from "lucide-react";
 
 
 type Props = {searchParams:{[key:string]:string | string[] | undefined}
@@ -11,9 +12,15 @@ type Props = {searchParams:{[key:string]:string | string[] | undefined}
 }
 
 const FilterClientWrapper = ({searchParams,brands}: Props) => {
-    const { seeMore, setSeeMore,handleFilterChange,filters} = useFilter(searchParams);
+    const { seeMore, setSeeMore,handleFilterChange,filters,pending} = useFilter(searchParams);
   return (
-    <div>
+    <div className="relative">
+      <div className="flex items-center pb-2 border-b">
+      <h3 className="capitalize  font-bold">filter</h3>
+      <div className="flex-1 flex justify-end ">{pending && <Loader className="animate-spin "/>}</div>
+      </div>
+
+      
          <div className="mt-2">
         <FilterSection
           title="Car Brand"

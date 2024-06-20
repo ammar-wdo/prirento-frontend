@@ -1,6 +1,6 @@
 import { pushSearchParams } from "@/lib/utils";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 
 export type Filters = {
   brand: string[] | string | undefined;
@@ -15,7 +15,7 @@ export const useFilter = (searchParams: {
   [key: string]: string | string[] | undefined;
 }) => {
 
-
+const [pending, startTransition] = useTransition()
     const parseInitialValue = (value:string | string[] | undefined) => {
         // If the value is already an array, return it directly.
         if (Array.isArray(value)) return value;
@@ -71,12 +71,12 @@ export const useFilter = (searchParams: {
     }
 
     const url = pushSearchParams(filters,`${process.env.NEXT_PUBLIC_BASE_URL}/search`,searchParams)
-  
-    router.push(url,{scroll:false})
+  startTransition(()=> router.push(url,{scroll:false}))
+   
   }, [filters]);
 
   const [seeMore, setSeeMore] = useState(false);
   const router = useRouter();
 
-  return { seeMore, setSeeMore, handleFilterChange, filters };
+  return { seeMore, setSeeMore, handleFilterChange, filters,pending };
 };
