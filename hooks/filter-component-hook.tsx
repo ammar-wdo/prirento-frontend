@@ -14,31 +14,28 @@ export type FilterQuery = "brand" | "carType" | "seats" | "doors" | "electric";
 export const useFilter = (searchParams: {
   [key: string]: string | string[] | undefined;
 }) => {
+  const [pending, startTransition] = useTransition();
+  const [pendingReset, startTransitionReset] = useTransition();
+  const parseInitialValue = (value: string | string[] | undefined) => {
+    // If the value is already an array, return it directly.
+    if (Array.isArray(value)) return value;
+    // If the value is a string and contains commas, split it into an array.
+    if (typeof value === "string" && value.includes(","))
+      return value.split(",");
+    // Return the value as an array if it's a non-empty string, otherwise undefined.
+    return value ? [value] : undefined;
+  };
 
-const [pending, startTransition] = useTransition()
-const [pendingReset, startTransitionReset] = useTransition()
-    const parseInitialValue = (value:string | string[] | undefined) => {
-        // If the value is already an array, return it directly.
-        if (Array.isArray(value)) return value;
-        // If the value is a string and contains commas, split it into an array.
-        if (typeof value === 'string' && value.includes(',')) return value.split(',');
-        // Return the value as an array if it's a non-empty string, otherwise undefined.
-        return value ? [value] : undefined;
-      };
-      
-      const initialValue = {
-        brand: parseInitialValue(searchParams.brand),
-        carType: parseInitialValue(searchParams.carType),
-        seats: parseInitialValue(searchParams.seats),
-        doors: parseInitialValue(searchParams.doors),
-        electric: parseInitialValue(searchParams.electric),
-    
-      };
-
-  
+  const initialValue = {
+    brand: parseInitialValue(searchParams.brand),
+    carType: parseInitialValue(searchParams.carType),
+    seats: parseInitialValue(searchParams.seats),
+    doors: parseInitialValue(searchParams.doors),
+    electric: parseInitialValue(searchParams.electric),
+  };
 
   const [filters, setFilters] = useState<Filters>(initialValue);
-  const [notMounted, setNotMounted] = useState(true)
+  const [notMounted, setNotMounted] = useState(true);
 
   const handleFilterChange = (
     category: FilterQuery,
@@ -63,17 +60,16 @@ const [pendingReset, startTransitionReset] = useTransition()
     setFilters(updatedFilter);
   };
 
-
-//auto filter
+  //auto filter
   // useEffect(() => {
-   
+
   //   if(notMounted){
   //       return setNotMounted(false)
   //   }
 
   //   const url = pushSearchParams(filters,`${process.env.NEXT_PUBLIC_BASE_URL}/search`,searchParams)
   // startTransition(()=> router.push(url,{scroll:false}))
-   
+
   // }, [filters]);
 
   useEffect(() => {
@@ -94,7 +90,6 @@ const [pendingReset, startTransitionReset] = useTransition()
   const [seeMore, setSeeMore] = useState(false);
   const router = useRouter();
 
-
   const calculateActiveFilters = () => {
     return Object.values(filters).reduce((acc, filter) => {
       if (Array.isArray(filter)) {
@@ -107,20 +102,41 @@ const [pendingReset, startTransitionReset] = useTransition()
     }, 0);
   };
 
- 
-
   const activeFiltersCount = calculateActiveFilters();
 
-  const handlePush = ()=>{
+  const handlePush = () => {
+    const url = pushSearchParams(
+      filters,
+      `${process.env.NEXT_PUBLIC_BASE_URL}/search`,
+      searchParams
+    );
+    startTransition(() => router.push(url, { scroll: false }));
+  };
 
+  const handleReset = () => {
+    startTransitionReset(() =>
+      router.push(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/search?startDate=${
+          searchParams.startDate
+        }&endDate=${searchParams.endDate}&startTime=${
+          searchParams.startTime
+        }&endTime=${searchParams.endTime}&location=${searchParams.location}${
+          !!searchParams.dropOffLocation &&
+          `&dropOffLocation=${searchParams.dropOffLocation}`
+        }`
+      )
+    );
+  };
 
-    const url = pushSearchParams(filters,`${process.env.NEXT_PUBLIC_BASE_URL}/search`,searchParams)
-    startTransition(()=> router.push(url,{scroll:false}))
-  }
-
-  const handleReset = ()=>{
-    startTransitionReset(()=>router.push(`${process.env.NEXT_PUBLIC_BASE_URL}/search`))
-  }
-
-  return { seeMore, setSeeMore, handleFilterChange, filters,pending ,activeFiltersCount,handlePush,handleReset,pendingReset};
+  return {
+    seeMore,
+    setSeeMore,
+    handleFilterChange,
+    filters,
+    pending,
+    activeFiltersCount,
+    handlePush,
+    handleReset,
+    pendingReset,
+  };
 };
