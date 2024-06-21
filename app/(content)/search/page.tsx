@@ -43,7 +43,7 @@ const page = async ({ searchParams }: Props) => {
         </div>
 
         {/* Filter sheet */}
-        <div className="mt-24 sticky top-12 z-10">
+        <div className="mt-24 sticky top-4 z-10">
           <FilterSlidebar>
             <Filter searchParams={searchParams} noBorder />
           </FilterSlidebar>
