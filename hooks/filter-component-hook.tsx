@@ -114,18 +114,33 @@ export const useFilter = (searchParams: {
   };
 
   const handleReset = () => {
-    startTransitionReset(() =>
-      router.push(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/search?startDate=${
-          searchParams.startDate
-        }&endDate=${searchParams.endDate}&startTime=${
-          searchParams.startTime
-        }&endTime=${searchParams.endTime}&location=${searchParams.location}${
-          !!searchParams.dropOffLocation &&
-          `&dropOffLocation=${searchParams.dropOffLocation}`
-        }`
-      )
-    );
+    const baseUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/search`;
+
+    const params = new URLSearchParams();
+  
+    const addParam = (key: string, value: string | string[] | undefined) => {
+      if (value) {
+        if (Array.isArray(value)) {
+          params.append(key, value.join(',')); // Join array values into a single string
+        } else {
+          params.append(key, value);
+        }
+      }
+    };
+  
+    addParam('startDate', searchParams.startDate);
+    addParam('endDate', searchParams.endDate);
+    addParam('startTime', searchParams.startTime);
+    addParam('endTime', searchParams.endTime);
+    addParam('location', searchParams.location);
+  
+    if (searchParams.dropOffLocation) {
+      addParam('dropOffLocation', searchParams.dropOffLocation);
+    }
+  
+    startTransitionReset(() => {
+      router.push(`${baseUrl}?${params.toString()}`);
+    });
   };
 
   return {
