@@ -117,6 +117,8 @@ export const useFilter = (searchParams: {
     const baseUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/search`;
 
     const params = new URLSearchParams();
+
+   
   
     const addParam = (key: string, value: string | string[] | undefined) => {
       if (value) {
@@ -129,7 +131,7 @@ export const useFilter = (searchParams: {
     };
   
     addParam('startDate', searchParams.startDate);
-    addParam('endDate', searchParams.endDate);
+    addParam('endDate', searchParams.endDate); 
     addParam('startTime', searchParams.startTime);
     addParam('endTime', searchParams.endTime);
     addParam('location', searchParams.location);

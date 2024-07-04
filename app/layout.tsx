@@ -24,7 +24,7 @@ export const metadata: Metadata = {
       
   },
 
-};
+};            
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -40,7 +40,7 @@ export default function RootLayout({
         <Toaster richColors={true} position="top-center" />
       </body>
       <GoogleAnalytics gaId="G-PQFR6PWJQ0" />
-      <GoogleTagManager gtmId="GTM-N3H97TR5" />
+      <GoogleTagManager  gtmId="GTM-N3H97TR5" />
     </html>
   );
 }
