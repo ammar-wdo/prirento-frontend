@@ -570,7 +570,7 @@ const BookingForm = ({
             payNow={payNow}
           />
         </div>
-        {<span>{JSON.stringify(form.formState.errors)}</span>}
+       
 
         {/* mobile submit button */}
         <Button
